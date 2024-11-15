@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import { Button } from 'primereact/button';
-import { Chart } from 'primereact/chart';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-import { Menu } from 'primereact/menu';
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import { Button } from '@/components/Button/Button';
 import { ProductService } from '../../demo/service/ProductService';
 import { LayoutContext } from '../../layout/context/layoutcontext';
 import Link from 'next/link';
 import { Demo } from '@/types';
 import { ChartData, ChartOptions } from 'chart.js';
+import Chart from '@/components/Chart/Chart';
+import { DataTable } from '@/components/DataTable/DataTable';
+import { Column } from '@/components/DataTable/Column';
+import { Menu, MenuRef } from '@/components/Menu/Menu';
 
 const lineData: ChartData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -36,8 +36,8 @@ const lineData: ChartData = {
 
 const Dashboard = () => {
     const [products, setProducts] = useState<Demo.Product[]>([]);
-    const menu1 = useRef<Menu>(null);
-    const menu2 = useRef<Menu>(null);
+    const menu1 = useRef<MenuRef>(null);
+    const menu2 = useRef<MenuRef>(null);
     const [lineOptions, setLineOptions] = useState<ChartOptions>({});
     const { layoutConfig } = useContext(LayoutContext);
 
@@ -377,10 +377,10 @@ const Dashboard = () => {
                 >
                     <div>
                         <div className="text-blue-100 font-medium text-xl mt-2 mb-3">TAKE THE NEXT STEP</div>
-                        <div className="text-white font-medium text-5xl">Try PrimeBlocks</div>
+                        <div className="text-white font-medium text-5xl">Try d-admin</div>
                     </div>
                     <div className="mt-4 mr-auto md:mt-0 md:mr-0">
-                        <Link href="https://blocks.primereact.org" className="p-button font-bold px-5 py-3 p-button-warning p-button-rounded p-button-raised">
+                        <Link href="https://blocks.d-admin.org" className="p-button font-bold px-5 py-3 p-button-warning p-button-rounded p-button-raised">
                             Get Started
                         </Link>
                     </div>

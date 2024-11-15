@@ -1,0 +1,24 @@
+.input-text {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 1rem;
+    line-height: 1.5;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    }
+
+    &:disabled {
+        background-color: #f3f4f6;
+        cursor: not-allowed;
+    }
+
+    &::placeholder {
+        color: #9ca3af;
+    }
+}

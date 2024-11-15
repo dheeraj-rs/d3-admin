@@ -1,13 +1,11 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Ripple } from 'primereact/ripple';
-import { classNames } from 'primereact/utils';
-import React, { useEffect, useContext } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import React, { useEffect, useContext, useCallback } from 'react';
 import { MenuContext } from './context/menucontext';
 import { AppMenuItemProps } from '@/types';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { classNames } from '@/lib/utils';
+import { CSSTransition } from '@/lib/CSSTransition';
 
 const AppMenuitem = (props: AppMenuItemProps) => {
     const pathname = usePathname();
@@ -17,16 +15,19 @@ const AppMenuitem = (props: AppMenuItemProps) => {
     const key = props.parentKey ? props.parentKey + '-' + props.index : String(props.index);
     const isActiveRoute = item!.to && pathname === item!.to;
     const active = activeMenu === key || activeMenu.startsWith(key + '-');
-    const onRouteChange = (url: string) => {
-        if (item!.to && item!.to === url) {
-            setActiveMenu(key);
-        }
-    };
+
+    const onRouteChange = useCallback(
+        (url: string) => {
+            if (item!.to && item!.to === url) {
+                setActiveMenu(key);
+            }
+        },
+        [item, key, setActiveMenu]
+    );
 
     useEffect(() => {
         onRouteChange(pathname);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pathname, searchParams]);
+    }, [pathname, searchParams, onRouteChange]);
 
     const itemClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         //avoid processing disabled items
@@ -63,16 +64,14 @@ const AppMenuitem = (props: AppMenuItemProps) => {
                     <i className={classNames('layout-menuitem-icon', item!.icon)}></i>
                     <span className="layout-menuitem-text">{item!.label}</span>
                     {item!.items && <i className="pi pi-fw pi-angle-down layout-submenu-toggler"></i>}
-                    <Ripple />
                 </a>
             ) : null}
 
             {item!.to && !item!.items && item!.visible !== false ? (
-                <Link href={item!.to} replace={item!.replaceUrl} target={item!.target} onClick={(e) => itemClick(e)} className={classNames(item!.class, 'p-ripple', { 'active-route': isActiveRoute })} tabIndex={0}>
+                <Link href={item!.to} replace={item!.replaceUrl} target={item!.target} onClick={(e) => itemClick(e)} className={classNames(item!.class, 'p-ripple', { 'active-route': !!isActiveRoute })} tabIndex={0}>
                     <i className={classNames('layout-menuitem-icon', item!.icon)}></i>
                     <span className="layout-menuitem-text">{item!.label}</span>
                     {item!.items && <i className="pi pi-fw pi-angle-down layout-submenu-toggler"></i>}
-                    <Ripple />
                 </Link>
             ) : null}
 

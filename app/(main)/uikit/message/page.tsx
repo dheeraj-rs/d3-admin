@@ -1,16 +1,21 @@
 'use client';
-import React, { useRef, useState } from 'react';
-import { Toast } from 'primereact/toast';
-import { Messages } from 'primereact/messages';
-import { Message } from 'primereact/message';
-import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
+import React, { useRef, useState, Suspense } from 'react';
+import { Toast, ToastRef } from '@/components/Toast/Toast';
+import { Button } from '@/components/Button/Button';
+import { InputText } from '@/components/InputText/InputText';
 
-const MessagesDemo = () => {
+import { Message } from '@/components/Message/Message';
+import { Messages, MessagesRef } from '@/components/Messages/Messages';
+
+// Create a loading component for Suspense
+const Loading = () => <div>Loading...</div>;
+
+// Main component wrapped in Suspense
+const MessagesContent = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const toast = useRef<Toast>(null);
-    const message = useRef<Messages>(null);
+    const toast = useRef<ToastRef>(null);
+    const message = useRef<MessagesRef>(null);
 
     const addSuccessMessage = () => {
         message.current?.show({ severity: 'success', content: 'Message Detail' });
@@ -125,6 +130,15 @@ const MessagesDemo = () => {
                 </div>
             </div>
         </div>
+    );
+};
+
+// Export the wrapped component
+const MessagesDemo = () => {
+    return (
+        <Suspense fallback={<Loading />}>
+            <MessagesContent />
+        </Suspense>
     );
 };
 

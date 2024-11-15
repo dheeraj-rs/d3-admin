@@ -1,0 +1,36 @@
+.toggleButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #495057;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+        background: #e9ecef;
+    }
+
+    &.checked {
+        background: #3b82f6;
+        color: #ffffff;
+        border-color: #3b82f6;
+
+        &:hover:not(:disabled) {
+            background: #2563eb;
+        }
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .label {
+        font-size: 0.875rem;
+    }
+}

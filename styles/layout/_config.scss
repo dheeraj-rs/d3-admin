@@ -1,36 +1,28 @@
-.layout-config-button {
-    display: block;
+.layout-config {
+    width: $width-config-panel;
+    height: 100%;
+    background-color: var(--surface-overlay);
+    overflow-y: auto;
+    user-select: none;
     position: fixed;
-    width: 3rem;
-    height: 3rem;
-    line-height: 3rem;
-    background: var(--primary-color);
-    color: var(--primary-color-text);
-    text-align: center;
-    top: 50%;
-    right: 0;
-    margin-top: -1.5rem;
-    border-top-left-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    transition: background-color var(--transition-duration);
-    overflow: hidden;
-    cursor: pointer;
-    z-index: 999;
-    box-shadow: -.25rem 0 1rem rgba(0,0,0,.15);
-
+    top: $offset-config-panel-top;
+    right: $spacing-config-panel-right;
+    transition: transform $duration-animation-base, right $duration-animation-base, height $duration-animation-base;
+    border-radius: $radius-component-base;
+    padding: $spacing-config-panel-inner;
+    box-shadow: $shadow-component-base;
+    z-index: $z-index-layout-base;
 
     &.config-link {
         font-size: 1rem;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
         border: none;
-      }
-      .config-link:focus {
+    }
+    .config-link:focus {
         outline: 0 none;
         outline-offset: 0;
         box-shadow: 0 0 0 1px var(--focus-ring);
-      }
+    }
 
     i {
         font-size: 2rem;
@@ -38,17 +30,449 @@
         transform: rotate(0deg);
         transition: transform 1s;
     }
+}
 
-    &:hover {
-        background: var(--primary-400);
+// Base ripple container
+.p-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+// Ripple element
+.p-ink {
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 100%;
+    transform: scale(0);
+    pointer-events: none;
+
+    // Ripple animation
+    &.p-ink-active {
+        animation: ripple 0.4s linear;
     }
 }
 
-.layout-config-sidebar {
-    &.p-sidebar {
-        .p-sidebar-content {
-            padding-left: 2rem;
-            padding-right: 2rem;
+// Dark theme ripple variation
+.dark-theme {
+    .p-ink {
+        background: rgba(255, 255, 255, 0.3);
+    }
+}
+
+// Ripple animation keyframes
+@keyframes ripple {
+    100% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+}
+
+// Apply to specific components
+.p-button,
+.p-panel-header,
+.p-tabview-nav-link,
+.p-menuitem-link,
+.p-dropdown-trigger,
+.p-inputswitch,
+.p-checkbox,
+.p-radiobutton {
+    &.p-ripple {
+        .p-ink {
+            // Customize ripple for specific components
+            background: rgba(255, 255, 255, 0.4);
         }
     }
-} 
+}
+
+// Custom colors for different states
+.p-button {
+    &.p-button-success .p-ink {
+        background: rgba(green, 0.2);
+    }
+
+    &.p-button-warning .p-ink {
+        background: rgba(orange, 0.2);
+    }
+
+    &.p-button-danger .p-ink {
+        background: rgba(red, 0.2);
+    }
+}
+
+// ===========================================
+// Variables
+:root {
+    --primary-color: #2196f3;
+    --primary-dark: #1976d2;
+    --primary-light: rgba(33, 150, 243, 0.1);
+    --primary-hover: rgba(33, 150, 243, 0.04);
+    --primary-active: rgba(33, 150, 243, 0.12);
+    --purple-color: #9c27b0;
+    --purple-hover: rgba(156, 39, 176, 0.04);
+    --purple-active: rgba(156, 39, 176, 0.12);
+    --border-color: #ced4da;
+    --hover-border: #b4bac0;
+    --focus-border: #2196f3;
+    --disabled-opacity: 0.6;
+    --transition-duration: 0.2s;
+    --border-radius: 6px;
+    --border-radius-round: 2rem;
+}
+
+// Radio Button Component
+.p-radiobutton {
+    --radio-size: 20px;
+    --radio-border-width: 2px;
+    --radio-inner-size: 10px;
+    --primary-color: #2196f3;
+    --primary-dark: #1976d2;
+    --primary-hover: rgba(33, 150, 243, 0.04);
+    --primary-active: rgba(33, 150, 243, 0.12);
+    --primary-focus: rgba(33, 150, 243, 0.2);
+    --purple-color: #9c27b0;
+    --purple-dark: #7b1fa2;
+    --purple-hover: rgba(156, 39, 176, 0.04);
+    --purple-active: rgba(156, 39, 176, 0.12);
+    --purple-focus: rgba(156, 39, 176, 0.2);
+    --border-color: rgba(0, 0, 0, 0.38);
+    --hover-border: #757575;
+    --active-border: #1976d2;
+    --ripple-size: 40px;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    margin: 4px;
+
+    &-box {
+        position: relative;
+        width: var(--radio-size);
+        height: var(--radio-size);
+        border: var(--radio-border-width) solid var(--border-color);
+        border-radius: 50%;
+        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        background-color: transparent;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: var(--ripple-size);
+            height: var(--ripple-size);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: var(--primary-hover);
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
+
+    // Hover state
+    &:hover .p-radiobutton-box {
+        border-color: var(--hover-border);
+
+        &::before {
+            transform: translate(-50%, -50%) scale(1);
+            background-color: var(--primary-hover);
+        }
+    }
+
+    // Active/Pressed state
+    &:active .p-radiobutton-box {
+        border-color: var(--active-border);
+
+        &::before {
+            transform: translate(-50%, -50%) scale(1);
+            background-color: var(--primary-active);
+        }
+    }
+
+    // Pressed animation
+    &-pressed .p-radiobutton-box {
+        border-color: var(--active-border);
+
+        &::before {
+            transform: translate(-50%, -50%) scale(1);
+            background-color: var(--primary-active);
+        }
+    }
+
+    &-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--radio-inner-size);
+        height: var(--radio-inner-size);
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    // Checked state
+    &-checked {
+        .p-radiobutton-box {
+            border-color: var(--primary-color);
+        }
+
+        .p-radiobutton-icon {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        // Checked + Hover
+        &:hover .p-radiobutton-box {
+            border-color: var(--primary-dark);
+
+            &::before {
+                background-color: var(--primary-hover);
+            }
+        }
+
+        // Checked + Active/Pressed
+        &:active .p-radiobutton-box,
+        &.p-radiobutton-pressed .p-radiobutton-box {
+            border-color: var(--primary-dark);
+
+            &::before {
+                background-color: var(--primary-active);
+            }
+        }
+    }
+
+    // Purple variant
+    &-purple {
+        .p-radiobutton-box::before {
+            background-color: var(--purple-hover);
+        }
+
+        &:active .p-radiobutton-box {
+            border-color: var(--purple-dark);
+
+            &::before {
+                background-color: var(--purple-active);
+            }
+        }
+
+        &.p-radiobutton-pressed .p-radiobutton-box {
+            border-color: var(--purple-dark);
+
+            &::before {
+                background-color: var(--purple-active);
+            }
+        }
+
+        &.p-radiobutton-checked {
+            .p-radiobutton-box {
+                border-color: var(--purple-color);
+            }
+
+            .p-radiobutton-icon {
+                background-color: var(--purple-color);
+            }
+
+            &:hover .p-radiobutton-box {
+                border-color: var(--purple-dark);
+
+                &::before {
+                    background-color: var(--purple-hover);
+                }
+            }
+
+            &:active .p-radiobutton-box,
+            &.p-radiobutton-pressed .p-radiobutton-box {
+                border-color: var(--purple-dark);
+
+                &::before {
+                    background-color: var(--purple-active);
+                }
+            }
+        }
+    }
+
+    // Focus state
+    &:focus-within .p-radiobutton-box {
+        border-color: var(--primary-color);
+
+        &::before {
+            transform: translate(-50%, -50%) scale(1);
+            background-color: var(--primary-focus);
+        }
+    }
+
+    // Disabled state
+    &-disabled {
+        opacity: 0.38;
+        cursor: not-allowed;
+
+        .p-radiobutton-box {
+            border-color: var(--border-color) !important;
+
+            &::before {
+                display: none;
+            }
+        }
+
+        &:hover .p-radiobutton-box,
+        &:active .p-radiobutton-box,
+        &.p-radiobutton-pressed .p-radiobutton-box {
+            border-color: var(--border-color) !important;
+        }
+
+        &.p-radiobutton-checked .p-radiobutton-icon {
+            background-color: var(--border-color);
+        }
+    }
+}
+
+// Input Switch Component
+.p-inputswitch {
+    --switch-width: 3rem;
+    --switch-height: 1.75rem;
+    --switch-slider-size: 1.25rem;
+    --switch-padding: 0.25rem;
+
+    position: relative;
+    display: inline-block;
+    width: var(--switch-width);
+    height: var(--switch-height);
+    cursor: pointer;
+
+    &-slider {
+        position: absolute;
+        inset: 0;
+        background-color: var(--border-color);
+        border-radius: var(--switch-height);
+        transition: all var(--transition-duration);
+
+        &:hover {
+            background-color: var(--hover-border);
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            height: var(--switch-slider-size);
+            width: var(--switch-slider-size);
+            left: var(--switch-padding);
+            bottom: var(--switch-padding);
+            background-color: white;
+            border-radius: 50%;
+            transition: all var(--transition-duration);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    &-checked {
+        .p-inputswitch-slider {
+            background-color: var(--primary-color);
+
+            &:hover {
+                background-color: var(--primary-dark);
+            }
+
+            &::before {
+                transform: translateX(calc(var(--switch-width) - var(--switch-slider-size) - var(--switch-padding) * 2));
+            }
+        }
+    }
+
+    // Purple variant
+    &-purple {
+        &.p-inputswitch-checked {
+            .p-inputswitch-slider {
+                background-color: var(--purple-color);
+            }
+        }
+    }
+
+    &-disabled {
+        opacity: var(--disabled-opacity);
+        cursor: not-allowed;
+
+        .p-inputswitch-slider {
+            &:hover {
+                background-color: var(--border-color);
+            }
+        }
+    }
+}
+
+// Button Component
+.p-button {
+    --button-bg: var(--primary-color);
+    --button-hover-bg: var(--primary-dark);
+    --button-text: #ffffff;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-duration);
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+
+    // Hover state
+    &:hover:not(.p-button-disabled) {
+        background-color: var(--button-hover-bg);
+    }
+
+    // Active/Pressed state
+    &:active:not(.p-button-disabled) {
+        transform: translateY(1px);
+        background-color: var(--button-hover-bg);
+    }
+
+    // Variants
+    &-rounded {
+        border-radius: var(--border-radius-round);
+    }
+
+    &-outlined {
+        background-color: transparent;
+        border: 2px solid var(--button-bg);
+        color: var(--button-bg);
+
+        &:hover:not(.p-button-disabled) {
+            background-color: var(--primary-hover);
+        }
+
+        &:active:not(.p-button-disabled) {
+            background-color: var(--primary-active);
+        }
+    }
+
+    // Purple variant
+    &-purple {
+        --button-bg: var(--purple-color);
+        --button-hover-bg: darken(var(--purple-color), 10%);
+    }
+
+    &-disabled {
+        opacity: var(--disabled-opacity);
+        cursor: not-allowed;
+    }
+
+    &-loading {
+        cursor: wait;
+        opacity: 0.8;
+    }
+
+    &-icon {
+        font-size: 1.2em;
+    }
+
+    &-icon-only {
+        padding: 0.75rem;
+        aspect-ratio: 1;
+    }
+}

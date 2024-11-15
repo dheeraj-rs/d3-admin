@@ -15,12 +15,20 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
 
     const [layoutState, setLayoutState] = useState<LayoutState>({
         staticMenuDesktopInactive: false,
+        staticConfigDesktopInactive: false,
+        staticBottombarDesktopInactive: false,
         overlayMenuActive: false,
+        overlayConfigActive: false,
+        overlayBottombarActive: false,
         profileSidebarVisible: false,
         configSidebarVisible: false,
         staticMenuMobileActive: false,
+        staticConfigMobileActive: false,
+        staticBottombarMobileActive: false,
         menuHoverActive: false
     });
+
+    console.log('overlayConfigActive :', layoutState.overlayConfigActive);
 
     const onMenuToggle = () => {
         if (isOverlay()) {
@@ -31,6 +39,30 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
             setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticMenuDesktopInactive: !prevLayoutState.staticMenuDesktopInactive }));
         } else {
             setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticMenuMobileActive: !prevLayoutState.staticMenuMobileActive }));
+        }
+    };
+
+    const onConfigToggle = () => {
+        if (isOverlay()) {
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, overlayConfigActive: !prevLayoutState.overlayConfigActive }));
+        }
+
+        if (isDesktop()) {
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticConfigDesktopInactive: !prevLayoutState.staticConfigDesktopInactive }));
+        } else {
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticConfigMobileActive: !prevLayoutState.staticConfigMobileActive }));
+        }
+    };
+
+    const onBottombarToggle = () => {
+        if (isOverlay()) {
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, overlayBottombarActive: !prevLayoutState.overlayBottombarActive }));
+        }
+
+        if (isDesktop()) {
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticBottombarDesktopInactive: !prevLayoutState.staticBottombarDesktopInactive }));
+        } else {
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticBottombarMobileActive: !prevLayoutState.staticBottombarMobileActive }));
         }
     };
 
@@ -52,7 +84,9 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
         layoutState,
         setLayoutState,
         onMenuToggle,
-        showProfileSidebar
+        showProfileSidebar,
+        onConfigToggle,
+        onBottombarToggle
     };
 
     return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>;

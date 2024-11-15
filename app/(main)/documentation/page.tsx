@@ -8,7 +8,7 @@ const Documentation = () => {
                 <div className="col-12">
                     <div className="card docs">
                         <h4>Current Version</h4>
-                        <p>Next v13, React v18, Typescript with PrimeReact v10</p>
+                        <p>Next v13, React v18, Typescript with d-admin v10</p>
 
                         <h5>Getting Started</h5>
                         <p>
@@ -43,7 +43,7 @@ const Documentation = () => {
                         <p>Dependencies of Sakai are listed below and needs to be defined at package.json.</p>
 
                         <pre className="app-code">
-                            <code>{`"primereact": "^9.6.2",                    //required: PrimeReact components
+                            <code>{`"d-admin": "^9.6.2",                    //required: d-admin components
 "primeicons": "^6.0.1",                    //required: Icons
 "primeflex": "^3.3.0",                     //required: Utility CSS classes
 `}</code>
@@ -90,8 +90,8 @@ const Documentation = () => {
                             <code>
                                 {`"use client"
 import { LayoutProvider } from "./layout/context/layoutcontext";
-import { PrimeReactProvider } from "primereact/api";
-import "primereact/resources/primereact.css";
+import { Provider } from "d-admin/api";
+import "d-admin/resources/d-admin.css";
 ...
 import "../styles/layout/layout.scss";
 import "../styles/demo/Demos.scss";
@@ -111,9 +111,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         ></link>
       </head>
       <body>
-        <PrimeReactProvider>
+        <Provider>
             <LayoutProvider>{children}</LayoutProvider>
-        </PrimeReactProvider>
+        </Provider>
       </body>
     </html>
   );
@@ -136,7 +136,7 @@ interface MainLayoutProps {
 }
 
 export const metadata: Metadata = {
-    title: "Sakai by PrimeReact | Free Admin Template for Next.js",
+    title: "Sakai by d-admin | Free Admin Template for Next.js",
     ...
   };
 
@@ -161,7 +161,7 @@ interface FullPageLayoutProps {
 }
 
 export const metadata: Metadata = {
-    title: "Sakai by PrimeReact | Free Admin Template for Next.js",
+    title: "Sakai by d-admin | Free Admin Template for Next.js",
     ...
   };
 
@@ -194,7 +194,7 @@ export const LayoutProvider = (props) => {
         inputStyle: 'outlined',                 //default style for input elements
         menuMode: 'static',                     //layout mode of the menu, valid values are "static" or "overlay"
         colorScheme: 'light',                   //color scheme of the template, valid values are "light", "dim" and "dark"
-        theme: 'lara-light-indigo',             //default component theme for PrimeReact
+        theme: 'lara-light-indigo',             //default component theme for d-admin
         scale: 14                               //size of the body font size to scale the whole application
     });
 }`}
@@ -204,16 +204,14 @@ export const LayoutProvider = (props) => {
                         <h5>Menu</h5>
                         <p>
                             Main menu is defined at <span className="text-primary font-medium">AppMenu.js</span> file based on{' '}
-                            <a href="https://www.primefaces.org/primereact/menumodel/" className="font-medium hover:underline text-primary">
+                            <a href="https://www.primefaces.org/d-admin/menumodel/" className="font-medium hover:underline text-primary">
                                 MenuModel API
                             </a>
                             .
                         </p>
 
-                        <h5>PrimeReact Theme</h5>
-                        <p>
-                            Sakai theming is based on the PrimeReact theme being used.
-                        </p>
+                        <h5>d-admin Theme</h5>
+                        <p>Sakai theming is based on the d-admin theme being used.</p>
 
                         <h5>SASS Variables</h5>
                         <p>
@@ -226,8 +224,8 @@ export const LayoutProvider = (props) => {
                                 {`
 /* General */
 $scale:14px;                    /* initial font size */ 
-$borderRadius:12px;             /* border radius of layout element e.g. card, sidebar */ 
-$transitionDuration:.2s;        /* transition duration of layout elements e.g. sidebar */ 
+$radius-component-base:12px;             /* border radius of layout element e.g. card, sidebar */ 
+$duration-animation-base:.2s;        /* transition duration of layout elements e.g. sidebar */ 
 `}
                             </code>
                         </pre>

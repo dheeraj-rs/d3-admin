@@ -1,0 +1,42 @@
+.custom-menu {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    min-width: 12rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    &.popup {
+        position: fixed;
+    }
+
+    .menu-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu-item {
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: #f8f9fa;
+        }
+
+        .menu-icon {
+            font-size: 1rem;
+            width: 1rem;
+            text-align: center;
+        }
+
+        .menu-label {
+            flex: 1;
+        }
+    }
+}

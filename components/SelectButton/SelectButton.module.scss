@@ -1,0 +1,24 @@
+.selectButton {
+    display: flex;
+    gap: 0.5rem;
+
+    .option {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border-color, #ced4da);
+        background: var(--bg-color, #ffffff);
+        color: var(--text-color, #495057);
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: var(--hover-bg, #e9ecef);
+        }
+
+        &.selected {
+            background: var(--selected-bg, #3b82f6);
+            color: var(--selected-text, #ffffff);
+            border-color: var(--selected-border, #3b82f6);
+        }
+    }
+}

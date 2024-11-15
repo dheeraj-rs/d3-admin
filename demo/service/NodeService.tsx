@@ -1,4 +1,7 @@
-import { TreeNode } from 'primereact/treenode';
+interface TreeNode {
+    data: any;
+    children: TreeNode[];
+}
 
 export const NodeService = {
     getFiles() {

@@ -1,12 +1,13 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 
-import { Button } from 'primereact/button';
-import { Card } from 'primereact/card';
-import { Timeline } from 'primereact/timeline';
+import { Button } from '@/components/Button/Button';
+import Card from '@/components/Card/Card';
 import { CustomEvent } from '@/types';
+import Timeline from '@/components/Timeline/Timeline';
+
+const Loading = () => <div>Loading...</div>;
 
 const TimelineDemo = () => {
     const customEvents: CustomEvent[] = [
@@ -61,55 +62,57 @@ const TimelineDemo = () => {
     };
 
     return (
-        <div>
-            <div className="grid">
-                <div className="col-12 md:col-6">
-                    <div className="card">
-                        <h5>Left Align</h5>
-                        <Timeline value={customEvents} content={(item) => item.status} />
+        <Suspense fallback={<Loading />}>
+            <div>
+                <div className="grid">
+                    <div className="col-12 md:col-6">
+                        <div className="card">
+                            <h5>Left Align</h5>
+                            <Timeline value={customEvents} content={(item) => item.status} />
+                        </div>
                     </div>
-                </div>
-                <div className="col-12 md:col-6">
-                    <div className="card">
-                        <h5>Right Align</h5>
-                        <Timeline value={customEvents} align="right" content={(item) => item.status} />
+                    <div className="col-12 md:col-6">
+                        <div className="card">
+                            <h5>Right Align</h5>
+                            <Timeline value={customEvents} align="right" content={(item) => item.status} />
+                        </div>
                     </div>
-                </div>
-                <div className="col-12 md:col-6">
-                    <div className="card">
-                        <h5>Alternate Align</h5>
-                        <Timeline value={customEvents} align="alternate" content={(item) => item.status} />
+                    <div className="col-12 md:col-6">
+                        <div className="card">
+                            <h5>Alternate Align</h5>
+                            <Timeline value={customEvents} align="alternate" content={(item) => item.status} />
+                        </div>
                     </div>
-                </div>
 
-                <div className="col-12 md:col-6">
-                    <div className="card">
-                        <h5>Opposite Content</h5>
-                        <Timeline value={customEvents} opposite={(item) => item.status} content={(item) => <small className="p-text-secondary">{item.date}</small>} />
+                    <div className="col-12 md:col-6">
+                        <div className="card">
+                            <h5>Opposite Content</h5>
+                            <Timeline value={customEvents} opposite={(item) => item.status} content={(item) => <small className="p-text-secondary">{item.date}</small>} />
+                        </div>
                     </div>
-                </div>
 
-                <div className="col-12">
-                    <div className="card timeline-demo">
-                        <h5>Customized</h5>
-                        <Timeline value={customEvents} align="alternate" className="customized-timeline" marker={customizedMarker} content={customizedContent} />
+                    <div className="col-12">
+                        <div className="card timeline-demo">
+                            <h5>Customized</h5>
+                            <Timeline value={customEvents} align="alternate" className="customized-timeline" marker={customizedMarker} content={customizedContent} />
+                        </div>
                     </div>
-                </div>
-                <div className="col-12">
-                    <div className="card">
-                        <h5>Horizontal</h5>
-                        <h6>Top Align</h6>
-                        <Timeline value={horizontalEvents} layout="horizontal" content={(item) => item} />
+                    <div className="col-12">
+                        <div className="card">
+                            <h5>Horizontal</h5>
+                            <h6>Top Align</h6>
+                            <Timeline value={horizontalEvents} layout="horizontal" content={(item) => item} />
 
-                        <h6>Bottom Align</h6>
-                        <Timeline value={horizontalEvents} layout="horizontal" content={(item) => item} />
+                            <h6>Bottom Align</h6>
+                            <Timeline value={horizontalEvents} layout="horizontal" content={(item) => item} />
 
-                        <h6>Alternate Align</h6>
-                        <Timeline value={horizontalEvents} layout="horizontal" align="alternate" content={(item) => item} opposite={<span>&nbsp;</span>} />
+                            <h6>Alternate Align</h6>
+                            <Timeline value={horizontalEvents} layout="horizontal" align="alternate" content={(item) => item} opposite={<span>&nbsp;</span>} />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Suspense>
     );
 };
 

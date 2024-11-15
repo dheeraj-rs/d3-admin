@@ -1,21 +1,23 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { Toolbar } from 'primereact/toolbar';
-import { Button } from 'primereact/button';
-import { SplitButton } from 'primereact/splitbutton';
-import { Accordion, AccordionTab } from 'primereact/accordion';
-import { TabView, TabPanel } from 'primereact/tabview';
-import { Panel } from 'primereact/panel';
-import { Fieldset } from 'primereact/fieldset';
-import { Card } from 'primereact/card';
-import { Divider } from 'primereact/divider';
-import { InputText } from 'primereact/inputtext';
-import { Splitter, SplitterPanel } from 'primereact/splitter';
-import { Menu } from 'primereact/menu';
+import Toolbar from '@/components/Toolbar/Toolbar';
+import { Button } from '@/components/Button/Button';
+import { SplitButton } from '@/components/SplitButton/SplitButton';
+import Card from '@/components/Card/Card';
+import { Divider } from '@/components/Divider/Divider';
+import { InputText } from '@/components/InputText/InputText';
+import { Menu, MenuRef } from '@/components/Menu/Menu';
+
+import { Accordion } from '@/components/Accordion/Accordion';
+import { AccordionTab } from '@/components/Accordion/AccordionTab';
+import { TabView, TabPanel } from '@/components/TabView/TabView';
+import { Panel } from '@/components/Panel/Panel';
+import { Fieldset } from '@/components/Fieldset/Fieldset';
+import { Splitter, SplitterPanel } from '@/components/Splitter/Splitter';
 
 const PanelDemo = () => {
-    const menu1 = useRef<Menu>(null);
+    const menu1 = useRef<MenuRef>(null);
     const toolbarItems = [
         {
             label: 'Save',
@@ -71,7 +73,7 @@ const PanelDemo = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>Toolbar</h5>
-                    <Toolbar start={toolbarLeftTemplate} end={toolbarRightTemplate}></Toolbar>
+                    <Toolbar start={toolbarLeftTemplate()} end={toolbarRightTemplate}></Toolbar>
                 </div>
             </div>
             <div className="col-12 md:col-6">

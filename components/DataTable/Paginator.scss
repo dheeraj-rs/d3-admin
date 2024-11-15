@@ -1,0 +1,35 @@
+.custom-paginator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 0.5rem;
+
+    button {
+        padding: 0.5rem 1rem;
+        border: 1px solid #dee2e6;
+        background: white;
+        cursor: pointer;
+        border-radius: 4px;
+
+        &:hover:not(:disabled) {
+            background: #e9ecef;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        &.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+    }
+
+    .paginator-pages {
+        display: flex;
+        gap: 0.25rem;
+    }
+}

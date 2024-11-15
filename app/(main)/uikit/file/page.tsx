@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { FileUpload } from 'primereact/fileupload';
-import { Toast } from 'primereact/toast';
+import FileUpload from '@/components/FileUpload/FileUpload';
+import { Toast, ToastRef } from '@/components/Toast/Toast';
 
 const FileDemo = () => {
-    const toast = useRef<Toast | null>(null);
+    const toast = useRef<ToastRef>(null);
 
     const onUpload = () => {
         toast.current?.show({

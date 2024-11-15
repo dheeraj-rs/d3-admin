@@ -1,0 +1,47 @@
+.custom-message {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin: 0.25rem 0;
+
+    .message-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.5rem;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &.success {
+        background-color: #dff2bf;
+        color: #4f8a10;
+        .message-icon {
+            background-image: url('data:image/svg+xml,...'); // Add success icon SVG
+        }
+    }
+
+    &.info {
+        background-color: #bde5f8;
+        color: #00529b;
+        .message-icon {
+            background-image: url('data:image/svg+xml,...'); // Add info icon SVG
+        }
+    }
+
+    &.warn {
+        background-color: #feefb3;
+        color: #9f6000;
+        .message-icon {
+            background-image: url('data:image/svg+xml,...'); // Add warning icon SVG
+        }
+    }
+
+    &.error {
+        background-color: #ffd2d2;
+        color: #d8000c;
+        .message-icon {
+            background-image: url('data:image/svg+xml,...'); // Add error icon SVG
+        }
+    }
+}

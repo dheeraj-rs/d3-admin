@@ -1,0 +1,35 @@
+.layout-bottombar {
+    .layout-bottombar-desktop {
+        position: fixed;
+        right: $spacing-layout-base;
+        bottom: $spacing-layout-base;
+        background-color: var(--surface-overlay);
+        flex: 1 1 auto;
+        box-sizing: border-box;
+        border-radius: $radius-component-base;
+        transition: transform $duration-animation-base $easing-animation-base, right $duration-animation-base $easing-animation-base, left $duration-animation-base $easing-animation-base, width $duration-animation-base $easing-animation-base,
+            height $duration-animation-base $easing-animation-base $duration-animation-base;
+        box-shadow: $shadow-component-base;
+        z-index: $z-index-layout-base;
+        &:not(:hover) {
+            width: $width-panel-bottom-collapsed;
+            height: $height-panel-bottom-collapsed;
+            transition: transform $duration-animation-base $easing-animation-base, right $duration-animation-base $easing-animation-base, left $duration-animation-base $easing-animation-base, height $duration-animation-base $easing-animation-base,
+                width $duration-animation-base $easing-animation-base $duration-animation-base;
+        }
+    }
+
+    .layout-bottombar-mobile {
+        transform: translateX(100%);
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        flex: 1 1 auto;
+        width: 100%;
+        height: $height-panel-bottom-mobile;
+        background-color: var(--surface-overlay);
+        box-shadow: $shadow-component-base;
+        z-index: $z-index-layout-base;
+    }
+}

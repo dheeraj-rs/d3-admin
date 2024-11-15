@@ -1,7 +1,20 @@
-import React, { ReactElement, Dispatch, SetStateAction, HTMLAttributeAnchorTarget, ReactNode } from 'react';
+import React, { ReactElement, Dispatch, SetStateAction, HTMLAttributeAnchorTarget, ReactNode, MutableRefObject } from 'react';
 import { NextPage } from 'next';
 import { Demo } from './demo';
-import { Toast } from 'primereact/toast';
+import Toast from '@/components/Toast/Toast';
+
+/* CSSTransition Types */
+export interface CSSTransitionProps {
+    in: boolean;
+    timeout: {
+        enter: number;
+        exit: number;
+    };
+    classNames: string;
+    children: React.ReactElement;
+    onEnter?: () => void;
+    onExit?: () => void;
+}
 
 /* Breadcrumb Types */
 export interface AppBreadcrumbProps {
@@ -22,10 +35,16 @@ export interface BreadcrumbItem {
 /* Context Types */
 export type LayoutState = {
     staticMenuDesktopInactive: boolean;
+    staticConfigDesktopInactive: boolean;
+    staticBottombarDesktopInactive: boolean;
     overlayMenuActive: boolean;
+    overlayConfigActive: boolean;
+    overlayBottombarActive: boolean;
     profileSidebarVisible: boolean;
     configSidebarVisible: boolean;
     staticMenuMobileActive: boolean;
+    staticConfigMobileActive: boolean;
+    staticBottombarMobileActive: boolean;
     menuHoverActive: boolean;
 };
 
@@ -44,7 +63,9 @@ export interface LayoutContextProps {
     layoutState: LayoutState;
     setLayoutState: Dispatch<SetStateAction<LayoutState>>;
     onMenuToggle: () => void;
+    onConfigToggle: () => void;
     showProfileSidebar: () => void;
+    onBottombarToggle: () => void;
 }
 
 export interface MenuContextProps {
@@ -61,6 +82,7 @@ export interface AppConfigProps {
 export type NodeRef = MutableRefObject<ReactNode>;
 export interface AppTopbarRef {
     menubutton?: HTMLButtonElement | null;
+    toolbarbutton?: HTMLButtonElement | null;
     topbarmenu?: HTMLDivElement | null;
     topbarmenubutton?: HTMLButtonElement | null;
 }

@@ -1,19 +1,19 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { ProgressBar } from 'primereact/progressbar';
-import { Button } from 'primereact/button';
-import { Badge } from 'primereact/badge';
-import { Tag } from 'primereact/tag';
-import { Avatar } from 'primereact/avatar';
-import { AvatarGroup } from 'primereact/avatargroup';
-import { Chip } from 'primereact/chip';
-import { Skeleton } from 'primereact/skeleton';
-import { ScrollPanel } from 'primereact/scrollpanel';
-import { ScrollTop } from 'primereact/scrolltop';
+import { Button } from '@/components/Button/Button';
+import Chip from '@/components/Chip/Chip';
+import { ProgressBar } from '@/components/ProgressBar/ProgressBar';
+import { Badge } from '@/components/Badge/Badge';
+import { Tag } from '@/components/Tag/Tag';
+import { Avatar } from '@/components/Avatar/Avatar';
+import { AvatarGroup } from '@/components/AvatarGroup/AvatarGroup';
+import { Skeleton } from '@/components/Skeleton/Skeleton';
+import { ScrollPanel } from '@/components/ScrollPanel/ScrollPanel';
+import { ScrollTop } from '@/components/ScrollTop/ScrollTop';
 
 const MiscDemo = () => {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState<number>(0);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
@@ -52,11 +52,11 @@ const MiscDemo = () => {
                     <h4>Badge</h4>
                     <h5>Numbers</h5>
                     <div className="flex flex-wrap gap-2">
-                        <Badge value="2"></Badge>
-                        <Badge value="8" severity="success"></Badge>
-                        <Badge value="4" severity="info"></Badge>
-                        <Badge value="12" severity="warning"></Badge>
-                        <Badge value="3" severity="danger"></Badge>
+                        <Badge value="2" />
+                        <Badge value="8" severity="success" />
+                        <Badge value="4" severity="info" />
+                        <Badge value="12" severity="warning" />
+                        <Badge value="3" severity="danger" />
                     </div>
 
                     <h5>Positioned Badge</h5>
@@ -75,7 +75,7 @@ const MiscDemo = () => {
                     <h5>Button Badge</h5>
                     <div className="flex flex-wrap gap-2">
                         <Button type="button" label="Emails">
-                            <Badge value="8"></Badge>
+                            <Badge value="8" />
                         </Button>
                         <Button type="button" label="Messages" icon="pi pi-users" severity="warning">
                             <Badge value="8" severity="danger"></Badge>
@@ -93,7 +93,12 @@ const MiscDemo = () => {
                     <h4>Avatar</h4>
                     <h5>Avatar Group</h5>
                     <AvatarGroup className="mb-3">
-                        <Avatar image={`/demo/images/avatar/amyelsner.png`} size="large" shape="circle"></Avatar>
+                        <Avatar 
+                            image="/demo/images/avatar/amyelsner.png" 
+                            size="large" 
+                            shape="circle"
+                            alt="Amy Elsner"
+                        />
                         <Avatar image={`/demo/images/avatar/asiyajavayant.png`} size="large" shape="circle"></Avatar>
                         <Avatar image={`/demo/images/avatar/onyamalimba.png`} size="large" shape="circle"></Avatar>
                         <Avatar image={`/demo/images/avatar/ionibowcher.png`} size="large" shape="circle"></Avatar>
@@ -133,29 +138,29 @@ const MiscDemo = () => {
                     <h4>Tag</h4>
                     <h5>Tags</h5>
                     <div className="flex flex-wrap gap-2">
-                        <Tag value="Primary"></Tag>
-                        <Tag severity="success" value="Success"></Tag>
-                        <Tag severity="info" value="Info"></Tag>
-                        <Tag severity="warning" value="Warning"></Tag>
-                        <Tag severity="danger" value="Danger"></Tag>
+                        <Tag value="Primary" />
+                        <Tag severity="success" value="Success" />
+                        <Tag severity="info" value="Info" />
+                        <Tag severity="warning" value="Warning" />
+                        <Tag severity="danger" value="Danger" />
                     </div>
 
                     <h5>Pills</h5>
                     <div className="flex flex-wrap gap-2">
-                        <Tag value="Primary" rounded></Tag>
-                        <Tag severity="success" value="Success" rounded></Tag>
-                        <Tag severity="info" value="Info" rounded></Tag>
-                        <Tag severity="warning" value="Warning" rounded></Tag>
-                        <Tag severity="danger" value="Danger" rounded></Tag>
+                        <Tag value="Primary" rounded />
+                        <Tag severity="success" value="Success" rounded />
+                        <Tag severity="info" value="Info" rounded />
+                        <Tag severity="warning" value="Warning" rounded />
+                        <Tag severity="danger" value="Danger" rounded />
                     </div>
 
                     <h5>Icons</h5>
                     <div className="flex flex-wrap gap-2">
-                        <Tag icon="pi pi-user" value="Primary"></Tag>
-                        <Tag icon="pi pi-check" severity="success" value="Success"></Tag>
-                        <Tag icon="pi pi-info-circle" severity="info" value="Info"></Tag>
-                        <Tag icon="pi pi-exclamation-triangle" severity="warning" value="Warning"></Tag>
-                        <Tag icon="pi pi-times" severity="danger" value="Danger"></Tag>
+                        <Tag icon="pi pi-user" value="Primary" />
+                        <Tag icon="pi pi-check" severity="success" value="Success" />
+                        <Tag icon="pi pi-info-circle" severity="info" value="Info" />
+                        <Tag icon="pi pi-exclamation-triangle" severity="warning" value="Warning" />
+                        <Tag icon="pi pi-times" severity="danger" value="Danger" />
                     </div>
                 </div>
 

@@ -1,21 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import { Button } from 'primereact/button';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-import { Dialog } from 'primereact/dialog';
-import { FileUpload } from 'primereact/fileupload';
-import { InputNumber, InputNumberValueChangeEvent } from 'primereact/inputnumber';
-import { InputText } from 'primereact/inputtext';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { RadioButton, RadioButtonChangeEvent } from 'primereact/radiobutton';
-import { Rating } from 'primereact/rating';
-import { Toast } from 'primereact/toast';
-import { Toolbar } from 'primereact/toolbar';
-import { classNames } from 'primereact/utils';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { ProductService } from '../../../../demo/service/ProductService';
 import { Demo } from '@/types';
+import { Button } from '@/components/Button/Button';
+import { Column } from '@/components/Column/Column';
+import { DataTable, DataTableRef } from '@/components/DataTable/DataTable';
+import { InputText } from '@/components/InputText/InputText';
+import RadioButton from '@/components/RadioButton/RadioButton';
+import { Dialog } from '@/components/Dialog/Dialog';
+import FileUpload from '@/components/FileUpload/FileUpload';
+import InputNumber from '@/components/InputNumber/InputNumber';
+import Rating from '@/components/Rating/Rating';
+import InputTextarea from '@/components/InputTextarea/InputTextarea';
+import Toast, { ToastRef } from '@/components/Toast/Toast';
+import Toolbar from '@/components/Toolbar/Toolbar';
+import { classNames } from '@/lib/utils';
 
 /* @todo Used 'as any' for types here. Will fix in next version due to onSelectionChange event type issue. */
 const Crud = () => {
@@ -39,8 +39,8 @@ const Crud = () => {
     const [selectedProducts, setSelectedProducts] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [globalFilter, setGlobalFilter] = useState('');
-    const toast = useRef<Toast>(null);
-    const dt = useRef<DataTable<any>>(null);
+    const toast = useRef<ToastRef>(null);
+    const dt = useRef<DataTableRef>(null);
 
     useEffect(() => {
         ProductService.getProducts().then((data) => setProducts(data as any));
@@ -171,7 +171,7 @@ const Crud = () => {
         });
     };
 
-    const onCategoryChange = (e: RadioButtonChangeEvent) => {
+    const onCategoryChange = (e: { value: string }) => {
         let _product = { ...product };
         _product['category'] = e.value;
         setProduct(_product);
@@ -185,7 +185,7 @@ const Crud = () => {
         setProduct(_product);
     };
 
-    const onInputNumberChange = (e: InputNumberValueChangeEvent, name: string) => {
+    const onInputNumberChange = (e: { value: number }, name: string) => {
         const val = e.value || 0;
         let _product = { ...product };
         _product[`${name}`] = val;
@@ -367,7 +367,7 @@ const Crud = () => {
                         </div>
                         <div className="field">
                             <label htmlFor="description">Description</label>
-                            <InputTextarea id="description" value={product.description} onChange={(e) => onInputChange(e, 'description')} required rows={3} cols={20} />
+                            <InputTextarea id="description" value={product.description} onChange={(e: ChangeEvent<HTMLTextAreaElement>) => onInputChange(e, 'description')} required rows={3} cols={20} />
                         </div>
 
                         <div className="field">
@@ -395,11 +395,11 @@ const Crud = () => {
                         <div className="formgrid grid">
                             <div className="field col">
                                 <label htmlFor="price">Price</label>
-                                <InputNumber id="price" value={product.price} onValueChange={(e) => onInputNumberChange(e, 'price')} mode="currency" currency="USD" locale="en-US" />
+                                <InputNumber id="price" value={product.price} onValueChange={(e) => onInputNumberChange({ value: e || 0 }, 'price')} mode="currency" currency="USD" locale="en-US" />
                             </div>
                             <div className="field col">
                                 <label htmlFor="quantity">Quantity</label>
-                                <InputNumber id="quantity" value={product.quantity} onValueChange={(e) => onInputNumberChange(e, 'quantity')} />
+                                <InputNumber id="quantity" value={product.quantity} onValueChange={(e) => onInputNumberChange({ value: e || 0 }, 'quantity')} />
                             </div>
                         </div>
                     </Dialog>

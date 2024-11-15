@@ -2,19 +2,18 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext, useRef, useState } from 'react';
 import Link from 'next/link';
+import { Button } from '@/components/Button/Button';
+import { StyleClass } from '@/components/StyleClass/StyleClass';
+import { Divider } from '@/components/Divider/Divider';
 
-import { StyleClass } from 'primereact/styleclass';
-import { Button } from 'primereact/button';
-import { Ripple } from 'primereact/ripple';
-import { Divider } from 'primereact/divider';
 import { LayoutContext } from '../../../layout/context/layoutcontext';
 import { NodeRef } from '@/types';
-import { classNames } from 'primereact/utils';
+import { classNames } from '@/lib/utils';
 
 const LandingPage = () => {
     const [isHidden, setIsHidden] = useState(false);
     const { layoutConfig } = useContext(LayoutContext);
-    const menuRef = useRef<HTMLElement | null>(null);
+    const menuRef = useRef<HTMLElement>(null);
 
     const toggleMenuItemClick = () => {
         setIsHidden((prevState) => !prevState);
@@ -28,33 +27,33 @@ const LandingPage = () => {
                         <img src={`/layout/images/${layoutConfig.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}.svg`} alt="Sakai Logo" height="50" className="mr-0 lg:mr-2" />
                         <span className="text-900 font-medium text-2xl line-height-3 mr-8">SAKAI</span>
                     </Link>
-                    <StyleClass nodeRef={menuRef as NodeRef} selector="@next" enterClassName="hidden" leaveToClassName="hidden" hideOnOutsideClick>
-                        <i ref={menuRef} className="pi pi-bars text-4xl cursor-pointer block lg:hidden text-700"></i>
+                    <StyleClass nodeRef={menuRef} selector=".menu-items" enterClassName="hidden" leaveToClassName="hidden" hideOnOutsideClick>
+                        <i ref={menuRef} className="pi pi-bars text-4xl cursor-pointer block lg:hidden text-700" aria-label="Toggle menu" role="button" tabIndex={0}></i>
                     </StyleClass>
-                    <div className={classNames('align-items-center surface-0 flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full left-0 px-6 lg:px-0 z-2', { hidden: isHidden })} style={{ top: '100%' }}>
+                    <div className={classNames('menu-items align-items-center surface-0 flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full left-0 px-6 lg:px-0 z-2', { hidden: isHidden })} style={{ top: '100%' }}>
                         <ul className="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer">
                             <li>
                                 <a href="#home" onClick={toggleMenuItemClick} className="p-ripple flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
                                     <span>Home</span>
-                                    <Ripple />
+                                    <span className="p-ink" role="presentation"></span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#features" onClick={toggleMenuItemClick} className="p-ripple flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
                                     <span>Features</span>
-                                    <Ripple />
+                                    <span className="p-ink" role="presentation"></span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#highlights" onClick={toggleMenuItemClick} className="p-ripple flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
                                     <span>Highlights</span>
-                                    <Ripple />
+                                    <span className="p-ink" role="presentation"></span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#pricing" onClick={toggleMenuItemClick} className="p-ripple flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
                                     <span>Pricing</span>
-                                    <Ripple />
+                                    <span className="p-ink" role="presentation"></span>
                                 </a>
                             </li>
                         </ul>
@@ -514,36 +513,64 @@ const LandingPage = () => {
                             <div className="grid text-center md:text-left">
                                 <div className="col-12 md:col-3">
                                     <h4 className="font-medium text-2xl line-height-3 mb-3 text-900">Company</h4>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">About Us</a>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">News</a>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">Investor Relations</a>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">Careers</a>
-                                    <a className="line-height-3 text-xl block cursor-pointer text-700">Media Kit</a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                        About Us
+                                    </a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                        News
+                                    </a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                        Investor Relations
+                                    </a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                        Careers
+                                    </a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer text-700">
+                                        Media Kit
+                                    </a>
                                 </div>
 
                                 <div className="col-12 md:col-3 mt-4 md:mt-0">
                                     <h4 className="font-medium text-2xl line-height-3 mb-3 text-900">Resources</h4>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">Get Started</a>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">Learn</a>
-                                    <a className="line-height-3 text-xl block cursor-pointer text-700">Case Studies</a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                        Get Started
+                                    </a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                        Learn
+                                    </a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer text-700">
+                                        Case Studies
+                                    </a>
                                 </div>
 
                                 <div className="col-12 md:col-3 mt-4 md:mt-0">
                                     <h4 className="font-medium text-2xl line-height-3 mb-3 text-900">Community</h4>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">Discord</a>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                        Discord
+                                    </a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
                                         Events
                                         <img src="/demo/images/landing/new-badge.svg" className="ml-2" alt="badge" />
                                     </a>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">FAQ</a>
-                                    <a className="line-height-3 text-xl block cursor-pointer text-700">Blog</a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                        FAQ
+                                    </a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer text-700">
+                                        Blog
+                                    </a>
                                 </div>
 
                                 <div className="col-12 md:col-3 mt-4 md:mt-0">
                                     <h4 className="font-medium text-2xl line-height-3 mb-3 text-900">Legal</h4>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">Brand Policy</a>
-                                    <a className="line-height-3 text-xl block cursor-pointer mb-2 text-700">Privacy Policy</a>
-                                    <a className="line-height-3 text-xl block cursor-pointer text-700">Terms of Service</a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                        Brand Policy
+                                    </a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                                        Privacy Policy
+                                    </a>
+                                    <a href="#" className="line-height-3 text-xl block cursor-pointer text-700">
+                                        Terms of Service
+                                    </a>
                                 </div>
                             </div>
                         </div>

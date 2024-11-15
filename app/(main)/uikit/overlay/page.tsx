@@ -1,17 +1,24 @@
 'use client';
-
-import { Button } from 'primereact/button';
-import { Column } from 'primereact/column';
-import { confirmPopup, ConfirmPopup } from 'primereact/confirmpopup';
-import { DataTable, DataTableSelectEvent } from 'primereact/datatable';
-import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
-import { OverlayPanel } from 'primereact/overlaypanel';
-import { Sidebar } from 'primereact/sidebar';
-import { Toast } from 'primereact/toast';
 import React, { useEffect, useRef, useState } from 'react';
 import { ProductService } from '../../../../demo/service/ProductService';
 import type { Demo } from '@/types';
+
+import { Button } from '@/components/Button/Button';
+import { Column } from '@/components/Column/Column';
+import { DataTable } from '@/components/DataTable/DataTable';
+import { Dialog } from '@/components/Dialog/Dialog';
+import { Toast } from '@/components/Toast/Toast';
+import type { ToastRef } from '@/components/Toast/Toast';
+
+import { confirmPopup, ConfirmPopup } from '@/components/ConfirmPopup/ConfirmPopup';
+import { OverlayPanel } from '@/components/OverlayPanel/OverlayPanel';
+import { Sidebar } from '@/components/Sidebar/Sidebar';
+import { InputText } from '@/components/InputText/InputText';
+
+interface DataTableSelectEvent {
+    originalEvent: Event;
+    data: Demo.Product;
+}
 
 type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
 const OverlayDemo = () => {
@@ -24,9 +31,9 @@ const OverlayDemo = () => {
     const [visibleFullScreen, setVisibleFullScreen] = useState(false);
     const [products, setProducts] = useState<Demo.Product[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<Demo.Product | null>(null);
-    const op = useRef<OverlayPanel>(null);
-    const op2 = useRef<OverlayPanel>(null);
-    const toast = useRef<Toast>(null);
+    const op = useRef<React.ElementRef<typeof OverlayPanel>>(null);
+    const op2 = useRef<React.ElementRef<typeof OverlayPanel>>(null);
+    const toast = useRef<ToastRef>(null);
 
     const accept = () => {
         toast.current?.show({
@@ -210,7 +217,6 @@ const OverlayDemo = () => {
 
                     <div className="card">
                         <h5>ConfirmPopup</h5>
-                        <ConfirmPopup />
                         <Button onClick={confirm} icon="pi pi-check" label="Confirm"></Button>
                     </div>
                 </div>

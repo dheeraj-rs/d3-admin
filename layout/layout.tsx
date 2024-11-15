@@ -1,32 +1,36 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useEventListener, useMountEffect, useUnmountEffect } from 'primereact/hooks';
 import React, { useContext, useEffect, useRef } from 'react';
-import { classNames } from 'primereact/utils';
 import AppFooter from './AppFooter';
 import AppSidebar from './AppSidebar';
 import AppTopbar from './AppTopbar';
-import AppConfig from './AppConfig';
 import { LayoutContext } from './context/layoutcontext';
-import { PrimeReactContext } from 'primereact/api';
 import { ChildContainerProps, LayoutState, AppTopbarRef } from '@/types';
 import { usePathname, useSearchParams } from 'next/navigation';
+import AppConfigbar from './AppConfigbar';
+import { useEventListener, useUnmountEffect } from '@/hooks';
+import { classNames } from '@/lib/utils';
+import AppMenu from './AppMenu';
 
 const Layout = ({ children }: ChildContainerProps) => {
     const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
-    const { setRipple } = useContext(PrimeReactContext);
     const topbarRef = useRef<AppTopbarRef>(null);
     const sidebarRef = useRef<HTMLDivElement>(null);
+    const configbarRef = useRef<HTMLDivElement>(null);
+    const bottombarRef = useRef<HTMLDivElement>(null);
     const [bindMenuOutsideClickListener, unbindMenuOutsideClickListener] = useEventListener({
         type: 'click',
         listener: (event) => {
             const isOutsideClicked = !(
                 sidebarRef.current?.isSameNode(event.target as Node) ||
                 sidebarRef.current?.contains(event.target as Node) ||
+                configbarRef.current?.isSameNode(event.target as Node) ||
+                configbarRef.current?.contains(event.target as Node) ||
                 topbarRef.current?.menubutton?.isSameNode(event.target as Node) ||
-                topbarRef.current?.menubutton?.contains(event.target as Node)
+                topbarRef.current?.menubutton?.contains(event.target as Node) ||
+                topbarRef.current?.toolbarbutton?.isSameNode(event.target as Node) ||
+                topbarRef.current?.toolbarbutton?.contains(event.target as Node)
             );
 
             if (isOutsideClicked) {
@@ -49,7 +53,9 @@ const Layout = ({ children }: ChildContainerProps) => {
                 topbarRef.current?.topbarmenu?.isSameNode(event.target as Node) ||
                 topbarRef.current?.topbarmenu?.contains(event.target as Node) ||
                 topbarRef.current?.topbarmenubutton?.isSameNode(event.target as Node) ||
-                topbarRef.current?.topbarmenubutton?.contains(event.target as Node)
+                topbarRef.current?.topbarmenubutton?.contains(event.target as Node) ||
+                topbarRef.current?.toolbarbutton?.isSameNode(event.target as Node) ||
+                topbarRef.current?.toolbarbutton?.contains(event.target as Node)
             );
 
             if (isOutsideClicked) {
@@ -59,10 +65,12 @@ const Layout = ({ children }: ChildContainerProps) => {
     });
 
     const hideMenu = () => {
-        setLayoutState((prevLayoutState: LayoutState) => ({
+        setLayoutState((prevLayoutState) => ({
             ...prevLayoutState,
             overlayMenuActive: false,
+            overlayConfigActive: false,
             staticMenuMobileActive: false,
+            staticConfigMobileActive: false,
             menuHoverActive: false
         }));
         unbindMenuOutsideClickListener();
@@ -94,12 +102,13 @@ const Layout = ({ children }: ChildContainerProps) => {
     };
 
     useEffect(() => {
-        if (layoutState.overlayMenuActive || layoutState.staticMenuMobileActive) {
+        if (layoutState.overlayMenuActive || layoutState.overlayConfigActive || layoutState.staticMenuMobileActive || layoutState.staticConfigMobileActive) {
             bindMenuOutsideClickListener();
         }
 
         layoutState.staticMenuMobileActive && blockBodyScroll();
-    }, [layoutState.overlayMenuActive, layoutState.staticMenuMobileActive]);
+        layoutState.staticConfigMobileActive && blockBodyScroll();
+    }, [layoutState.overlayMenuActive, layoutState.overlayConfigActive, layoutState.staticMenuMobileActive, layoutState.staticConfigMobileActive]);
 
     useEffect(() => {
         if (layoutState.profileSidebarVisible) {
@@ -112,12 +121,17 @@ const Layout = ({ children }: ChildContainerProps) => {
         unbindProfileMenuOutsideClickListener();
     });
 
-    const containerClass = classNames('layout-wrapper', {
-        'layout-overlay': layoutConfig.menuMode === 'overlay',
+    const containerClass = classNames('layout-wrapper toggle__sidebar-left layout__sidebar-static layout__sidebar-default-active layout-topbar-inactive3 bento-topbar-active bento-bottombar-active', {
+        'layout-overlay ': layoutConfig.menuMode === 'overlay',
         'layout-static': layoutConfig.menuMode === 'static',
-        'layout-static-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
-        'layout-overlay-active': layoutState.overlayMenuActive,
-        'layout-mobile-active': layoutState.staticMenuMobileActive,
+        'layout-static-sidebar-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
+        'layout-static-config-inactive': layoutState.staticConfigDesktopInactive && layoutConfig.menuMode === 'static',
+        'layout-static-bottombar-inactive': layoutState.staticBottombarDesktopInactive,
+        'layout-static-bottombar-mobile-active ': layoutState.staticBottombarMobileActive,
+        'layout-overlay-sidebar-active': layoutState.overlayMenuActive,
+        'layout-overlay-config-active': layoutState.overlayConfigActive,
+        'layout-mobile-sidebar-active': layoutState.staticMenuMobileActive,
+        'layout-mobile-active-right': layoutState.staticConfigMobileActive,
         'p-input-filled': layoutConfig.inputStyle === 'filled',
         'p-ripple-disabled': !layoutConfig.ripple
     });
@@ -127,13 +141,21 @@ const Layout = ({ children }: ChildContainerProps) => {
             <div className={containerClass}>
                 <AppTopbar ref={topbarRef} />
                 <div ref={sidebarRef} className="layout-sidebar">
-                    <AppSidebar />
+                    <AppMenu />
+                </div>
+                <div ref={configbarRef} className="layout-config">
+                    <AppConfigbar />
                 </div>
                 <div className="layout-main-container">
                     <div className="layout-main">{children}</div>
                     <AppFooter />
                 </div>
-                <AppConfig />
+
+                <div ref={bottombarRef} className="layout-bottombar">
+                    <div className="layout-bottombar-desktop" />
+                    <div className="layout-bottombar-mobile" />
+                </div>
+
                 <div className="layout-mask"></div>
             </div>
         </React.Fragment>

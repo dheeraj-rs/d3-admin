@@ -1,17 +1,17 @@
 .layout-sidebar {
     position: fixed;
     width: 300px;
-    height: calc(100vh - 9rem);
+    height: calc(100% - #{$height-header-base + $spacing-layout-base * 2});
     z-index: 999;
     overflow-y: auto;
     user-select: none;
-    top: 7rem;
-    left: 2rem;
-    transition: transform $transitionDuration, left $transitionDuration;
+    top: calc($height-header-base + $spacing-layout-base);
+    left: $spacing-layout-base;
+    transition: transform $duration-animation-base, left $duration-animation-base;
     background-color: var(--surface-overlay);
-    border-radius: $borderRadius;
+    border-radius: $radius-component-base;
     padding: 0.5rem 1.5rem;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, .02), 0px 0px 2px rgba(0, 0, 0, .05), 0px 1px 4px rgba(0, 0, 0, .08);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .layout-menu {
@@ -21,12 +21,12 @@
     user-select: none;
 
     .layout-root-menuitem {
-        >.layout-menuitem-root-text {
-            font-size: .857rem;
+        > .layout-menuitem-root-text {
+            font-size: 0.857rem;
             text-transform: uppercase;
             font-weight: 700;
             color: var(--surface-900);
-            margin: .75rem 0;
+            margin: 0.75rem 0;
         }
 
         > a {
@@ -58,18 +58,18 @@
             outline: 0 none;
             color: var(--text-color);
             cursor: pointer;
-            padding: .75rem 1rem;
-            border-radius: $borderRadius;
-            transition: background-color $transitionDuration, box-shadow $transitionDuration;
+            padding: 0.75rem 1rem;
+            border-radius: $radius-component-base;
+            transition: background-color $duration-animation-base, box-shadow $duration-animation-base;
 
             .layout-menuitem-icon {
-                margin-right: .5rem;
+                margin-right: 0.5rem;
             }
 
             .layout-submenu-toggler {
                 font-size: 75%;
                 margin-left: auto;
-                transition: transform $transitionDuration;
+                transition: transform $duration-animation-base;
             }
 
             &.rotated-icon {
@@ -95,7 +95,7 @@
         ul {
             overflow: hidden;
             max-height: 0;
-            border-radius: $borderRadius;
+            border-radius: $radius-component-base;
 
             li {
                 a {
@@ -136,21 +136,44 @@
     }
 }
 
-.layout-submenu-enter-active {
-    max-height: 1000px !important;
+// .layout-submenu-enter-active {
+//     max-height: 1000px !important;
+//     transition: max-height 1s ease-in-out;
+// }
+
+// .layout-submenu-enter-done {
+//     max-height: 1000px !important;
+// }
+
+// .layout-submenu-exit {
+//     max-height: 1000px !important;
+// }
+
+// .layout-submenu-exit-active {
+//     overflow: hidden;
+//     max-height: 0 !important;
+//     transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
+// }
+
+// ---
+
+/* Enter transition */
+.layout-submenu-enter {
+   max-height: 1000px !important;
     transition: max-height 1s ease-in-out;
 }
 
-.layout-submenu-enter-done {
+.layout-submenu-enter-active {
     max-height: 1000px !important;
 }
 
+/* Exit transition */
 .layout-submenu-exit {
-    max-height: 1000px !important;
+  max-height: 1000px !important;
 }
 
 .layout-submenu-exit-active {
-    overflow: hidden;
+  overflow: hidden;
     max-height: 0 !important;
     transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
 }

@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { Dropdown } from 'primereact/dropdown';
+import { InputText } from '@/components/InputText/InputText';
+import { Button } from '@/components/Button/Button';
+import InputTextarea from '@/components/InputTextarea/InputTextarea';
+import { Dropdown } from '@/components/Dropdown/Dropdown';
 
 interface DropdownItem {
     name: string;
@@ -21,6 +21,8 @@ const FormLayoutDemo = () => {
         ],
         []
     );
+
+    const [address, setAddress] = useState('');
 
     useEffect(() => {
         setDropdownItem(dropdownItems[0]);
@@ -124,7 +126,7 @@ const FormLayoutDemo = () => {
                         </div>
                         <div className="field col-12">
                             <label htmlFor="address">Address</label>
-                            <InputTextarea id="address" rows={4} />
+                            <InputTextarea id="address" rows={4} value={address} onChange={(e) => setAddress(e.target.value)} />
                         </div>
                         <div className="field col-12 md:col-6">
                             <label htmlFor="city">City</label>

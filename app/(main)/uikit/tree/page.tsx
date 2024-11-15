@@ -1,20 +1,20 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Tree, TreeCheckboxSelectionKeys, TreeMultipleSelectionKeys } from 'primereact/tree';
-import { TreeTable, TreeTableSelectionKeysType } from 'primereact/treetable';
-import { Column } from 'primereact/column';
+import { Tree } from '@/components/Tree/Tree';
+import { TreeTable } from '@/components/TreeTable/TreeTable';
+import { Column } from '@/components/DataTable/Column';
 import { NodeService } from '../../../../demo/service/NodeService';
-import { TreeNode } from 'primereact/treenode';
+import { TreeNode, TreeSelectionKeysType, TreeTableSelectionKeysType } from './types';
 
 const TreeDemo = () => {
     const [files, setFiles] = useState<TreeNode[]>([]);
     const [files2, setFiles2] = useState<TreeNode[]>([]);
-    const [selectedFileKeys, setSelectedFileKeys] = useState<string | TreeMultipleSelectionKeys | TreeCheckboxSelectionKeys | null>(null);
+    const [selectedFileKeys, setSelectedFileKeys] = useState<TreeSelectionKeysType | null>(null);
     const [selectedFileKeys2, setSelectedFileKeys2] = useState<TreeTableSelectionKeysType | null>(null);
 
     useEffect(() => {
-        NodeService.getFiles().then((files) => setFiles(files));
-        NodeService.getFilesystem().then((files) => setFiles2(files));
+        NodeService.getFiles().then((files) => setFiles(files as TreeNode[]));
+        NodeService.getFilesystem().then((files) => setFiles2(files as TreeNode[]));
     }, []);
 
     return (

@@ -1,15 +1,16 @@
 'use client';
 
-import { Button } from 'primereact/button';
-import { Carousel } from 'primereact/carousel';
-import { Galleria } from 'primereact/galleria';
-import { Image } from 'primereact/image';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { PhotoService } from '../../../../demo/service/PhotoService';
 import { ProductService } from '../../../../demo/service/ProductService';
+import { Button } from '@/components/Button/Button';
 import type { Demo } from '@/types';
+import { Carousel } from '@/components/Carousel/Carousel';
+import { Galleria } from '@/components/Galleria/Galleria';
+import { Image } from '@/components/Image/Image';
 
-const MediaDemo = () => {
+// Create a wrapper component for the main content
+const MediaDemoContent = () => {
     const [products, setProducts] = useState<Demo.Product[]>([]);
     const [images, setImages] = useState<Demo.Photo[]>([]);
 
@@ -75,8 +76,8 @@ const MediaDemo = () => {
         );
     };
 
-    const galleriaItemTemplate = (item: Demo.Photo) => <img src={`/${item.itemImageSrc}`} alt={item.alt} style={{ width: '100%', display: 'block' }} />;
-    const galleriaThumbnailTemplate = (item: Demo.Photo) => <img src={`/${item.thumbnailImageSrc}`} alt={item.alt} style={{ width: '100%', display: 'block' }} />;
+    const galleriaItemTemplate = (item: Demo.Photo) => <img src={item?.itemImageSrc} alt={item?.alt} style={{ width: '100%', display: 'block' }} />;
+    const galleriaThumbnailTemplate = (item: Demo.Photo) => <img src={item?.thumbnailImageSrc} alt={item?.alt} style={{ width: '100%', display: 'block' }} />;
 
     return (
         <div className="grid p-fluid">
@@ -103,6 +104,15 @@ const MediaDemo = () => {
                 </div>
             </div>
         </div>
+    );
+};
+
+// Main component with Suspense wrapper
+const MediaDemo = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <MediaDemoContent />
+        </Suspense>
     );
 };
 

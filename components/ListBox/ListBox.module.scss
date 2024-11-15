@@ -1,0 +1,22 @@
+.listBox {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background: #ffffff;
+    max-height: 200px;
+    overflow-y: auto;
+
+    & > .option {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: #e9ecef;
+        }
+
+        &.selected {
+            background-color: #3b82f6;
+            color: #ffffff;
+        }
+    }
+}

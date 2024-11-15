@@ -2,8 +2,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { Button } from 'primereact/button';
-
+import { Button } from '@/components/Button/Button';
 const AccessDeniedPage = () => {
     const router = useRouter();
 

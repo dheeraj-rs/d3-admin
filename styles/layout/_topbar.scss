@@ -1,147 +1,212 @@
 .layout-topbar {
-    position: fixed;
-    height: 5rem;
-    z-index: 997;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding: 0 2rem;
-    background-color: var(--surface-card);
-    transition: left $transitionDuration;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 3px 5px rgba(0,0,0,.02), 0px 0px 2px rgba(0,0,0,.05), 0px 1px 4px rgba(0,0,0,.08);
-
-    .layout-topbar-logo {
+    z-index: $z-index-layout-base;
+    .layout-topbar-main {
+        position: fixed;
+        height: 5rem;
+        z-index: 997;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 0 2rem;
+        background-color: var(--surface-card);
+        transition: left $duration-animation-base;
         display: flex;
         align-items: center;
-        color: var(--surface-900);
-        font-size: 1.5rem;
-        font-weight: 500;
-        width: 300px;
-        border-radius: 12px;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08);
 
-        img {
-            height: 2.5rem;
-            margin-right: .5rem;
+        z-index: $z-index-layout-base;
+
+        .topbar-header {
+            text-align: start;
+            .breadcrumb {
+                font-size: 0.875rem;
+                color: var(--text-color-secondary);
+                margin-bottom: 0.25rem;
+
+                .breadcrumb-link {
+                    color: var(--primary-color);
+                    text-decoration: none;
+                }
+            }
+            .title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--text-color);
+                margin: 0;
+            }
         }
 
-        &:focus {
-            @include focused();
-        }
-    }
+        // .layout-topbar-logo {
+        //     display: flex;
+        //     align-items: center;
+        //     color: var(--surface-900);
+        //     font-size: 1.5rem;
+        //     font-weight: 500;
+        //     width: 300px;
+        //     border-radius: 12px;
 
-    .layout-topbar-button {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        color: var(--text-color-secondary);
-        border-radius: 50%;
-        width: 3rem;
-        height: 3rem;
-        cursor: pointer;
-        transition: background-color $transitionDuration;
+        //     img {
+        //         height: 2.5rem;
+        //         margin-right: .5rem;
+        //     }
 
-        &:hover {
-            color: var(--text-color);
-            background-color: var(--surface-hover);
-        }
+        //     &:focus {
+        //         @include focused();
+        //     }
 
-        &:focus {
-            @include focused();
-        }
-
-        i {
-            font-size: 1.5rem;
-        }
-
-        span {
-            font-size: 1rem;
-            display: none;
-        }
-    }
-
-    .layout-menu-button {
-        margin-left: 2rem;
-    }
-
-    .layout-topbar-menu-button {
-        display: none;
-
-        i {
-            font-size: 1.25rem;
-        }
-    }
-
-    .layout-topbar-menu {
-        margin: 0 0 0 auto;
-        padding: 0;
-        list-style: none;
-        display: flex;
+        // background-color: coral;
+        // }
 
         .layout-topbar-button {
-            margin-left: 1rem;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: var(--text-color-secondary);
+            background-color: transparent;
+            border: none;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            cursor: pointer;
+            transition: background-color $duration-animation-base;
+
+            &:hover {
+                color: var(--text-color);
+                background-color: var(--surface-hover);
+            }
+
+            &:focus {
+                @include focused();
+            }
+
+            i {
+                font-size: 1.5rem;
+            }
+
+            span {
+                font-size: 1rem;
+                display: none;
+            }
         }
-    }
-}
 
-@media (max-width: 991px) {
-    .layout-topbar {
-        justify-content: space-between;
-
-        .layout-topbar-logo {
-            width: auto;
-            order: 2;
+        .layout-button-container {
+            display: flex;
+            // align-items: center;
+            // justify-content: center;
+            //   background-color: rgb(11, 23, 133);
+            //   margin: 0 0 0 auto;
         }
 
         .layout-menu-button {
-            margin-left: 0;
-            order: 1;
+            margin-left: 2rem;
         }
 
         .layout-topbar-menu-button {
-            display: inline-flex;
-            margin-left: 0;
-            order: 3;
+            display: none;
+
+            i {
+                font-size: 1.25rem;
+            }
         }
 
         .layout-topbar-menu {
-            margin-left: 0;
-            position: absolute;
-            flex-direction: column;
-            background-color: var(--surface-overlay);
-            box-shadow: 0px 3px 5px rgba(0,0,0,.02), 0px 0px 2px rgba(0,0,0,.05), 0px 1px 4px rgba(0,0,0,.08);
-            border-radius: 12px;
-            padding: 1rem;
-            right: 2rem;
-            top: 5rem;
-            min-width: 15rem;
-            display: none;
-            -webkit-animation: scalein 0.15s linear;
-            animation: scalein 0.15s linear;
+            margin: 0 0 0 auto;
+            padding: 0;
+            list-style: none;
+            display: flex;
 
-            &.layout-topbar-menu-mobile-active {
-                display: block
-            }
+            // background-color: rgb(143, 233, 143);
 
             .layout-topbar-button {
+                // margin-left: 1rem;
+            }
+        }
+    }
+
+    .layout-topbar-mini {
+        position: fixed;
+        height: 5rem;
+        z-index: 997;
+        right: $spacing-layout-base;
+        top: $spacing-layout-base;
+        padding: 0 2rem;
+        transition: left $duration-animation-base;
+        display: flex;
+        align-items: center;
+        border-radius: $radius-component-base;
+        background-color: var(--surface-card);
+        display: none;
+
+        z-index: 99999;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08);
+        width: $width-nav-sidebar-collapsed;
+        &:hover {
+            width: 300px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .layout-topbar-main {
+            justify-content: space-between;
+
+            // .layout-topbar-logo {
+            //     width: auto;
+            //     order: 2;
+            // }
+
+            .topbar-header {
+                order: 2;
+            }
+
+            .layout-menu-button {
                 margin-left: 0;
-                display: flex;
-                width: 100%;
-                height: auto;
-                justify-content: flex-start;
+                order: 1;
+            }
+
+            .layout-topbar-menu-button {
+                display: inline-flex;
+                margin-left: 0;
+                order: 3;
+            }
+
+            .layout-topbar-menu {
+                margin-left: 0;
+                position: absolute;
+                flex-direction: column;
+                background-color: var(--surface-overlay);
+                box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08);
                 border-radius: 12px;
                 padding: 1rem;
+                right: 2rem;
+                top: 5rem;
+                min-width: 15rem;
+                display: none;
+                -webkit-animation: scalein 0.15s linear;
+                animation: scalein 0.15s linear;
 
-                i {
-                    font-size: 1rem;
-                    margin-right: .5rem;
+                &.layout-topbar-menu-mobile-active {
+                    display: block;
                 }
 
-                span {
-                    font-weight: medium;
-                    display: block;
+                .layout-topbar-button {
+                    margin-left: 0;
+                    display: flex;
+                    width: 100%;
+                    height: auto;
+                    justify-content: flex-start;
+                    border-radius: 12px;
+                    padding: 1rem;
+
+                    i {
+                        font-size: 1rem;
+                        margin-right: 0.5rem;
+                    }
+
+                    span {
+                        font-weight: medium;
+                        display: block;
+                    }
                 }
             }
         }

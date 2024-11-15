@@ -1,0 +1,56 @@
+.tabview {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+
+    &-nav {
+        display: flex;
+        background: #f8f9fa;
+        border-bottom: 1px solid #dee2e6;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        &-item {
+            padding: 1rem 1.5rem;
+            margin-bottom: -1px;
+            border: 1px solid transparent;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+
+            &:hover:not(.disabled) {
+                background: #e9ecef;
+                border-color: #dee2e6;
+            }
+
+            &.active {
+                background: #ffffff;
+                border-color: #dee2e6 #dee2e6 #ffffff;
+                color: #4338ca;
+
+                &:hover {
+                    background: #ffffff;
+                }
+            }
+
+            &.disabled {
+                color: #6c757d;
+                cursor: not-allowed;
+                opacity: 0.6;
+            }
+        }
+    }
+
+    &-panels {
+        flex: 1;
+    }
+
+    &-panel {
+        padding: 1.5rem;
+    }
+}

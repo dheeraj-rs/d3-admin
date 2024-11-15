@@ -1,5 +1,5 @@
-import { Tooltip } from 'primereact/tooltip';
-import { classNames } from 'primereact/utils';
+import { Tooltip } from '../../components/Tooltip/Tooltip';
+import { classNames } from '@/lib/utils';
 import React, { useRef, useState } from 'react';
 
 interface BlockViewerProps {

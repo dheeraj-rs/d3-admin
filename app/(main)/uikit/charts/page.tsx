@@ -1,11 +1,21 @@
 'use client';
 import { ChartData, ChartOptions } from 'chart.js';
-import { Chart } from 'primereact/chart';
-import React, { useContext, useEffect, useState } from 'react';
+import Chart from '@/components/Chart/Chart';
+import React, { useContext, useEffect, useState, Suspense } from 'react';
 import { LayoutContext } from '../../../../layout/context/layoutcontext';
 import type { ChartDataState, ChartOptionsState } from '@/types';
 
+// Wrap the main component content in Suspense
 const ChartDemo = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ChartContent />
+        </Suspense>
+    );
+};
+
+// Move the chart logic to a separate component
+const ChartContent = () => {
     const [options, setOptions] = useState<ChartOptionsState>({});
     const [data, setChartData] = useState<ChartDataState>({});
     const { layoutConfig } = useContext(LayoutContext);
@@ -241,39 +251,39 @@ const ChartDemo = () => {
     return (
         <div className="grid p-fluid">
             <div className="col-12 xl:col-6">
-                <div className="card">
+                <div className="card" style={{ minHeight: '400px' }}>
                     <h5>Linear Chart</h5>
-                    <Chart type="line" data={data.lineData} options={options.lineOptions}></Chart>
+                    <Chart type="line" data={data.lineData} options={options.lineOptions} />
                 </div>
             </div>
             <div className="col-12 xl:col-6">
-                <div className="card">
+                <div className="card" style={{ minHeight: '400px' }}>
                     <h5>Bar Chart</h5>
-                    <Chart type="bar" data={data.barData} options={options.barOptions}></Chart>
+                    <Chart type="bar" data={data.barData} options={options.barOptions} />
                 </div>
             </div>
             <div className="col-12 xl:col-6">
-                <div className="card flex flex-column align-items-center">
+                <div className="card flex flex-column align-items-center" style={{ minHeight: '400px' }}>
                     <h5 className="text-left w-full">Pie Chart</h5>
-                    <Chart type="pie" data={data.pieData} options={options.pieOptions}></Chart>
+                    <Chart type="pie" data={data.pieData} options={options.pieOptions} />
                 </div>
             </div>
             <div className="col-12 xl:col-6">
-                <div className="card flex flex-column align-items-center">
+                <div className="card flex flex-column align-items-center" style={{ minHeight: '400px' }}>
                     <h5 className="text-left w-full">Doughnut Chart</h5>
-                    <Chart type="doughnut" data={data.pieData} options={options.pieOptions}></Chart>
+                    <Chart type="doughnut" data={data.pieData} options={options.pieOptions} />
                 </div>
             </div>
             <div className="col-12 xl:col-6">
-                <div className="card flex flex-column align-items-center">
+                <div className="card flex flex-column align-items-center" style={{ minHeight: '400px' }}>
                     <h5 className="text-left w-full">Polar Area Chart</h5>
-                    <Chart type="polarArea" data={data.polarData} options={options.polarOptions}></Chart>
+                    <Chart type="polarArea" data={data.polarData} options={options.polarOptions} />
                 </div>
             </div>
             <div className="col-12 xl:col-6">
-                <div className="card flex flex-column align-items-center">
+                <div className="card flex flex-column align-items-center" style={{ minHeight: '400px' }}>
                     <h5 className="text-left w-full">Radar Chart</h5>
-                    <Chart type="radar" data={data.radarData} options={options.radarOptions}></Chart>
+                    <Chart type="radar" data={data.radarData} options={options.radarOptions} />
                 </div>
             </div>
         </div>

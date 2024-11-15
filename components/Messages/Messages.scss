@@ -1,0 +1,47 @@
+.custom-messages {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+
+    .message-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        animation: slideIn 0.3s ease-out;
+
+        &.success {
+            background-color: #dff2bf;
+            color: #4f8a10;
+        }
+
+        &.info {
+            background-color: #bde5f8;
+            color: #00529b;
+        }
+
+        &.warn {
+            background-color: #feefb3;
+            color: #9f6000;
+        }
+
+        &.error {
+            background-color: #ffd2d2;
+            color: #d8000c;
+        }
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

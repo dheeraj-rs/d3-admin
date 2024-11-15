@@ -1,0 +1,510 @@
+// .layout__sidebar {
+//   background-color: var(--surface-overlay);
+//   width: $width-nav-sidebar-collapsed;
+//   height: calc(100vh - 2 * $spacing-layout-base);
+//   position: fixed;
+//   top: $spacing-layout-base;
+//   border-radius: $radius-component-base;
+//   box-shadow: $shadow-component-base;
+//   z-index: 998;
+//   transform: translateX(-100%);
+//   left: 0;
+//   overflow: hidden;
+//   transition: transform $duration-animation-base $easing-animation-base,
+//     left $duration-animation-base $easing-animation-base,
+//     width $duration-animation-base $easing-animation-base,
+//     height $duration-animation-base $easing-animation-base,
+//     $duration-animation-base;
+//   padding-bottom: $height-nav-sidebar-padding-bottom + $spacing-layout-base;
+
+//   &:not(:hover) {
+//     .layout-menuitem-text,
+//     .layout-submenu-toggler {
+//       display: none;
+//       opacity: 0;
+//       transform: translateX(-20px);
+//       animation: slideOutText 0.3s ease-out forwards;
+//     }
+
+//     .sidebar-menu ul ul li a {
+//       margin-left: 0;
+//     }
+
+//     .sidebar-menu-container .sidebar-menu ul ul li a {
+//       margin-left: 0;
+//     }
+//   }
+
+//   animation: none;
+
+//   .sidebar-menu-container {
+//     min-height: calc(100vh - 2 * $spacing-layout-base);
+//     height: auto;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+
+//     // background-color: blue;
+
+//     overflow-y: auto;
+//     user-select: none;
+//     padding: $spacing-nav-sidebar-inner;
+//     border-radius: $radius-component-base;
+
+//     .sidebar-menu {
+//       position: relative;
+//       margin: 0;
+//       padding: 0;
+//       list-style-type: none;
+//       user-select: none;
+//       height: $height-nav-sidebar-padding-bottom;
+
+//       .menuDummyItem {
+//         padding-bottom: $layout-bottombar-mobile-height;
+//       }
+//       .layout-root-menuitem {
+//         > .layout-menuitem-root-text {
+//           font-size: 0.857rem;
+//           text-transform: uppercase;
+//           font-weight: 700;
+//           color: var(--surface-900);
+//           margin: 0.75rem 0;
+//         }
+//         > a {
+//           display: none;
+//         }
+//       }
+
+//       li.active-menuitem {
+//         > a {
+//           .layout-submenu-toggler {
+//             transform: rotate(-180deg);
+//           }
+//         }
+//         > ul {
+//           max-height: auto;
+//         }
+//       }
+
+//       ul {
+//         margin: 0;
+//         padding: 0;
+//         list-style-type: none;
+
+//         a {
+//           display: flex;
+//           align-items: center;
+//           position: relative;
+//           outline: 0 none;
+//           color: var(--text-color);
+//           cursor: pointer;
+//           padding: 0.75rem 1rem;
+//           border-radius: $radius-component-base;
+//           transition: background-color $duration-animation-base,
+//             box-shadow $duration-animation-base;
+//           text-wrap: nowrap;
+//           height: 3rem;
+
+//           .layout-menuitem-icon {
+//             margin-right: 0.5rem;
+//           }
+
+//           .layout-submenu-toggler {
+//             font-size: 75%;
+//             margin-left: auto;
+//             transition: transform $duration-animation-base;
+//           }
+
+//           &.rotated-icon {
+//             .layout-menuitem-icon {
+//               transform: rotate(90deg);
+//             }
+//           }
+
+//           &.active-route {
+//             font-weight: 700;
+//             color: var(--primary-color);
+//           }
+
+//           &:hover {
+//             background-color: var(--surface-hover);
+//             // border: 1px solid var(--surface-200);
+//           }
+
+//           &:focus {
+//             @include focused-inset();
+//           }
+//         }
+
+//         ul {
+//           overflow: hidden;
+//           max-height: 0;
+//           border-radius: $radius-component-base;
+
+//           li {
+//             a {
+//               margin-left: 1rem;
+//             }
+
+//             li {
+//               a {
+//                 margin-left: 2rem;
+//               }
+
+//               li {
+//                 a {
+//                   margin-left: 2.5rem;
+//                 }
+
+//                 li {
+//                   a {
+//                     margin-left: 3rem;
+//                   }
+
+//                   li {
+//                     a {
+//                       margin-left: 3.5rem;
+//                     }
+
+//                     li {
+//                       a {
+//                         margin-left: 4rem;
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+
+//     .searchbar-container {
+//       background-color: var(--surface-overlay);
+
+//       // background-color: fuchsia;
+//       height: $height-nav-sidebar-collapsed - $spacing-layout-base;
+//       width: $width-nav-sidebar-collapsed;
+//       position: absolute;
+//       bottom: 0;
+//       left: 0;
+//       // padding: 0 0 0.5rem;
+//       // bottom: 0.5rem;
+//       // left: $spacing-nav-sidebar-inner;
+//       // right: $spacing-nav-sidebar-inner;
+//       // display: flex;
+//       // justify-content: center;
+//       // align-items: center;
+//       // --size-button: 40px;
+//       // z-index: 9999;
+
+//       // background-color: blueviolet;
+
+//       // color: white;
+//     }
+//   }
+
+//   @keyframes slideInText {
+//     from {
+//       opacity: 0;
+//       transform: translateX(-20px);
+//     }
+//     to {
+//       opacity: 1;
+//       transform: translateX(0);
+//     }
+//   }
+
+//   @keyframes slideOutText {
+//     from {
+//       opacity: 1;
+//       transform: translateX(0);
+//     }
+//     to {
+//       opacity: 0;
+//       transform: translateX(-20px);
+//     }
+//   }
+
+//   .sidebar-menu-container3 {
+//     background-color: #19c8d4b7;
+//     height: 200%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+
+//     .sidebar-menu3 {
+//       background-color: #000000;
+//       height: 3rem;
+//     }
+//     .searchbar-container3 {
+//       height: 5rem;
+//       background-color: deeppink;
+//     }
+//   }
+
+//   .layout-submenu-enter-active {
+//     max-height: 1000px !important;
+//     transition: max-height 1s ease-in-out;
+//   }
+
+//   .layout-submenu-enter-done {
+//     max-height: 1000px !important;
+//   }
+
+//   .layout-submenu-exit {
+//     max-height: 1000px !important;
+//   }
+
+//   .layout-submenu-exit-active {
+//     overflow: hidden;
+//     max-height: 0 !important;
+//     transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
+//   }
+// }
+
+// .layout__sidebar-right {
+//   background-color: var(--surface-overlay);
+//   width: $width-nav-sidebar-collapsed;
+//   height: calc(100vh - (2 * $spacing-layout-base));
+//   position: fixed;
+//   top: $spacing-layout-base;
+//   right: $spacing-layout-base;
+//   border-radius: $radius-component-base;
+//   box-shadow: $shadow-component-base;
+//   z-index: 998;
+
+//   transform: translateX(100%);
+//   right: 0;
+
+//   transition: transform $duration-animation-base $easing-animation-base,
+//     right $duration-animation-base $easing-animation-base,
+//     width $duration-animation-base $easing-animation-base;
+//   padding-bottom: $height-nav-sidebar-padding-bottom + $spacing-layout-base;
+// }
+
+// .layout__bottombar {
+//   .layout__bottombar-content {
+//     transform: translateX(100%);
+//     position: fixed;
+//     right: 0;
+//     bottom: $spacing-layout-base;
+//     flex: 1 1 auto;
+//     background-color: var(--surface-overlay);
+//     margin-left: $spacing-layout-base;
+//     width: $layout-bottombar-width;
+//     height: $layout-bottombar-height;
+//     box-sizing: border-box;
+//     border-radius: $radius-component-base;
+//     box-shadow: $shadow-component-base;
+//     z-index: 9999;
+//     transition: transform $duration-animation-base
+//         $easing-animation-base,
+//       right $duration-animation-base $easing-animation-base,
+//       left $duration-animation-base $easing-animation-base,
+//       width $duration-animation-base $easing-animation-base,
+//       height $duration-animation-base $easing-animation-base
+//         $duration-animation-base;
+
+//     &:not(:hover) {
+//       width: $width-nav-sidebar-collapsed;
+//       height: $width-nav-sidebar-collapsed;
+//       transition: transform $duration-animation-base
+//           $easing-animation-base,
+//         right $duration-animation-base $easing-animation-base,
+//         left $duration-animation-base $easing-animation-base,
+//         height $duration-animation-base $easing-animation-base,
+//         width $duration-animation-base $easing-animation-base
+//           $duration-animation-base;
+//     }
+//   }
+
+//   .layout__bottombar-mobile-content {
+//     transform: translateX(100%);
+//     position: fixed;
+//     bottom: $spacing-layout-base;
+//     right: 0;
+//     flex: 1 1 auto;
+//     height: $layout-bottombar-mobile-height;
+//     background-color: var(--surface-overlay);
+//     width: calc(100% - 2 * $spacing-layout-base);
+//     border-radius: $radius-component-base;
+//     box-shadow: $shadow-component-base;
+//     z-index: 9999;
+//   }
+// }
+
+// .layout__modal {
+//   background-color: var(--surface-overlay);
+//   width: calc(100% - 2 * $spacing-layout-base);
+//   height: calc(100vh - (2 * $spacing-layout-base));
+//   position: fixed;
+//   border-radius: $radius-component-base;
+//   box-shadow: $shadow-component-base;
+//   z-index: 996;
+//   transform: translateX(100%);
+
+//   transition: transform $duration-animation-modal $easing-animation-base,
+//     right $duration-animation-modal $easing-animation-base,
+//     width $duration-animation-modal $easing-animation-base;
+// }
+
+// .layout__modal-active {
+//   .layout__modal {
+//     transform: translateX(0);
+//     top: $spacing-layout-base;
+//     right: $spacing-layout-base;
+//   }
+// }
+
+// .layout__searchbar {
+//   width: $width-nav-sidebar-collapsed;
+//   height: 4rem;
+//   position: fixed;
+//   transform: translateX(-100%);
+//   left: 0;
+//   bottom: 0;
+//   opacity: 0;
+//   bottom: $spacing-layout-base;
+//   z-index: 999;
+//   border-radius: $radius-component-base;
+
+//   transition: transform $duration-animation-base $easing-animation-base,
+//     left $duration-animation-base $easing-animation-base,
+//     width $duration-animation-base $easing-animation-base,
+//     height $duration-animation-base $easing-animation-base,
+//     $duration-animation-modal;
+
+//   &:hover {
+//     // transform: translateX(0);
+//     // width: $width-nav-sidebar-expanded;
+//     // left: $spacing-layout-base;
+//     // background-color: cadetblue;
+//     // box-shadow: $shadow-component-base;
+
+//     .searchbar-container {
+//       .searchbar-input {
+//         transform: translateX(0);
+//         width: calc($width-nav-sidebar-expanded - $spacing-layout-base);
+//         // left: $spacing-layout-base;
+//         // left: 0;
+//         color: var(--text-color);
+//         box-shadow: $shadow-component-base;
+//         border-radius: $radius-component-base;
+//         &::placeholder {
+//           opacity: 1; // Adjust opacity as needed
+//           transition: opacity 0.3s ease;
+//         }
+//       }
+//     }
+//   }
+
+//   .searchbar-container {
+//     background-color: var(--surface-overlay);
+//     // background-color: rgb(12, 46, 22);
+//     border-radius: $radius-component-base 0 $radius-component-base
+//       $radius-component-base;
+//     height: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     --size-button: 40px;
+//     z-index: 999;
+
+//     position: relative;
+
+//     // background-color: aquamarine;
+
+//     .searchbar-input {
+//       padding-left: 3.8rem;
+//       font-size: 15px;
+//       border: none;
+//       outline: none;
+//       transition: all ease 0.3s;
+//       cursor: pointer;
+//       height: 4rem;
+//       width: $width-nav-sidebar-collapsed;
+//       position: fixed;
+//       left: 0;
+//       bottom: 0;
+//       border-radius: $radius-component-base 0 $radius-component-base
+//         $radius-component-base;
+//       z-index: 997;
+//       background-color: var(--surface-overlay);
+
+//       // Style for placeholder
+//       &::placeholder {
+//         opacity: 0; // Adjust opacity as needed
+//         transition: opacity 0.3s ease;
+//       }
+
+//       &:invalid {
+//         box-shadow: none;
+//       }
+
+//       color: var(--surface-overlay);
+
+//       // background-color: chartreuse;
+//     }
+
+//     // .searchbar-input:focus,
+//     // .searchbar-input:not(:invalid) {
+//     //   width: 100%;
+//     //   cursor: text;
+//     //   // box-shadow: $shadow-component-base;
+//     // }
+
+//     .searchbar-input:focus + .icon-container,
+//     .searchbar-input:not(:invalid) + .icon-container {
+//       pointer-events: all;
+//       cursor: pointer;
+//     }
+
+//     // .searchbar-container,
+//     .icon-container {
+//       position: absolute;
+//       width: 100%;
+//       // margin-right: 1rem;
+//       height: 100%; /* Ensures the container is a square */
+//       top: 50%;
+//       left: 50%;
+//       transform: translate(-50%, -50%); /* Center-aligns the icon */
+//       pointer-events: none;
+//       color: var(--text-color);
+//       // background-color: var(--surface-overlay);
+//       // background-color: var(--surface-overlay);
+//       // box-shadow: $shadow-component-base;
+//       // border-radius: $radius-component-base;
+
+//       border-color: transparent;
+//       border-radius: $radius-component-base;
+
+//       // background-color: darkblue;
+
+//       z-index: 999;
+//     }
+
+//     .icon {
+//       width: 100%;
+//       height: 100%;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       // background-color: blueviolet;
+//     }
+
+//     // .searchbar-container .icon-container .search-icon {
+//     //   width: var(--size-button);
+//     //   height: var(--size-button);
+//     // }
+//   }
+// }
+
+// // .layout__searchbar-active {
+// //   .layout__searchbar {
+// //     transform: translateX(0);
+// //     width: $width-nav-sidebar-expanded;
+// //     left: $spacing-layout-base;
+// //   }
+// // }

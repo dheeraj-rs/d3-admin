@@ -1,16 +1,17 @@
 import React from 'react';
-
-const EmptyPage = () => {
+import { Suspense } from 'react';
+export default function EmptyPage() {
     return (
-        <div className="grid">
-            <div className="col-12">
-                <div className="card">
-                    <h5>Empty Page</h5>
-                    <p>Use this page to start from scratch and place your custom content.</p>
-                </div>
-            </div>
+        <Suspense fallback={<div>Loading...</div>}>
+            <EmptyPageContent />
+        </Suspense>
+    );
+}
+
+function EmptyPageContent() {
+    return (
+        <div>
+            Empty Page Content
         </div>
     );
-};
-
-export default EmptyPage;
+}

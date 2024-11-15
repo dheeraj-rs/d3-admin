@@ -1,15 +1,18 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
-import { Button } from 'primereact/button';
-import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
-import { Rating } from 'primereact/rating';
-import { PickList } from 'primereact/picklist';
-import { OrderList } from 'primereact/orderlist';
-import { ProductService } from '../../../../demo/service/ProductService';
-import { InputText } from 'primereact/inputtext';
+import React, { useState, useEffect, useRef } from 'react';
+import { DataView } from '@/components/DataView/DataView';
+import { DataViewLayoutOptions } from '@/components/DataView/DataViewLayoutOptions';
 import type { Demo } from '@/types';
+import { Button } from '@/components/Button/Button';
+import { Dropdown, DropdownChangeEvent } from '@/components/Dropdown/Dropdown';
+import Rating from '@/components/Rating/Rating';
+import { ProductService } from '../../../../demo/service/ProductService';
+import { InputText } from '@/components/InputText/InputText';
+import { PickList } from '@/components/PickList/PickList';
+import { OrderList } from '@/components/OrderList/OrderList';
+import { Suspense } from 'react';
+import { StyleClass } from '@/components/StyleClass/StyleClass';
 
 const ListDemo = () => {
     const listValue = [
@@ -22,16 +25,17 @@ const ListDemo = () => {
         { name: 'Rome', code: 'RM' }
     ];
 
-    const [picklistSourceValue, setPicklistSourceValue] = useState(listValue);
-    const [picklistTargetValue, setPicklistTargetValue] = useState([]);
+    const [picklistSourceValue, setPicklistSourceValue] = useState<typeof listValue>(listValue);
+    const [picklistTargetValue, setPicklistTargetValue] = useState<typeof listValue>([]);
     const [orderlistValue, setOrderlistValue] = useState(listValue);
     const [dataViewValue, setDataViewValue] = useState<Demo.Product[]>([]);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const [filteredValue, setFilteredValue] = useState<Demo.Product[] | null>(null);
-    const [layout, setLayout] = useState<'grid' | 'list' | (string & Record<string, unknown>)>('grid');
+    const [layout, setLayout] = useState<'grid' | 'list'>('grid');
     const [sortKey, setSortKey] = useState(null);
     const [sortOrder, setSortOrder] = useState<0 | 1 | -1 | null>(null);
     const [sortField, setSortField] = useState('');
+    const menuRef = useRef<HTMLElement>(null);
 
     const sortOptions = [
         { label: 'Price High to Low', value: '!price' },
@@ -125,7 +129,7 @@ const ListDemo = () => {
                         <span className={`product-badge status-${data.inventoryStatus?.toLowerCase()}`}>{data.inventoryStatus}</span>
                     </div>
                     <div className="flex flex-column align-items-center text-center mb-3">
-                        <img src={`/demo/images/product/${data.image}`} alt={data.name} className="w-9 shadow-2 my-3 mx-0" />
+                        <img src={`/demo/images/product/${data?.image}`} alt={data.name} className="w-9 shadow-2 my-3 mx-0" />
                         <div className="text-2xl font-bold">{data.name}</div>
                         <div className="mb-3">{data.description}</div>
                         <Rating value={data.rating} readOnly cancel={false} />
@@ -139,7 +143,7 @@ const ListDemo = () => {
         );
     };
 
-    const itemTemplate = (data: Demo.Product, layout: 'grid' | 'list' | (string & Record<string, unknown>)) => {
+    const itemTemplate = (data: Demo.Product, layout: 'grid' | 'list') => {
         if (!data) {
             return;
         }
@@ -152,40 +156,42 @@ const ListDemo = () => {
     };
 
     return (
-        <div className="grid">
-            <div className="col-12">
-                <div className="card">
-                    <h5>DataView</h5>
-                    <DataView value={filteredValue || dataViewValue} layout={layout} paginator rows={9} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
+        <Suspense fallback={<div>Loading...</div>}>
+            <div className="grid">
+                <div className="col-12">
+                    <div className="card">
+                        <h5>DataView</h5>
+                        <DataView value={filteredValue || dataViewValue} layout={layout} paginator rows={9} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
+                    </div>
                 </div>
-            </div>
 
-            <div className="col-12 xl:col-8">
-                <div className="card">
-                    <h5>PickList</h5>
-                    <PickList
-                        source={picklistSourceValue}
-                        target={picklistTargetValue}
-                        sourceHeader="From"
-                        targetHeader="To"
-                        itemTemplate={(item) => <div>{item.name}</div>}
-                        onChange={(e) => {
-                            setPicklistSourceValue(e.source);
-                            setPicklistTargetValue(e.target);
-                        }}
-                        sourceStyle={{ height: '200px' }}
-                        targetStyle={{ height: '200px' }}
-                    ></PickList>
+                <div className="col-12 xl:col-8">
+                    <div className="card">
+                        <h5>PickList</h5>
+                        <PickList
+                            source={picklistSourceValue}
+                            target={picklistTargetValue}
+                            sourceHeader="From"
+                            targetHeader="To"
+                            itemTemplate={(item) => <div>{item.name}</div>}
+                            onChange={(e) => {
+                                setPicklistSourceValue(e.source);
+                                setPicklistTargetValue(e.target);
+                            }}
+                            sourceStyle={{ height: '200px' }}
+                            targetStyle={{ height: '200px' }}
+                        ></PickList>
+                    </div>
                 </div>
-            </div>
 
-            <div className="col-12 xl:col-4">
-                <div className="card">
-                    <h5>OrderList</h5>
-                    <OrderList value={orderlistValue} listStyle={{ height: '200px' }} className="p-orderlist-responsive" header="Cities" itemTemplate={(item) => <div>{item.name}</div>} onChange={(e) => setOrderlistValue(e.value)}></OrderList>
+                <div className="col-12 xl:col-4">
+                    <div className="card">
+                        <h5>OrderList</h5>
+                        <OrderList value={orderlistValue} listStyle={{ height: '200px' }} className="p-orderlist-responsive" header="Cities" itemTemplate={(item) => <div>{item.name}</div>} onChange={(e) => setOrderlistValue(e.value)}></OrderList>
+                    </div>
                 </div>
             </div>
-        </div>
+        </Suspense>
     );
 };
 

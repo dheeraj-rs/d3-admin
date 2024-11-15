@@ -1,23 +1,30 @@
 'use client';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Menubar } from 'primereact/menubar';
-import { InputText } from 'primereact/inputtext';
-import { BreadCrumb } from 'primereact/breadcrumb';
-import { Steps } from 'primereact/steps';
-import { TabMenu } from 'primereact/tabmenu';
-import { TieredMenu } from 'primereact/tieredmenu';
-import { Menu } from 'primereact/menu';
-import { Button } from 'primereact/button';
-import { ContextMenu } from 'primereact/contextmenu';
-import { MegaMenu } from 'primereact/megamenu';
-import { PanelMenu } from 'primereact/panelmenu';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 
+import { Menubar } from '@/components/Menu/Menubar';
+import { BreadCrumb } from '@/components/Menu/BreadCrumb';
+import { Steps } from '@/components/Menu/Steps';
+import { TabMenu } from '@/components/Menu/TabMenu';
+import { TieredMenu } from '@/components/Menu/TieredMenu';
+import { ContextMenu, ContextMenuRef } from '@/components/Menu/ContextMenu';
+import { MegaMenu, MegaMenuItem } from '@/components/Menu/MegaMenu';
+import { PanelMenu } from '@/components/Menu/PanelMenu';
+import { Menu, MenuRef } from '@/components/Menu/Menu';
+import { Button } from '@/components/Button/Button';
+import { InputText } from '@/components/InputText/InputText';
+
+// Update the type to include the show method
+interface ExtendedContextMenuRef extends ContextMenuRef {
+    show: (event: React.MouseEvent) => void;
+}
+
+// Move the component definition to a separate client component
 const MenuDemo = ({ children }: any) => {
     const [activeIndex, setActiveIndex] = useState(0);
-    const menu = useRef<Menu>(null);
-    const contextMenu = useRef<ContextMenu>(null);
+    const menu = useRef<MenuRef>(null);
+    const contextMenu = useRef<ExtendedContextMenuRef>(null);
     const router = useRouter();
     const pathname = usePathname();
 
@@ -287,111 +294,69 @@ const MenuDemo = ({ children }: any) => {
         }
     ];
 
-    const megamenuItems = [
+    const megamenuItems: MegaMenuItem[] = [
         {
             label: 'Fashion',
             icon: 'pi pi-fw pi-tag',
             items: [
-                [
-                    {
-                        label: 'Woman',
-                        items: [{ label: 'Woman Item' }, { label: 'Woman Item' }, { label: 'Woman Item' }]
-                    },
-                    {
-                        label: 'Men',
-                        items: [{ label: 'Men Item' }, { label: 'Men Item' }, { label: 'Men Item' }]
-                    }
-                ],
-                [
-                    {
-                        label: 'Kids',
-                        items: [{ label: 'Kids Item' }, { label: 'Kids Item' }]
-                    },
-                    {
-                        label: 'Luggage',
-                        items: [{ label: 'Luggage Item' }, { label: 'Luggage Item' }, { label: 'Luggage Item' }]
-                    }
-                ]
+                {
+                    label: 'Woman',
+                    items: [{ label: 'Woman Item' }, { label: 'Woman Item' }, { label: 'Woman Item' }]
+                }
             ]
         },
         {
             label: 'Electronics',
             icon: 'pi pi-fw pi-desktop',
             items: [
-                [
-                    {
-                        label: 'Computer',
-                        items: [{ label: 'Computer Item' }, { label: 'Computer Item' }]
-                    },
-                    {
-                        label: 'Camcorder',
-                        items: [{ label: 'Camcorder Item' }, { label: 'Camcorder Item' }, { label: 'Camcorder Item' }]
-                    }
-                ],
-                [
-                    {
-                        label: 'TV',
-                        items: [{ label: 'TV Item' }, { label: 'TV Item' }]
-                    },
-                    {
-                        label: 'Audio',
-                        items: [{ label: 'Audio Item' }, { label: 'Audio Item' }, { label: 'Audio Item' }]
-                    }
-                ],
-                [
-                    {
-                        label: 'Sports.7',
-                        items: [{ label: 'Sports.7.1' }, { label: 'Sports.7.2' }]
-                    }
-                ]
+                {
+                    label: 'Computer',
+                    items: [{ label: 'Computer Item' }, { label: 'Computer Item' }]
+                },
+                {
+                    label: 'Camcorder',
+                    items: [{ label: 'Camcorder Item' }, { label: 'Camcorder Item' }, { label: 'Camcorder Item' }]
+                }
             ]
         },
         {
             label: 'Furniture',
             icon: 'pi pi-fw pi-image',
             items: [
-                [
-                    {
-                        label: 'Living Room',
-                        items: [{ label: 'Living Room Item' }, { label: 'Living Room Item' }]
-                    },
-                    {
-                        label: 'Kitchen',
-                        items: [{ label: 'Kitchen Item' }, { label: 'Kitchen Item' }, { label: 'Kitchen Item' }]
-                    }
-                ],
-                [
-                    {
-                        label: 'Bedroom',
-                        items: [{ label: 'Bedroom Item' }, { label: 'Bedroom Item' }]
-                    },
-                    {
-                        label: 'Outdoor',
-                        items: [{ label: 'Outdoor Item' }, { label: 'Outdoor Item' }, { label: 'Outdoor Item' }]
-                    }
-                ]
+                {
+                    label: 'Living Room',
+                    items: [{ label: 'Living Room Item' }, { label: 'Living Room Item' }]
+                },
+                {
+                    label: 'Kitchen',
+                    items: [{ label: 'Kitchen Item' }, { label: 'Kitchen Item' }, { label: 'Kitchen Item' }]
+                },
+                {
+                    label: 'Bedroom',
+                    items: [{ label: 'Bedroom Item' }, { label: 'Bedroom Item' }]
+                },
+                {
+                    label: 'Outdoor',
+                    items: [{ label: 'Outdoor Item' }, { label: 'Outdoor Item' }, { label: 'Outdoor Item' }]
+                }
             ]
         },
         {
             label: 'Sports',
             icon: 'pi pi-fw pi-star',
             items: [
-                [
-                    {
-                        label: 'Basketball',
-                        items: [{ label: 'Basketball Item' }, { label: 'Basketball Item' }]
-                    },
-                    {
-                        label: 'Football',
-                        items: [{ label: 'Football Item' }, { label: 'Football Item' }, { label: 'Football Item' }]
-                    }
-                ],
-                [
-                    {
-                        label: 'Tennis',
-                        items: [{ label: 'Tennis Item' }, { label: 'Tennis Item' }]
-                    }
-                ]
+                {
+                    label: 'Basketball',
+                    items: [{ label: 'Basketball Item' }, { label: 'Basketball Item' }]
+                },
+                {
+                    label: 'Football',
+                    items: [{ label: 'Football Item' }, { label: 'Football Item' }, { label: 'Football Item' }]
+                },
+                {
+                    label: 'Tennis',
+                    items: [{ label: 'Tennis Item' }, { label: 'Tennis Item' }]
+                }
             ]
         }
     ];
@@ -505,7 +470,7 @@ const MenuDemo = ({ children }: any) => {
             <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>Steps</h5>
-                    <Steps model={wizardItems} activeIndex={activeIndex} onSelect={(e) => setActiveIndex(e.index)} readOnly={false} />
+                    <Steps model={wizardItems} activeIndex={activeIndex} onSelect={(e) => setActiveIndex(e)} readOnly={false} />
                     {pathname === '/uikit/menu' ? (
                         <div className="flex align-items-center py-5 px-3">
                             <i className="pi pi-fw pi-user mr-2 text-2xl" />
@@ -520,7 +485,7 @@ const MenuDemo = ({ children }: any) => {
             <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>TabMenu</h5>
-                    <TabMenu model={wizardItems} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
+                    <TabMenu model={wizardItems} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e)} />
                     {pathname === '/uikit/menu' ? (
                         <div className="flex align-items-center py-5 px-3">
                             <i className="pi pi-fw pi-user mr-2 text-2xl" />
@@ -582,3 +547,4 @@ const MenuDemo = ({ children }: any) => {
 };
 
 export default MenuDemo;
+

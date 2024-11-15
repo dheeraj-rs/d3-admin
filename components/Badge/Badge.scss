@@ -1,0 +1,37 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2196f3;
+    color: white;
+    border-radius: 50%;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    min-width: 1.5rem;
+    height: 1.5rem;
+
+    &--success {
+        background-color: #4caf50;
+    }
+    &--info {
+        background-color: #2196f3;
+    }
+    &--warning {
+        background-color: #ff9800;
+    }
+    &--danger {
+        background-color: #f44336;
+    }
+
+    &--large {
+        min-width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    &--xlarge {
+        min-width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.25rem;
+    }
+}

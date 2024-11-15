@@ -1,3 +1,97 @@
-/* General */
-$borderRadius:12px;             /* border radius of layout element e.g. card, sidebar */ 
-$transitionDuration:.2s;        /* transition duration of layout elements e.g. sidebar, overlay menus */ 
+// Base Layout Settings
+$spacing-layout-base: 0.5rem;
+$spacing-layout-content: 0.5rem;
+$z-index-layout-base: 999;
+
+// Component Base Styles
+$radius-component-base: 12px;
+$radius-component-mobile: 8px;
+$shadow-component-base: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08); // Default box shadow
+
+// Animation Settings
+$duration-animation-fast: 0.1s;
+$duration-animation-base: 0.3s;
+$duration-animation-modal: 0.5s;
+$easing-animation-base: ease-in-out;
+
+// Header Settings
+$height-header-notification: 2rem;
+$radius-header-notification: 5px;
+$gap-header-spacing: 0.5rem;
+$height-header-base: 5rem;
+$spacing-header-inner: 1rem;
+
+// Bottom Panel Settings
+$width-panel-bottom-collapsed: 5rem;
+$width-panel-bottom-expanded: 300px;
+$height-panel-bottom-collapsed: 5rem;
+$height-panel-bottom-expanded: 300px;
+$width-panel-bottom-hover: calc(100% - $spacing-layout-base * 2);
+$height-panel-bottom-hover: $height-panel-bottom-expanded;
+$height-panel-bottom-mobile: 5rem;
+$width-panel-bottom-mobile: calc(100% - $spacing-layout-base * 2);
+
+// Sidebar Navigation Settings
+$width-nav-sidebar-expanded: 300px;
+$width-nav-sidebar-collapsed: 5rem;
+$height-nav-sidebar-collapsed: 5rem;
+$height-nav-sidebar-padding-bottom: 5rem;
+$spacing-nav-sidebar-inner: 1rem;
+$layout-bottombar-mobile-height: 5rem;
+$offset-nav-sidebar-top: calc($height-header-base + $spacing-layout-base * 1);
+
+// Configuration Panel Settings
+$width-config-panel: 300px;
+$height-config-panel: calc(100% - #{$height-header-base + $spacing-layout-base * 3});
+$offset-config-panel-top: calc($height-header-base + $spacing-layout-base);
+$spacing-config-panel-right: $spacing-layout-base;
+$spacing-config-panel-inner: 0.5rem 1.5rem;
+
+// Main Content Settings
+$offset-main-content-top: calc($height-header-base + $spacing-layout-base);
+$spacing-main-content: $offset-main-content-top $spacing-layout-base $spacing-layout-base $spacing-layout-base;
+
+
+$layout-bottombar-width: 5rem;
+$layout-bottombar-height: 5rem;
+
+// ============
+
+
+// ** Padding Variables **
+$layout-padding-default: 0.5rem;
+$layout-content-padding: 0.5rem;
+
+// ** Border Radius Variables **
+$border-radius-default: 12px;
+$border-radius-mobile-settings: 8px;
+
+// ** Box Shadow Variables **
+$box-shadow-default: 0px 3px 5px rgba(0, 0, 0, 0.02),
+  0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08); // Default box shadow
+
+// ** Transition Variables **
+$transition-duration-fast: 0.1s;
+$transition-duration-default: 0.3s;
+$transition-duration-modal: 0.5s;
+$transition-easing-default: ease-in-out;
+
+$layout-sidebar-padding-bottom: 5rem;
+
+// ** Topbar Variables **
+$notification-topbar-height: 2rem;
+$notification-topbar-radius: 5px;
+$layout-topbar-gap: 0.5rem;
+$layout-topbar-hight: 5rem;
+$layout-topbar-padding-default: 1rem;
+
+// ** Bottombar Variables **
+$layout-bottombar-width: 5rem;
+$layout-bottombar-hight: 5rem;
+$layout-bottombar-mobile-hight: 4rem;
+
+// ** Sidebar Variables **
+$sidebar-width-default: 300px;
+$sidebar-width-mini: 5rem;
+$sidebar-height-mini: 5rem;
+$sidebar-padding-default: 1rem;

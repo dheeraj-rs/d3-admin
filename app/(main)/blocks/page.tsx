@@ -1,10 +1,10 @@
 'use client';
 import React, { useState } from 'react';
 
-import { InputText } from 'primereact/inputtext';
-import { Chip } from 'primereact/chip';
-import { Checkbox } from 'primereact/checkbox';
-import { Button } from 'primereact/button';
+import { InputText } from '@/components/InputText/InputText';
+import Chip from '@/components/Chip/Chip';
+import Checkbox from '@/components/Checkbox/Checkbox';
+import { Button } from '@/components/Button/Button';
 import BlockViewer from '../../../demo/components/BlockViewer';
 
 const Free = () => {
@@ -347,7 +347,7 @@ const Free = () => {
 
             <div className="flex align-items-center justify-content-between mb-6">
                 <div className="flex align-items-center">
-                    <Checkbox id="rememberme" onChange={e => setChecked(e.checked)} checked={checked} className="mr-2" />
+                    <Checkbox id="rememberme" onChange={(e) => setChecked(e.checked)} checked={checked} className="mr-2" />
                     <label htmlFor="rememberme">Remember me</label>
                 </div>
                 <a className="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot your password?</a>
@@ -762,7 +762,7 @@ const Free = () => {
 
                             <div className="flex align-items-center justify-content-between mb-6">
                                 <div className="flex align-items-center">
-                                    <Checkbox id="rememberme" onChange={(e) => setChecked(e.checked as boolean)} checked={checked} className="mr-2" />
+                                    <Checkbox id="rememberme" onChange={(e: any) => setChecked(e.checked)} checked={checked} className="mr-2" />
                                     <label htmlFor="rememberme">Remember me</label>
                                 </div>
                                 <a className="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot your password?</a>

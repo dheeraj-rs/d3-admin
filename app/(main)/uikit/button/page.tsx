@@ -1,9 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import { SplitButton } from 'primereact/splitbutton';
-import { Button } from 'primereact/button';
+import { SplitButton } from '@/components/SplitButton/SplitButton';
+import { Button } from '@/components/Button/Button';
 import styles from './index.module.scss';
-import { classNames } from 'primereact/utils';
+import { classNames } from '@/lib/utils';
 
 const ButtonDemo = () => {
     const [loading1, setLoading1] = useState(false);

@@ -1,0 +1,38 @@
+// Define variables at the top
+$knob-bg: #f8f9fa;
+$knob-border: #ced4da;
+$indicator-color: #3b82f6;
+$text-color: #495057;
+
+.knob {
+    position: relative;
+    border-radius: 50%;
+    background: $knob-bg;
+    border: 2px solid $knob-border;
+    cursor: pointer;
+    user-select: none;
+
+    &.disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .indicator {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 40%;
+        background: $indicator-color;
+        transform-origin: bottom center;
+    }
+
+    .value {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 0.875rem;
+        color: $text-color;
+    }
+}

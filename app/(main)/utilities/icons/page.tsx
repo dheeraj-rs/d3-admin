@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { IconService } from '../../../../demo/service/IconService';
-import { InputText } from 'primereact/inputtext';
+import { InputText } from '@/components/InputText/InputText';
 import type { Demo } from '@/types';
 
 const IconsDemo = () => {
@@ -10,25 +10,33 @@ const IconsDemo = () => {
     const [filteredIcons, setFilteredIcons] = useState<Demo.Icon[]>([]);
 
     useEffect(() => {
-        IconService.getIcons().then((data) => {
-            data.sort((icon1, icon2) => {
-                if (icon1.properties!.name < icon2.properties!.name) return -1;
-                else if (icon1.properties!.name < icon2.properties!.name) return 1;
-                else return 0;
-            });
+        const fetchIcons = async () => {
+            try {
+                const data = await IconService.getIcons();
+                const sortedData = [...data].sort((icon1, icon2) => {
+                    const name1 = icon1.properties?.name || '';
+                    const name2 = icon2.properties?.name || '';
+                    return name1.localeCompare(name2);
+                });
 
-            setIcons(data);
-            setFilteredIcons(data);
-        });
+                setIcons(sortedData);
+                setFilteredIcons(sortedData);
+            } catch (error) {
+                console.error('Error fetching icons:', error);
+            }
+        };
+
+        fetchIcons();
     }, []);
 
-    const onFilter = (event: React.FormEvent<HTMLInputElement>) => {
-        if (!event.currentTarget.value) {
+    const onFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const searchValue = event.target.value.toLowerCase();
+        if (!searchValue) {
             setFilteredIcons(icons);
         } else {
             setFilteredIcons(
                 icons.filter((it) => {
-                    return it.icon && it.icon.tags && it.icon.tags[0].includes(event.currentTarget.value);
+                    return it.icon?.tags?.some(tag => tag.toLowerCase().includes(searchValue));
                 })
             );
         }
@@ -38,7 +46,7 @@ const IconsDemo = () => {
         <div className="card">
             <h2>Icons</h2>
             <p>
-                PrimeReact components internally use{' '}
+                d-admin components internally use{' '}
                 <Link href="https://github.com/primefaces/primeicons" className="font-medium hover:underline text-primary" target={'_blank'}>
                     PrimeIcons
                 </Link>{' '}
@@ -97,7 +105,12 @@ const IconsDemo = () => {
                 at the issue tracker.
             </p>
             <div>
-                <InputText type="text" className="w-full p-3 mt-3 mb-5" onInput={onFilter} placeholder="Search an icon" />
+                <InputText 
+                    type="text" 
+                    className="w-full p-3 mt-3 mb-5" 
+                    onChange={onFilter} 
+                    placeholder="Search an icon" 
+                />
             </div>
             <div className="grid icons-list text-center">
                 {filteredIcons &&

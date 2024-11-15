@@ -1,35 +1,37 @@
 'use client';
-import { CustomerService } from '../../../../demo/service/CustomerService';
-import { ProductService } from '../../../../demo/service/ProductService';
-import { FilterMatchMode, FilterOperator } from 'primereact/api';
-import { Button } from 'primereact/button';
-import { Calendar } from 'primereact/calendar';
-import { Column, ColumnFilterApplyTemplateOptions, ColumnFilterClearTemplateOptions, ColumnFilterElementTemplateOptions } from 'primereact/column';
-import { DataTable, DataTableExpandedRows, DataTableFilterMeta } from 'primereact/datatable';
-import { Dropdown } from 'primereact/dropdown';
-import { InputNumber } from 'primereact/inputnumber';
-import { InputText } from 'primereact/inputtext';
-import { MultiSelect } from 'primereact/multiselect';
-import { ProgressBar } from 'primereact/progressbar';
-import { Rating } from 'primereact/rating';
-import { Slider } from 'primereact/slider';
-import { ToggleButton } from 'primereact/togglebutton';
-import { TriStateCheckbox } from 'primereact/tristatecheckbox';
-import { classNames } from 'primereact/utils';
 import React, { useEffect, useState } from 'react';
 import type { Demo } from '@/types';
+import { CustomerService } from '../../../../demo/service/CustomerService';
+import { ProductService } from '../../../../demo/service/ProductService';
+
+import { Button } from '@/components/Button/Button';
+import { InputText } from '@/components/InputText/InputText';
+import { MultiSelect } from '@/components/MultiSelect/MultiSelect';
+import { ProgressBar } from '@/components/ProgressBar/ProgressBar';
+import Rating from '@/components/Rating/Rating';
+import Slider from '@/components/Slider/Slider';
+import { Calendar } from '@/components/Calendar/Calendar';
+import { Dropdown } from '@/components/Dropdown/Dropdown';
+import InputNumber from '@/components/InputNumber/InputNumber';
+import ToggleButton from '@/components/ToggleButton/ToggleButton';
+
+import { classNames } from '@/lib/utils';
+import { FilterMatchMode, FilterOperator } from '@/components/api/FilterTypes';
+import { Column, ColumnFilterApplyTemplateOptions, ColumnFilterClearTemplateOptions, ColumnFilterElementTemplateOptions } from '@/components/DataTable/Column';
+import { DataTable, DataTableExpandedRows, DataTableFilterMeta } from '@/components/DataTable/DataTable';
+import { TriStateCheckbox } from '@/components/tristatecheckbox/TriStateCheckbox';
 
 const TableDemo = () => {
     const [customers1, setCustomers1] = useState<Demo.Customer[]>([]);
     const [customers2, setCustomers2] = useState<Demo.Customer[]>([]);
     const [customers3, setCustomers3] = useState<Demo.Customer[]>([]);
-    const [filters1, setFilters1] = useState<DataTableFilterMeta>({});
+    const [filters1, setFilters1] = useState<{ [key: string]: DataTableFilterMeta }>({});
     const [loading1, setLoading1] = useState(true);
     const [loading2, setLoading2] = useState(true);
     const [idFrozen, setIdFrozen] = useState(false);
     const [products, setProducts] = useState<Demo.Product[]>([]);
     const [globalFilterValue1, setGlobalFilterValue1] = useState('');
-    const [expandedRows, setExpandedRows] = useState<any[] | DataTableExpandedRows>([]);
+    const [expandedRows, setExpandedRows] = useState<DataTableExpandedRows>({});
     const [allExpanded, setAllExpanded] = useState(false);
 
     const representatives = [
@@ -122,27 +124,12 @@ const TableDemo = () => {
     const initFilters1 = () => {
         setFilters1({
             global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-            name: {
-                operator: FilterOperator.AND,
-                constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }]
-            },
-            'country.name': {
-                operator: FilterOperator.AND,
-                constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }]
-            },
+            name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+            'country.name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
             representative: { value: null, matchMode: FilterMatchMode.IN },
-            date: {
-                operator: FilterOperator.AND,
-                constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }]
-            },
-            balance: {
-                operator: FilterOperator.AND,
-                constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }]
-            },
-            status: {
-                operator: FilterOperator.OR,
-                constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }]
-            },
+            date: { value: null, matchMode: FilterMatchMode.DATE_IS },
+            balance: { value: null, matchMode: FilterMatchMode.EQUALS },
+            status: { value: null, matchMode: FilterMatchMode.EQUALS },
             activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
             verified: { value: null, matchMode: FilterMatchMode.EQUALS }
         });
@@ -159,11 +146,11 @@ const TableDemo = () => {
     };
 
     const filterClearTemplate = (options: ColumnFilterClearTemplateOptions) => {
-        return <Button type="button" icon="pi pi-times" onClick={options.filterClearCallback} severity="secondary"></Button>;
+        return <Button type="button" icon="pi pi-times" onClick={options.filterCallback} severity="secondary"></Button>;
     };
 
     const filterApplyTemplate = (options: ColumnFilterApplyTemplateOptions) => {
-        return <Button type="button" icon="pi pi-check" onClick={options.filterApplyCallback} severity="success"></Button>;
+        return <Button type="button" icon="pi pi-check" onClick={options.filterCallback} severity="success"></Button>;
     };
 
     const representativeBodyTemplate = (rowData: Demo.Customer) => {
@@ -213,7 +200,7 @@ const TableDemo = () => {
     };
 
     const balanceFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
-        return <InputNumber value={options.value} onChange={(e) => options.filterCallback(e.value, options.index)} mode="currency" currency="USD" locale="en-US" />;
+        return <InputNumber value={options.value} onChange={(e) => options.filterCallback(e, options.index)} mode="currency" currency="USD" locale="en-US" />;
     };
 
     const statusBodyTemplate = (rowData: Demo.Customer) => {
@@ -273,7 +260,7 @@ const TableDemo = () => {
     };
 
     const collapseAll = () => {
-        setExpandedRows([]);
+        setExpandedRows({});
         setAllExpanded(false);
     };
 
@@ -379,10 +366,10 @@ const TableDemo = () => {
                         header={header1}
                     >
                         <Column field="name" header="Name" filter filterPlaceholder="Search by name" style={{ minWidth: '12rem' }} />
-                        <Column header="Country" filterField="country.name" style={{ minWidth: '12rem' }} body={countryBodyTemplate} filter filterPlaceholder="Search by country" filterClear={filterClearTemplate} filterApply={filterApplyTemplate} />
+                        <Column field="country.name" header="Country" style={{ minWidth: '12rem' }} body={countryBodyTemplate} filter filterPlaceholder="Search by country" filterClear={filterClearTemplate} filterApply={filterApplyTemplate} />
                         <Column
                             header="Agent"
-                            filterField="representative"
+                            field="representative"
                             showFilterMatchModes={false}
                             filterMenuStyle={{ width: '14rem' }}
                             style={{ minWidth: '14rem' }}
@@ -390,8 +377,8 @@ const TableDemo = () => {
                             filter
                             filterElement={representativeFilterTemplate}
                         />
-                        <Column header="Date" filterField="date" dataType="date" style={{ minWidth: '10rem' }} body={dateBodyTemplate} filter filterElement={dateFilterTemplate} />
-                        <Column header="Balance" filterField="balance" dataType="numeric" style={{ minWidth: '10rem' }} body={balanceBodyTemplate} filter filterElement={balanceFilterTemplate} />
+                        <Column field="date" header="Date" dataType="date" style={{ minWidth: '10rem' }} body={dateBodyTemplate} filter filterElement={dateFilterTemplate} />
+                        <Column field="balance" header="Balance" dataType="numeric" style={{ minWidth: '10rem' }} body={balanceBodyTemplate} filter filterElement={balanceFilterTemplate} />
                         <Column field="status" header="Status" filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '12rem' }} body={statusBodyTemplate} filter filterElement={statusFilterTemplate} />
                         <Column field="activity" header="Activity" showFilterMatchModes={false} style={{ minWidth: '12rem' }} body={activityBodyTemplate} filter filterElement={activityFilterTemplate} />
                         <Column field="verified" header="Verified" dataType="boolean" bodyClassName="text-center" style={{ minWidth: '8rem' }} body={verifiedBodyTemplate} filter filterElement={verifiedFilterTemplate} />

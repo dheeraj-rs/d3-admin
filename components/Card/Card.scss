@@ -1,0 +1,22 @@
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .card-subtitle {
+        color: #6c757d;
+        font-weight: 400;
+        margin-bottom: 1rem;
+    }
+
+    .card-content {
+        margin-top: 1rem;
+    }
+}
