@@ -5,12 +5,21 @@ import React, { forwardRef, useContext, useImperativeHandle, useRef } from 'reac
 import { AppTopbarRef } from '@/types';
 import { LayoutContext } from './context/layoutcontext';
 import { classNames } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+
 const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
     const { layoutConfig, layoutState, onMenuToggle, onConfigToggle, onBottombarToggle, showProfileSidebar } = useContext(LayoutContext);
     const menubuttonRef = useRef(null);
     const topbarmenuRef = useRef(null);
     const topbarmenubuttonRef = useRef(null);
     const toolbarbuttonRef = useRef(null);
+    const pathname = usePathname();
+
+    const pathSegments = pathname?.split('/').filter(Boolean) || [];
+    const currentPage = pathSegments[pathSegments.length - 1] || 'Home';
+    const formattedPage = currentPage.charAt(0).toUpperCase() + currentPage.slice(1);
+
     useImperativeHandle(ref, () => ({
         menubutton: menubuttonRef.current,
         topbarmenu: topbarmenuRef.current,
@@ -21,63 +30,85 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
     return (
         <div className="layout-topbar">
             <div className="layout-topbar-main">
-                <div className="topbar-header">
-                    <nav className="breadcrumb">
-                        <span className="breadcrumb-link">Pages</span> / Main Page
-                    </nav>
-                    <h1 className="title">Main Page</h1>
-                </div>
-                {/* <Link href="/" className="layout-topbar-logo">
-                <img src={`/layout/images/logo-${layoutConfig.colorScheme !== 'light' ? 'white' : 'dark'}.svg`} width="47.22px" height={'35px'} alt="logo" />
-                <span>SAKAI</span>
-            </Link> */}
-
-                <button ref={menubuttonRef} type="button" className="p-link layout-menu-button layout-topbar-button" onClick={onMenuToggle}>
-                    <i className="pi pi-bars" />
-                </button>
-
-                <button ref={topbarmenubuttonRef} type="button" className="p-link layout-topbar-menu-button layout-topbar-button" onClick={showProfileSidebar}>
-                    <i className="pi pi-ellipsis-v" />
-                </button>
-
-                <div ref={topbarmenuRef} className={classNames('layout-topbar-menu', { 'layout-topbar-menu-mobile-active': layoutState.profileSidebarVisible })}>
-                    <div className="layout-button-container">
-                        <button ref={menubuttonRef} type="button" className="p-link layout-menu-button layout-topbar-button" onClick={onMenuToggle}>
-                            {/* <i className="pi pi-bars" /> */}
-                            <img src="/layout/layout-left-bar.svg" alt="logo" />
-                        </button>
-                        <button ref={menubuttonRef} type="button" className="p-link layout-menu-button layout-topbar-button" onClick={onMenuToggle}>
-                            {/* <i className="pi pi-bars" /> */}
-                            <img src="/layout/layout-top-bar.svg" alt="logo" />
-                        </button>
-
-                        <button type="button" className="p-link layout-menu-button layout-topbar-button" onClick={onBottombarToggle}>
-                            {/* <i className="pi pi-bars" /> */}
-                            <img src="/layout/layout-bottom-bar.svg" alt="logo" />
-                        </button>
-
-                        <button ref={toolbarbuttonRef} type="button" className="p-link layout-menu-button layout-topbar-button" onClick={onConfigToggle}>
-                            {/* <i className="pi pi-bars" /> */}
-                            <img src="/layout/layout-right-bar.svg" alt="logo" />
-                        </button>
-                    </div>
-                    <button type="button" className="p-link layout-topbar-button">
-                        <i className="pi pi-calendar"></i>
-                        <span>Calendar</span>
-                    </button>
-                    <button type="button" className="p-link layout-topbar-button">
-                        <i className="pi pi-user"></i>
-                        <span>Profile</span>
-                    </button>
-                    <Link href="/documentation">
-                        <button type="button" className="p-link layout-topbar-button">
-                            <i className="pi pi-cog"></i>
-                            <span>Settings</span>
-                        </button>
+                <div className="topbar-start">
+                    <Link href="/" className="logo-row">
+                        <Image 
+                            src={`/layout/images/logo-${layoutConfig.colorScheme !== 'light' ? 'white' : 'dark'}.svg`} 
+                            width={45} 
+                            height={45} 
+                            alt="logo"
+                        />
+                        <span className="logo-text">D-Admin</span>
                     </Link>
+                    <nav className="breadcrumb">
+                        <Link href="/" className="breadcrumb-link">Pages</Link>
+                        {pathSegments.map((segment, index) => (
+                            <React.Fragment key={index}>
+                                <span className="breadcrumb-separator">/</span>
+                                <Link 
+                                    href={'/' + pathSegments.slice(0, index + 1).join('/')}
+                                    className="breadcrumb-segment"
+                                >
+                                    {segment.charAt(0).toUpperCase() + segment.slice(1)}
+                                </Link>
+                            </React.Fragment>
+                        ))}
+                    </nav>
                 </div>
+
+                <div className="topbar-center">
+                    <div className="topbar-message">
+                        <i className="pi pi-bell" />
+                        <span>You have 4 new messages</span>
+                    </div>
+                </div>
+
+                <div className="topbar-end">
+                    <div className={classNames('layout-topbar-menu', { 'layout-topbar-menu-mobile-active': layoutState.profileSidebarVisible })}>
+                        <div className="layout-button-container">
+                            <button type="button" className="p-link layout-topbar-button" onClick={onMenuToggle}>
+                                <i className="pi pi-bars" />
+                                <span>Left Menu</span>
+                            </button>
+                            <button type="button" className="p-link layout-topbar-button" onClick={onBottombarToggle}>
+                                <i className="pi pi-bars" />
+                                <span>Bottom Menu</span>
+                            </button>
+                            <button type="button" className="p-link layout-topbar-button" onClick={onConfigToggle}>
+                                <i className="pi pi-bars" />
+                                <span>Right Menu</span>
+                            </button>
+                        </div>
+
+                        <div className="topbar-actions">
+                            <button type="button" className="p-link layout-topbar-button">
+                                <i className="pi pi-calendar"></i>
+                                <span>Calendar</span>
+                            </button>
+                            <button type="button" className="p-link layout-topbar-button">
+                                <i className="pi pi-user"></i>
+                                <span>Profile</span>
+                            </button>
+                            <Link href="/documentation">
+                                <button type="button" className="p-link layout-topbar-button">
+                                    <i className="pi pi-cog"></i>
+                                    <span>Settings</span>
+                                </button>
+                            </Link>
+                        </div>
+                    </div> 
+                </div>
+                
+                <button 
+                        ref={topbarmenubuttonRef} 
+                        type="button" 
+                        className="p-link layout-topbar-button layout-topbar-menu-button" 
+                        onClick={showProfileSidebar}
+                    >
+                        <i className="pi pi-ellipsis-v" />
+                    </button>
             </div>
-            <div className="layout-topbar-mini"></div>
+            <div className="layout-topbar-mask"/>
         </div>
     );
 });

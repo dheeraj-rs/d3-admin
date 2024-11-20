@@ -12,6 +12,7 @@ import AppConfigbar from './AppConfigbar';
 import { useEventListener, useUnmountEffect } from '@/hooks';
 import { classNames } from '@/lib/utils';
 import AppMenu from './AppMenu';
+import Searchbar from './Searchbar';
 
 const Layout = ({ children }: ChildContainerProps) => {
     const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
@@ -19,6 +20,7 @@ const Layout = ({ children }: ChildContainerProps) => {
     const sidebarRef = useRef<HTMLDivElement>(null);
     const configbarRef = useRef<HTMLDivElement>(null);
     const bottombarRef = useRef<HTMLDivElement>(null);
+    const searchbarRef = useRef<HTMLDivElement>(null);
     const [bindMenuOutsideClickListener, unbindMenuOutsideClickListener] = useEventListener({
         type: 'click',
         listener: (event) => {
@@ -121,7 +123,10 @@ const Layout = ({ children }: ChildContainerProps) => {
         unbindProfileMenuOutsideClickListener();
     });
 
-    const containerClass = classNames('layout-wrapper toggle__sidebar-left layout__sidebar-static layout__sidebar-default-active layout-topbar-inactive3 bento-topbar-active bento-bottombar-active', {
+    const sampleClass = 'layout-topbar-inactive toggle__sidebar-left layout__sidebar-static layout__sidebar-default-active layout-topbar-inactive3 bento-topbar-active bento-bottombar-active'
+
+
+    const containerClass = classNames('layout-wrapper bento-topbar-active layout-topbar-inactive3', {
         'layout-overlay ': layoutConfig.menuMode === 'overlay',
         'layout-static': layoutConfig.menuMode === 'static',
         'layout-static-sidebar-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
@@ -135,6 +140,7 @@ const Layout = ({ children }: ChildContainerProps) => {
         'p-input-filled': layoutConfig.inputStyle === 'filled',
         'p-ripple-disabled': !layoutConfig.ripple
     });
+    
 
     return (
         <React.Fragment>
@@ -143,6 +149,7 @@ const Layout = ({ children }: ChildContainerProps) => {
                 <div ref={sidebarRef} className="layout-sidebar">
                     <AppMenu />
                 </div>
+                {/* <Searchbar searchbarRef={searchbarRef}  /> */}
                 <div ref={configbarRef} className="layout-config">
                     <AppConfigbar />
                 </div>

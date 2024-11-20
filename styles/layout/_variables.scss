@@ -14,6 +14,9 @@ $duration-animation-base: 0.3s;
 $duration-animation-modal: 0.5s;
 $easing-animation-base: ease-in-out;
 
+// Topbar Settings
+$height-topbar-base: 5rem;
+
 // Header Settings
 $height-header-notification: 2rem;
 $radius-header-notification: 5px;
@@ -22,7 +25,7 @@ $height-header-base: 5rem;
 $spacing-header-inner: 1rem;
 
 // Bottom Panel Settings
-$width-panel-bottom-collapsed: 5rem;
+$width-panel-bottom-base: 5rem;
 $width-panel-bottom-expanded: 300px;
 $height-panel-bottom-collapsed: 5rem;
 $height-panel-bottom-expanded: 300px;

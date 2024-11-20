@@ -10,7 +10,8 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
         menuMode: 'static',
         colorScheme: 'light',
         theme: 'lara-light-indigo',
-        scale: 14
+        scale: 14,
+        secretKey: ''
     });
 
     const [layoutState, setLayoutState] = useState<LayoutState>({
@@ -25,8 +26,11 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
         staticMenuMobileActive: false,
         staticConfigMobileActive: false,
         staticBottombarMobileActive: false,
-        menuHoverActive: false
+        menuHoverActive: false,
+        searchSidebarItems: []
     });
+
+    console.log('searchSidebarItems :', layoutState.searchSidebarItems);
 
     console.log('overlayConfigActive :', layoutState.overlayConfigActive);
 

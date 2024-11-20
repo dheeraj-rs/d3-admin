@@ -1,6 +1,8 @@
 .layout-config {
     width: $width-config-panel;
     height: 100%;
+    // height: 50vh;
+
     background-color: var(--surface-overlay);
     overflow-y: auto;
     user-select: none;

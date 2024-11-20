@@ -46,6 +46,7 @@ export type LayoutState = {
     staticConfigMobileActive: boolean;
     staticBottombarMobileActive: boolean;
     menuHoverActive: boolean;
+    searchSidebarItems: [];
 };
 
 export type LayoutConfig = {
@@ -55,6 +56,7 @@ export type LayoutConfig = {
     colorScheme: string;
     theme: string;
     scale: number;
+    secretKey: string;
 };
 
 export interface LayoutContextProps {
