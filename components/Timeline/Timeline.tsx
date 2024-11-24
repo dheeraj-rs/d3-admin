@@ -1,6 +1,4 @@
-import React, { ReactNode } from 'react';
-import './Timeline.scss';
-
+import { ReactNode } from 'react';
 interface TimelineProps {
     value: any[];
     align?: 'left' | 'right' | 'alternate';

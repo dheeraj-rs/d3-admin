@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import './Toast.scss';
-
+import React, { useEffect, useState } from 'react';
 export interface ToastMessage {
     severity: 'success' | 'error' | 'info' | 'warning' | 'warn';
     summary: string;
@@ -21,7 +19,7 @@ export const Toast = React.forwardRef<ToastRef, {}>((props, ref) => {
         const newMessage = {
             ...message,
             life: message.life || 3000,
-            id: counter
+            id: counter,
         };
         setCounter((prev) => prev + 1);
         setMessages((prev) => [...prev, newMessage]);
@@ -37,7 +35,7 @@ export const Toast = React.forwardRef<ToastRef, {}>((props, ref) => {
 
     React.useImperativeHandle(ref, () => ({
         show,
-        clear
+        clear,
     }));
 
     return (

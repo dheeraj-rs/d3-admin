@@ -1,5 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState, useRef } from 'react';
-import './Menu.scss';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 
 interface MenuItem {
     label?: string;
@@ -32,14 +31,14 @@ const Menu: MenuComponent = forwardRef<MenuRef, MenuProps>(({ model, popup }, re
                 const rect = (event.target as HTMLElement).getBoundingClientRect();
                 setPosition({
                     x: rect.left,
-                    y: rect.bottom
+                    y: rect.bottom,
                 });
             }
             setVisible(!visible);
         },
         hide: () => {
             setVisible(false);
-        }
+        },
     }));
 
     React.useEffect(() => {
@@ -69,7 +68,7 @@ const Menu: MenuComponent = forwardRef<MenuRef, MenuProps>(({ model, popup }, re
                     ? {
                           position: 'fixed',
                           left: `${position.x}px`,
-                          top: `${position.y}px`
+                          top: `${position.y}px`,
                       }
                     : {}
             }
@@ -101,4 +100,4 @@ const Menu: MenuComponent = forwardRef<MenuRef, MenuProps>(({ model, popup }, re
 
 Menu.displayName = 'Menu';
 
-export {Menu};
+export { Menu };

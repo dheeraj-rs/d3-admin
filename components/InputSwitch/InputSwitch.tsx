@@ -1,6 +1,4 @@
 import React from 'react';
-import './InputSwitch.scss';
-
 interface InputSwitchProps {
     checked: boolean;
     value?: boolean;

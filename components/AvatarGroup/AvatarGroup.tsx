@@ -1,4 +1,4 @@
-import { ReactNode, Children } from 'react';
+import { Children, ReactNode } from 'react';
 
 interface AvatarGroupProps {
     children: ReactNode;

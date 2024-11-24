@@ -1,6 +1,4 @@
 import { ChangeEvent } from 'react';
-import styles from './InputTextarea.module.scss';
-
 interface InputTextareaProps {
     value: string;
     onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
@@ -14,7 +12,19 @@ interface InputTextareaProps {
 }
 
 const InputTextarea = ({ value, onChange, id, rows = 4, cols, placeholder, disabled, className, required }: InputTextareaProps) => {
-    return <textarea id={id} value={value} onChange={onChange} rows={rows} cols={cols} placeholder={placeholder} disabled={disabled} className={`${styles.textarea} ${className}`} required={required} />;
+    return (
+        <textarea
+            id={id}
+            value={value}
+            onChange={onChange}
+            rows={rows}
+            cols={cols}
+            placeholder={placeholder}
+            disabled={disabled}
+            className={`textarea ${className}`}
+            required={required}
+        />
+    );
 };
 
 export default InputTextarea;

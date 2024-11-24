@@ -1,6 +1,4 @@
 import { FC } from 'react';
-import './InputMask.scss';
-
 interface InputMaskProps {
     id?: string;
     value: string;

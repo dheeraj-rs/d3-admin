@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import './Panel.scss';
-
 interface PanelProps {
     header?: React.ReactNode;
     toggleable?: boolean;
@@ -18,22 +16,11 @@ export const Panel: React.FC<PanelProps> = ({ header, toggleable = false, childr
 
     return (
         <div className="panel">
-            <div 
-                className={`panel-header ${toggleable ? 'toggleable' : ''}`}
-                onClick={handleToggle}
-            >
+            <div className={`panel-header ${toggleable ? 'toggleable' : ''}`} onClick={handleToggle}>
                 {header}
-                {toggleable && (
-                    <span className={`panel-toggle-icon ${expanded ? 'expanded' : ''}`}>
-                        ▼
-                    </span>
-                )}
+                {toggleable && <span className={`panel-toggle-icon ${expanded ? 'expanded' : ''}`}>▼</span>}
             </div>
-            {expanded && (
-                <div className="panel-content">
-                    {children}
-                </div>
-            )}
+            {expanded && <div className="panel-content">{children}</div>}
         </div>
     );
-}; 
+};

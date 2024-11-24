@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from 'react';
-import styles from './InputNumber.module.scss';
 
 // Add this type definition
 export type InputNumberChangeEvent = ChangeEvent<HTMLInputElement>;
@@ -21,13 +20,28 @@ interface InputNumberProps {
     locale?: string;
 }
 
-const InputNumber = ({ id, value, onValueChange, onChange, min, max, step = 1, placeholder, disabled, className, showButtons = true, mode = 'decimal', currency, locale = 'en-US' }: InputNumberProps) => {
+const InputNumber = ({
+    id,
+    value,
+    onValueChange,
+    onChange,
+    min,
+    max,
+    step = 1,
+    placeholder,
+    disabled,
+    className,
+    showButtons = true,
+    mode = 'decimal',
+    currency,
+    locale = 'en-US',
+}: InputNumberProps) => {
     const formatValue = (val: number | null | undefined): string => {
         if (val === null || val === undefined) return '';
         if (mode === 'currency' && currency) {
             return new Intl.NumberFormat(locale, {
                 style: 'currency',
-                currency: currency
+                currency: currency,
             }).format(val);
         }
         return val.toString();
@@ -69,14 +83,33 @@ const InputNumber = ({ id, value, onValueChange, onChange, min, max, step = 1, p
     };
 
     return (
-        <div className={`${styles.inputNumber} ${className}`}>
-            <input id={id} type="number" value={inputValue} onChange={handleChange} min={min} max={max} step={step} placeholder={placeholder} disabled={disabled} className={styles.inputNumber__input} />
+        <div className={`inputNumber ${className}`}>
+            <input
+                id={id}
+                type="number"
+                value={inputValue}
+                onChange={handleChange}
+                min={min}
+                max={max}
+                step={step}
+                placeholder={placeholder}
+                disabled={disabled}
+                className="inputNumber__input"
+            />
             {showButtons && (
-                <div className={styles.inputNumber__buttons}>
-                    <button className={styles.inputNumber__button} onClick={handleIncrement} disabled={disabled || (max !== undefined && value !== null && value !== undefined && value >= max)}>
+                <div className="inputNumber__buttons">
+                    <button
+                        className="inputNumber__button"
+                        onClick={handleIncrement}
+                        disabled={disabled || (max !== undefined && value !== null && value !== undefined && value >= max)}
+                    >
                         ▲
                     </button>
-                    <button className={styles.inputNumber__button} onClick={handleDecrement} disabled={disabled || (min !== undefined && value !== null && value !== undefined && value <= min)}>
+                    <button
+                        className="inputNumber__button"
+                        onClick={handleDecrement}
+                        disabled={disabled || (min !== undefined && value !== null && value !== undefined && value <= min)}
+                    >
                         ▼
                     </button>
                 </div>

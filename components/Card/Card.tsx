@@ -1,6 +1,4 @@
-import React, { ReactNode } from 'react';
-import './Card.scss';
-
+import { ReactNode } from 'react';
 interface CardProps {
     title?: string;
     subTitle?: string;

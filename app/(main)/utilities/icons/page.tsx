@@ -1,9 +1,9 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { IconService } from '../../../../demo/service/IconService';
 import { InputText } from '@/components/InputText/InputText';
 import type { Demo } from '@/types';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { IconService } from '../../../../demo/service/IconService';
 
 const IconsDemo = () => {
     const [icons, setIcons] = useState<Demo.Icon[]>([]);
@@ -36,7 +36,7 @@ const IconsDemo = () => {
         } else {
             setFilteredIcons(
                 icons.filter((it) => {
-                    return it.icon?.tags?.some(tag => tag.toLowerCase().includes(searchValue));
+                    return it.icon?.tags?.some((tag) => tag.toLowerCase().includes(searchValue));
                 })
             );
         }
@@ -47,12 +47,12 @@ const IconsDemo = () => {
             <h2>Icons</h2>
             <p>
                 d-admin components internally use{' '}
-                <Link href="https://github.com/primefaces/primeicons" className="font-medium hover:underline text-primary" target={'_blank'}>
+                <Link href="https://github.com/dheeraj-rs" className="font-medium hover:underline text-primary" target={'_blank'}>
                     PrimeIcons
                 </Link>{' '}
                 library, the official icons suite from{' '}
-                <Link href="https://www.primetek.com.tr" className="font-medium hover:underline text-primary" target={'_blank'}>
-                    PrimeTek
+                <Link href="https://www.dheerajrs.com/" className="font-medium hover:underline text-primary" target={'_blank'}>
+                    Dheeraj-rs
                 </Link>
                 .
             </p>
@@ -63,7 +63,8 @@ const IconsDemo = () => {
             </pre>
             <h4>Getting Started</h4>
             <p>
-                PrimeIcons use the <strong>pi pi-&#123;icon&#125;</strong> syntax such as <strong>pi pi-check</strong>. A standalone icon can be displayed using an element like <i>i</i> or <i>span</i>
+                PrimeIcons use the <strong>pi pi-&#123;icon&#125;</strong> syntax such as <strong>pi pi-check</strong>. A standalone icon can be displayed using
+                an element like <i>i</i> or <i>span</i>
             </p>
             <pre className="app-code">
                 <code>
@@ -99,18 +100,13 @@ const IconsDemo = () => {
             <h4>List of Icons</h4>
             <p>
                 Here is the current list of PrimeIcons, more icons are added periodically. You may also{' '}
-                <Link href="https://github.com/primefaces/primeicons/issues" className="font-medium hover:underline text-primary" target={'_blank'}>
+                <Link href="https://github.com/dheeraj-rs" className="font-medium hover:underline text-primary" target={'_blank'}>
                     request new icons
                 </Link>{' '}
                 at the issue tracker.
             </p>
             <div>
-                <InputText 
-                    type="text" 
-                    className="w-full p-3 mt-3 mb-5" 
-                    onChange={onFilter} 
-                    placeholder="Search an icon" 
-                />
+                <InputText type="text" className="w-full p-3 mt-3 mb-5" onChange={onFilter} placeholder="Search an icon" />
             </div>
             <div className="grid icons-list text-center">
                 {filteredIcons &&

@@ -1,25 +1,25 @@
 'use client';
-import React, { useEffect, useState } from 'react';
 import type { Demo } from '@/types';
+import React, { useEffect, useState } from 'react';
 import { CustomerService } from '../../../../demo/service/CustomerService';
 import { ProductService } from '../../../../demo/service/ProductService';
 
 import { Button } from '@/components/Button/Button';
+import { Calendar } from '@/components/Calendar/Calendar';
+import { Dropdown } from '@/components/Dropdown/Dropdown';
+import InputNumber from '@/components/InputNumber/InputNumber';
 import { InputText } from '@/components/InputText/InputText';
 import { MultiSelect } from '@/components/MultiSelect/MultiSelect';
 import { ProgressBar } from '@/components/ProgressBar/ProgressBar';
 import Rating from '@/components/Rating/Rating';
 import Slider from '@/components/Slider/Slider';
-import { Calendar } from '@/components/Calendar/Calendar';
-import { Dropdown } from '@/components/Dropdown/Dropdown';
-import InputNumber from '@/components/InputNumber/InputNumber';
 import ToggleButton from '@/components/ToggleButton/ToggleButton';
 
-import { classNames } from '@/lib/utils';
-import { FilterMatchMode, FilterOperator } from '@/components/api/FilterTypes';
+import { FilterMatchMode } from '@/components/api/FilterTypes';
 import { Column, ColumnFilterApplyTemplateOptions, ColumnFilterClearTemplateOptions, ColumnFilterElementTemplateOptions } from '@/components/DataTable/Column';
 import { DataTable, DataTableExpandedRows, DataTableFilterMeta } from '@/components/DataTable/DataTable';
 import { TriStateCheckbox } from '@/components/tristatecheckbox/TriStateCheckbox';
+import { classNames } from '@/lib/utils';
 
 const TableDemo = () => {
     const [customers1, setCustomers1] = useState<Demo.Customer[]>([]);
@@ -44,7 +44,7 @@ const TableDemo = () => {
         { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
         { name: 'Onyama Limba', image: 'onyamalimba.png' },
         { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-        { name: 'XuXue Feng', image: 'xuxuefeng.png' }
+        { name: 'XuXue Feng', image: 'xuxuefeng.png' },
     ];
 
     const statuses = ['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal'];
@@ -110,14 +110,14 @@ const TableDemo = () => {
         return value.toLocaleDateString('en-US', {
             day: '2-digit',
             month: '2-digit',
-            year: 'numeric'
+            year: 'numeric',
         });
     };
 
     const formatCurrency = (value: number) => {
         return value.toLocaleString('en-US', {
             style: 'currency',
-            currency: 'USD'
+            currency: 'USD',
         });
     };
 
@@ -131,7 +131,7 @@ const TableDemo = () => {
             balance: { value: null, matchMode: FilterMatchMode.EQUALS },
             status: { value: null, matchMode: FilterMatchMode.EQUALS },
             activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-            verified: { value: null, matchMode: FilterMatchMode.EQUALS }
+            verified: { value: null, matchMode: FilterMatchMode.EQUALS },
         });
         setGlobalFilterValue1('');
     };
@@ -160,7 +160,9 @@ const TableDemo = () => {
                 <img
                     alt={representative.name}
                     src={`/demo/images/avatar/${representative.image}`}
-                    onError={(e) => ((e.target as HTMLImageElement).src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')}
+                    onError={(e) =>
+                        ((e.target as HTMLImageElement).src = 'https://png.pngtree.com/png-vector/20211025/ourmid/pngtree-letter-d-logo-png-image_3989483.png')
+                    }
                     width={32}
                     style={{ verticalAlign: 'middle' }}
                 />
@@ -173,7 +175,15 @@ const TableDemo = () => {
         return (
             <>
                 <div className="mb-3 text-bold">Agent Picker</div>
-                <MultiSelect value={options.value} options={representatives} itemTemplate={representativesItemTemplate} onChange={(e) => options.filterCallback(e.value)} optionLabel="name" placeholder="Any" className="p-column-filter" />
+                <MultiSelect
+                    value={options.value}
+                    options={representatives}
+                    itemTemplate={representativesItemTemplate}
+                    onChange={(e) => options.filterCallback(e.value)}
+                    optionLabel="name"
+                    placeholder="Any"
+                    className="p-column-filter"
+                />
             </>
         );
     };
@@ -192,7 +202,15 @@ const TableDemo = () => {
     };
 
     const dateFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
-        return <Calendar value={options.value} onChange={(e) => options.filterCallback(e.value, options.index)} dateFormat="mm/dd/yy" placeholder="mm/dd/yyyy" mask="99/99/9999" />;
+        return (
+            <Calendar
+                value={options.value}
+                onChange={(e) => options.filterCallback(e.value, options.index)}
+                dateFormat="mm/dd/yy"
+                placeholder="mm/dd/yyyy"
+                mask="99/99/9999"
+            />
+        );
     };
 
     const balanceBodyTemplate = (rowData: Demo.Customer) => {
@@ -208,7 +226,17 @@ const TableDemo = () => {
     };
 
     const statusFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
-        return <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={statusItemTemplate} placeholder="Select a Status" className="p-column-filter" showClear />;
+        return (
+            <Dropdown
+                value={options.value}
+                options={statuses}
+                onChange={(e) => options.filterCallback(e.value, options.index)}
+                itemTemplate={statusItemTemplate}
+                placeholder="Select a Status"
+                className="p-column-filter"
+                showClear
+            />
+        );
     };
 
     const statusItemTemplate = (option: any) => {
@@ -236,7 +264,7 @@ const TableDemo = () => {
             <i
                 className={classNames('pi', {
                     'text-green-500 pi-check-circle': rowData.verified,
-                    'text-pink-500 pi-times-circle': !rowData.verified
+                    'text-pink-500 pi-times-circle': !rowData.verified,
                 })}
             ></i>
         );
@@ -277,7 +305,17 @@ const TableDemo = () => {
     };
 
     const imageBodyTemplate = (rowData: Demo.Product) => {
-        return <img src={`/demo/images/product/${rowData.image}`} onError={(e) => ((e.target as HTMLImageElement).src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')} alt={rowData.image} className="shadow-2" width={100} />;
+        return (
+            <img
+                src={`/demo/images/product/${rowData.image}`}
+                onError={(e) =>
+                    ((e.target as HTMLImageElement).src = 'https://png.pngtree.com/png-vector/20211025/ourmid/pngtree-letter-d-logo-png-image_3989483.png')
+                }
+                alt={rowData.image}
+                className="shadow-2"
+                width={100}
+            />
+        );
     };
 
     const priceBodyTemplate = (rowData: Demo.Product) => {
@@ -308,7 +346,9 @@ const TableDemo = () => {
         );
     };
 
-    const header = <Button icon={allExpanded ? 'pi pi-minus' : 'pi pi-plus'} label={allExpanded ? 'Collapse All' : 'Expand All'} onClick={toggleAll} className="w-11rem" />;
+    const header = (
+        <Button icon={allExpanded ? 'pi pi-minus' : 'pi pi-plus'} label={allExpanded ? 'Collapse All' : 'Expand All'} onClick={toggleAll} className="w-11rem" />
+    );
 
     const headerTemplate = (data: Demo.Customer) => {
         return (
@@ -366,7 +406,16 @@ const TableDemo = () => {
                         header={header1}
                     >
                         <Column field="name" header="Name" filter filterPlaceholder="Search by name" style={{ minWidth: '12rem' }} />
-                        <Column field="country.name" header="Country" style={{ minWidth: '12rem' }} body={countryBodyTemplate} filter filterPlaceholder="Search by country" filterClear={filterClearTemplate} filterApply={filterApplyTemplate} />
+                        <Column
+                            field="country.name"
+                            header="Country"
+                            style={{ minWidth: '12rem' }}
+                            body={countryBodyTemplate}
+                            filter
+                            filterPlaceholder="Search by country"
+                            filterClear={filterClearTemplate}
+                            filterApply={filterApplyTemplate}
+                        />
                         <Column
                             header="Agent"
                             field="representative"
@@ -377,11 +426,52 @@ const TableDemo = () => {
                             filter
                             filterElement={representativeFilterTemplate}
                         />
-                        <Column field="date" header="Date" dataType="date" style={{ minWidth: '10rem' }} body={dateBodyTemplate} filter filterElement={dateFilterTemplate} />
-                        <Column field="balance" header="Balance" dataType="numeric" style={{ minWidth: '10rem' }} body={balanceBodyTemplate} filter filterElement={balanceFilterTemplate} />
-                        <Column field="status" header="Status" filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '12rem' }} body={statusBodyTemplate} filter filterElement={statusFilterTemplate} />
-                        <Column field="activity" header="Activity" showFilterMatchModes={false} style={{ minWidth: '12rem' }} body={activityBodyTemplate} filter filterElement={activityFilterTemplate} />
-                        <Column field="verified" header="Verified" dataType="boolean" bodyClassName="text-center" style={{ minWidth: '8rem' }} body={verifiedBodyTemplate} filter filterElement={verifiedFilterTemplate} />
+                        <Column
+                            field="date"
+                            header="Date"
+                            dataType="date"
+                            style={{ minWidth: '10rem' }}
+                            body={dateBodyTemplate}
+                            filter
+                            filterElement={dateFilterTemplate}
+                        />
+                        <Column
+                            field="balance"
+                            header="Balance"
+                            dataType="numeric"
+                            style={{ minWidth: '10rem' }}
+                            body={balanceBodyTemplate}
+                            filter
+                            filterElement={balanceFilterTemplate}
+                        />
+                        <Column
+                            field="status"
+                            header="Status"
+                            filterMenuStyle={{ width: '14rem' }}
+                            style={{ minWidth: '12rem' }}
+                            body={statusBodyTemplate}
+                            filter
+                            filterElement={statusFilterTemplate}
+                        />
+                        <Column
+                            field="activity"
+                            header="Activity"
+                            showFilterMatchModes={false}
+                            style={{ minWidth: '12rem' }}
+                            body={activityBodyTemplate}
+                            filter
+                            filterElement={activityFilterTemplate}
+                        />
+                        <Column
+                            field="verified"
+                            header="Verified"
+                            dataType="boolean"
+                            bodyClassName="text-center"
+                            style={{ minWidth: '8rem' }}
+                            body={verifiedBodyTemplate}
+                            filter
+                            filterElement={verifiedFilterTemplate}
+                        />
                     </DataTable>
                 </div>
             </div>
@@ -389,18 +479,46 @@ const TableDemo = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>Frozen Columns</h5>
-                    <ToggleButton checked={idFrozen} onChange={(e) => setIdFrozen(e.value)} onIcon="pi pi-lock" offIcon="pi pi-lock-open" onLabel="Unfreeze Id" offLabel="Freeze Id" style={{ width: '10rem' }} />
+                    <ToggleButton
+                        checked={idFrozen}
+                        onChange={(e) => setIdFrozen(e.value)}
+                        onIcon="pi pi-lock"
+                        offIcon="pi pi-lock-open"
+                        onLabel="Unfreeze Id"
+                        offLabel="Freeze Id"
+                        style={{ width: '10rem' }}
+                    />
 
                     <DataTable value={customers2} scrollable scrollHeight="400px" loading={loading2} className="mt-3">
                         <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: '160px' }} frozen className="font-bold"></Column>
-                        <Column field="id" header="Id" style={{ flexGrow: 1, flexBasis: '100px' }} frozen={idFrozen} alignFrozen="left" bodyClassName={classNames({ 'font-bold': idFrozen })}></Column>
+                        <Column
+                            field="id"
+                            header="Id"
+                            style={{ flexGrow: 1, flexBasis: '100px' }}
+                            frozen={idFrozen}
+                            alignFrozen="left"
+                            bodyClassName={classNames({ 'font-bold': idFrozen })}
+                        ></Column>
                         <Column field="country.name" header="Country" style={{ flexGrow: 1, flexBasis: '200px' }} body={countryBodyTemplate}></Column>
                         <Column field="date" header="Date" style={{ flexGrow: 1, flexBasis: '200px' }} body={dateBodyTemplate}></Column>
                         <Column field="company" header="Company" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
                         <Column field="status" header="Status" style={{ flexGrow: 1, flexBasis: '200px' }} body={statusBodyTemplate}></Column>
                         <Column field="activity" header="Activity" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
-                        <Column field="representative.name" header="Representative" style={{ flexGrow: 1, flexBasis: '200px' }} body={representativeBodyTemplate}></Column>
-                        <Column field="balance" header="Balance" body={balanceTemplate} frozen style={{ flexGrow: 1, flexBasis: '120px' }} className="font-bold" alignFrozen="right"></Column>
+                        <Column
+                            field="representative.name"
+                            header="Representative"
+                            style={{ flexGrow: 1, flexBasis: '200px' }}
+                            body={representativeBodyTemplate}
+                        ></Column>
+                        <Column
+                            field="balance"
+                            header="Balance"
+                            body={balanceTemplate}
+                            frozen
+                            style={{ flexGrow: 1, flexBasis: '120px' }}
+                            className="font-bold"
+                            alignFrozen="right"
+                        ></Column>
                     </DataTable>
                 </div>
             </div>
@@ -408,7 +526,15 @@ const TableDemo = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>Row Expand</h5>
-                    <DataTable value={products} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} responsiveLayout="scroll" rowExpansionTemplate={rowExpansionTemplate} dataKey="id" header={header}>
+                    <DataTable
+                        value={products}
+                        expandedRows={expandedRows}
+                        onRowToggle={(e) => setExpandedRows(e.data)}
+                        responsiveLayout="scroll"
+                        rowExpansionTemplate={rowExpansionTemplate}
+                        dataKey="id"
+                        header={header}
+                    >
                         <Column expander style={{ width: '3em' }} />
                         <Column field="name" header="Name" sortable />
                         <Column header="Image" body={imageBodyTemplate} />

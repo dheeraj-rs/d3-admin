@@ -1,6 +1,4 @@
 import React from 'react';
-import './Sidebar.scss';
-
 interface SidebarProps {
     visible: boolean;
     onHide: () => void;

@@ -1,5 +1,4 @@
 import React from 'react';
-import './BreadCrumb.scss';
 
 interface BreadCrumbItem {
     label?: string;

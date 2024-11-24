@@ -1,6 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import './Tooltip.scss';
-
+import React, { useEffect, useRef, useState } from 'react';
 interface TooltipProps {
     target: React.RefObject<HTMLElement>;
     position?: 'top' | 'bottom' | 'left' | 'right';

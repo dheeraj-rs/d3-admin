@@ -85,6 +85,6 @@ export const createLazyLoadEvent = (first: number, rows: number, sortField?: str
         sortField,
         sortOrder,
         filters,
-        multiSortMeta: sortField ? [{ field: sortField, order: sortOrder }] : undefined
+        multiSortMeta: sortField ? [{ field: sortField, order: sortOrder }] : undefined,
     };
 };

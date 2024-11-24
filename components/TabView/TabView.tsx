@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import './TabView.scss';
-
 interface TabViewProps {
     children: React.ReactNode;
     activeIndex?: number;
@@ -32,7 +30,10 @@ export const TabView: React.FC<TabViewProps> = ({ children, activeIndex: control
                     if (React.isValidElement<TabPanelProps>(child)) {
                         const isDisabled = child.props.disabled;
                         return (
-                            <div className={`tabview-nav-item ${index === activeIndex ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`} onClick={() => !isDisabled && handleTabClick(index)}>
+                            <div
+                                className={`tabview-nav-item ${index === activeIndex ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`}
+                                onClick={() => !isDisabled && handleTabClick(index)}
+                            >
                                 {child.props.header}
                             </div>
                         );

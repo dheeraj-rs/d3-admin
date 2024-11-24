@@ -1,5 +1,20 @@
 export type SortOrder = 1 | -1 | 0;
-export type FilterMatchMode = 'startsWith' | 'contains' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' | 'between' | 'dateIs' | 'dateIsNot' | 'dateBefore' | 'dateAfter';
+export type FilterMatchMode =
+    | 'startsWith'
+    | 'contains'
+    | 'endsWith'
+    | 'equals'
+    | 'notEquals'
+    | 'in'
+    | 'lt'
+    | 'lte'
+    | 'gt'
+    | 'gte'
+    | 'between'
+    | 'dateIs'
+    | 'dateIsNot'
+    | 'dateBefore'
+    | 'dateAfter';
 
 export interface SortMeta {
     field: string;

@@ -6,8 +6,8 @@ interface SimpleLayoutProps {
 }
 
 export const metadata: Metadata = {
-    title: 'DRJ',
-    description: 'The ultimate collection of design-agnostic, flexible and accessible React UI Components.'
+    title: 'D-Admin',
+    description: 'The ultimate collection of design-agnostic, flexible and accessible React UI Components.',
 };
 
 export default function SimpleLayout({ children }: SimpleLayoutProps) {

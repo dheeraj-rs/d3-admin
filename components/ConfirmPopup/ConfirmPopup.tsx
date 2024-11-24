@@ -1,7 +1,5 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import './ConfirmPopup.scss';
-
 interface ConfirmPopupProps {
     visible: boolean;
     onHide: () => void;
@@ -40,7 +38,7 @@ export const confirmPopup = (options: { target: HTMLElement; message: string; he
     const rect = options.target.getBoundingClientRect();
     const position = {
         x: rect.left,
-        y: rect.bottom + 5
+        y: rect.bottom + 5,
     };
 
     const props: ConfirmPopupProps = {
@@ -51,7 +49,7 @@ export const confirmPopup = (options: { target: HTMLElement; message: string; he
         icon: options.icon,
         accept: handleAccept,
         reject: handleReject,
-        position
+        position,
     };
 
     root.render(<ConfirmPopup {...props} />);

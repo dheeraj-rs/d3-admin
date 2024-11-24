@@ -1,6 +1,4 @@
 import React from 'react';
-import './RadioButton.scss';
-
 interface RadioButtonProps {
     name: string;
     value: string | boolean;

@@ -1,6 +1,4 @@
 import React from 'react';
-import './ColumnLayout.scss';
-
 interface ColumnLayoutProps {
     children: React.ReactNode;
     gap?: number;

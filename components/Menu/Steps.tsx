@@ -1,6 +1,4 @@
 import React from 'react';
-import './Steps.scss';
-
 interface StepItem {
     label: string;
     icon?: string;

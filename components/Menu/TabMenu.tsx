@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import './TabMenu.scss';
-
 interface TabMenuItem {
     label: string;
     icon?: string;

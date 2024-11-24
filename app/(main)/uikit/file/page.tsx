@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useRef } from 'react';
 import FileUpload from '@/components/FileUpload/FileUpload';
 import { Toast, ToastRef } from '@/components/Toast/Toast';
+import { useRef } from 'react';
 
 const FileDemo = () => {
     const toast = useRef<ToastRef>(null);
@@ -12,7 +12,7 @@ const FileDemo = () => {
             severity: 'info',
             summary: 'Success',
             detail: 'File Uploaded',
-            life: 3000
+            life: 3000,
         });
     };
 

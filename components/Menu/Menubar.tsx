@@ -1,6 +1,4 @@
 import React from 'react';
-import './Menubar.scss';
-
 interface MenubarProps {
     model: any[];
     end?: () => React.ReactNode;

@@ -1,6 +1,5 @@
-import React, { useState, useRef } from 'react';
 import { Button } from '@/components/Button/Button';
-import styles from './SplitButton.module.scss';
+import React, { useRef, useState } from 'react';
 
 interface SplitButtonItem {
     label: string;
@@ -33,11 +32,11 @@ export const SplitButton: React.FC<SplitButtonProps> = ({ label, icon, model, se
     };
 
     return (
-        <div className={styles.splitButton} ref={buttonRef}>
+        <div className="splitButton" ref={buttonRef}>
             <Button label={label} icon={icon} severity={severity} className={className} />
-            <Button icon="pi pi-chevron-down" severity={severity} className={styles.menuButton} onClick={toggleMenu} />
+            <Button icon="pi pi-chevron-down" severity={severity} className="menuButton" onClick={toggleMenu} />
             {visible && (
-                <ul className={styles.menu} style={menuStyle}>
+                <ul className="menu" style={menuStyle}>
                     {model.map((item, index) => (
                         <li key={index} onClick={() => onItemClick(item)}>
                             {item.icon && <i className={item.icon}></i>}

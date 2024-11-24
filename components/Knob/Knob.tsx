@@ -1,5 +1,4 @@
-import { FC, useState, useEffect } from 'react';
-import styles from './Knob.module.scss';
+import { FC, useEffect, useState } from 'react';
 
 interface KnobProps {
     value?: number;
@@ -41,9 +40,17 @@ const Knob: FC<KnobProps> = ({ value = 0, min = 0, max = 100, onChange, size = 1
     };
 
     return (
-        <div className={`${styles.knob} ${disabled ? styles.disabled : ''}`} style={{ width: size, height: size }} onClick={handleChange} role="slider" aria-valuemin={min} aria-valuemax={max} aria-valuenow={value}>
-            <div className={styles.indicator} style={{ transform: `rotate(${rotation}deg)` }} />
-            <div className={styles.value}>{value}</div>
+        <div
+            className={`knob ${disabled ? 'disabled' : ''}`}
+            style={{ width: size, height: size }}
+            onClick={handleChange}
+            role="slider"
+            aria-valuemin={min}
+            aria-valuemax={max}
+            aria-valuenow={value}
+        >
+            <div className="indicator" style={{ transform: `rotate(${rotation}deg)` }} />
+            <div className="value">{value}</div>
         </div>
     );
 };

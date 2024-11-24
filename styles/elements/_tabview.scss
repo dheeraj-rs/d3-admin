@@ -1,14 +1,14 @@
 .tabview {
     display: flex;
     flex-direction: column;
-    background: #ffffff;
-    border: 1px solid #dee2e6;
+    background: var(--surface-card);
+    border: 1px solid var(--surface-border);
     border-radius: 6px;
 
     &-nav {
         display: flex;
-        background: #f8f9fa;
-        border-bottom: 1px solid #dee2e6;
+        background: var(--surface-ground);
+        border-bottom: 1px solid var(--surface-border);
         padding: 0;
         margin: 0;
         list-style: none;
@@ -24,17 +24,17 @@
             transition: all 0.2s;
 
             &:hover:not(.disabled) {
-                background: #e9ecef;
-                border-color: #dee2e6;
+                background: var(--surface-ground);
+                border-color: var(--surface-border);
             }
 
             &.active {
-                background: #ffffff;
-                border-color: #dee2e6 #dee2e6 #ffffff;
+                background: var(--surface-card);
+                border-color: var(--surface-border) var(--surface-border) var(--surface-card);
                 color: #4338ca;
 
                 &:hover {
-                    background: #ffffff;
+                    background: var(--surface-card);
                 }
             }
 

@@ -1,5 +1,4 @@
 import { FC, useState } from 'react';
-import './MultiSelect.scss';
 
 interface MultiSelectProps {
     id?: string;
@@ -14,7 +13,18 @@ interface MultiSelectProps {
     display?: string;
 }
 
-export const MultiSelect: FC<MultiSelectProps> = ({ id, value = null, options, onChange, optionLabel, placeholder, itemTemplate, filter = false, className, display }) => {
+export const MultiSelect: FC<MultiSelectProps> = ({
+    id,
+    value = null,
+    options,
+    onChange,
+    optionLabel,
+    placeholder,
+    itemTemplate,
+    filter = false,
+    className,
+    display,
+}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleOption = (option: any) => {
@@ -32,13 +42,19 @@ export const MultiSelect: FC<MultiSelectProps> = ({ id, value = null, options, o
     return (
         <div className={`custom-multiselect ${className || ''}`}>
             <div className="multiselect-header" onClick={() => setIsOpen(!isOpen)}>
-                <div className="selected-options">{value && Array.isArray(value) && value.length > 0 ? value.map((v) => v[optionLabel]).join(', ') : placeholder}</div>
+                <div className="selected-options">
+                    {value && Array.isArray(value) && value.length > 0 ? value.map((v) => v[optionLabel]).join(', ') : placeholder}
+                </div>
                 <span className="arrow">▼</span>
             </div>
             {isOpen && (
                 <ul className="multiselect-list">
                     {options.map((option, index) => (
-                        <li key={index} onClick={() => toggleOption(option)} className={(value || []).some((v) => v[optionLabel] === option[optionLabel]) ? 'selected' : ''}>
+                        <li
+                            key={index}
+                            onClick={() => toggleOption(option)}
+                            className={(value || []).some((v) => v[optionLabel] === option[optionLabel]) ? 'selected' : ''}
+                        >
                             <input type="checkbox" checked={(value || []).some((v) => v[optionLabel] === option[optionLabel])} readOnly />
                             {itemTemplate ? itemTemplate(option) : option[optionLabel]}
                         </li>

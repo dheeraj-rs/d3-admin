@@ -1,5 +1,4 @@
 import { FC, useState } from 'react';
-import styles from './ColorPicker.module.scss';
 
 export interface ColorPickerRGBType {
     r: number;
@@ -35,9 +34,9 @@ const ColorPicker: FC<ColorPickerProps> = ({ value, onChange, defaultColor = '#0
     };
 
     return (
-        <div className={styles.colorPicker} style={style}>
-            <input type="color" value={color} onChange={handleChange} className={styles.picker} />
-            <span className={styles.value}>{color}</span>
+        <div className="colorPicker" style={style}>
+            <input type="color" value={color} onChange={handleChange} className="picker" />
+            <span className="value">{color}</span>
         </div>
     );
 };

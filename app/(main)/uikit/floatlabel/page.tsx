@@ -3,15 +3,15 @@ import type { Demo } from '@/types';
 import { useEffect, useState } from 'react';
 import { CountryService } from '../../../../demo/service/CountryService';
 
+import { AutoComplete, AutoCompleteCompleteEvent } from '@/components/AutoComplete/AutoComplete';
 import { Calendar } from '@/components/Calendar/Calendar';
 import { Chips } from '@/components/Chips/Chips';
 import { Dropdown } from '@/components/Dropdown/Dropdown';
 import { InputMask } from '@/components/InputMask/InputMask';
-import { MultiSelect } from '@/components/MultiSelect/MultiSelect';
 import InputNumber from '@/components/InputNumber/InputNumber';
 import { InputText } from '@/components/InputText/InputText';
 import InputTextarea from '@/components/InputTextarea/InputTextarea';
-import { AutoComplete, AutoCompleteCompleteEvent } from '@/components/AutoComplete/AutoComplete';
+import { MultiSelect } from '@/components/MultiSelect/MultiSelect';
 
 const FloatLabelDemo = () => {
     const [countries, setCountries] = useState<Demo.Country[]>([]);
@@ -34,7 +34,7 @@ const FloatLabelDemo = () => {
         { name: 'Rome', code: 'RM' },
         { name: 'London', code: 'LDN' },
         { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
+        { name: 'Paris', code: 'PRS' },
     ];
 
     useEffect(() => {
@@ -70,7 +70,14 @@ const FloatLabelDemo = () => {
                 </div>
                 <div className="field col-12 md:col-4">
                     <span className="p-float-label">
-                        <AutoComplete id="autocomplete" value={value2} onChange={(e) => setValue2(e.value)} suggestions={filteredCountries} completeMethod={searchCountry} field="name"></AutoComplete>
+                        <AutoComplete
+                            id="autocomplete"
+                            value={value2}
+                            onChange={(e) => setValue2(e.value)}
+                            suggestions={filteredCountries}
+                            completeMethod={searchCountry}
+                            field="name"
+                        ></AutoComplete>
                         <label htmlFor="autocomplete">AutoComplete</label>
                     </span>
                 </div>

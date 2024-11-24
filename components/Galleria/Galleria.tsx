@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import './Galleria.scss';
-
 interface GalleriaProps {
     value: any[];
     numVisible: number;

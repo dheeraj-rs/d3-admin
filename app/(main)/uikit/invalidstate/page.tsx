@@ -1,6 +1,5 @@
 'use client';
 
-import type { Demo } from '@/types';
 import { AutoComplete, AutoCompleteCompleteEvent } from '@/components/AutoComplete/AutoComplete';
 import { Calendar } from '@/components/Calendar/Calendar';
 import { Chips } from '@/components/Chips/Chips';
@@ -11,6 +10,7 @@ import { InputText } from '@/components/InputText/InputText';
 import InputTextarea from '@/components/InputTextarea/InputTextarea';
 import { MultiSelect } from '@/components/MultiSelect/MultiSelect';
 import Password from '@/components/Password/Password';
+import type { Demo } from '@/types';
 import { useEffect, useState } from 'react';
 import { CountryService } from '../../../../demo/service/CountryService';
 
@@ -33,7 +33,7 @@ const InvalidStateDemo = () => {
         { name: 'Rome', code: 'RM' },
         { name: 'London', code: 'LDN' },
         { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
+        { name: 'Paris', code: 'PRS' },
     ];
 
     useEffect(() => {
@@ -71,7 +71,15 @@ const InvalidStateDemo = () => {
                     </div>
                     <div className="field">
                         <label htmlFor="autocomplete">AutoComplete</label>
-                        <AutoComplete id="autocomplete" value={value2} onChange={(e) => setValue2(e.value)} suggestions={filteredCountries} completeMethod={searchCountry} field="name" className="p-invalid" />
+                        <AutoComplete
+                            id="autocomplete"
+                            value={value2}
+                            onChange={(e) => setValue2(e.value)}
+                            suggestions={filteredCountries}
+                            completeMethod={searchCountry}
+                            field="name"
+                            className="p-invalid"
+                        />
                     </div>
                     <div className="field">
                         <label htmlFor="calendar">Calendar</label>
@@ -102,7 +110,14 @@ const InvalidStateDemo = () => {
                     </div>
                     <div className="field">
                         <label htmlFor="multiselect">MultiSelect</label>
-                        <MultiSelect id="multiselect" options={cities} value={value9} onChange={(e) => setValue9(e.value)} optionLabel="name" className="p-invalid" />
+                        <MultiSelect
+                            id="multiselect"
+                            options={cities}
+                            value={value9}
+                            onChange={(e) => setValue9(e.value)}
+                            optionLabel="name"
+                            className="p-invalid"
+                        />
                     </div>
                     <div className="field">
                         <label htmlFor="textarea">Textarea</label>

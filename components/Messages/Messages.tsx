@@ -1,5 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
-import './Messages.scss';
+import { forwardRef, useImperativeHandle, useState } from 'react';
 
 interface MessageItem {
     severity: 'success' | 'info' | 'warn' | 'error';
@@ -23,7 +22,7 @@ export const Messages = forwardRef<MessagesRef, {}>((_, ref) => {
             setTimeout(() => {
                 setMessages((prev) => prev.filter((msg) => msg.id !== newMessage.id));
             }, 3000);
-        }
+        },
     }));
 
     return (

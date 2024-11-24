@@ -1,8 +1,8 @@
 'use client';
-import React, { useRef, useState, Suspense } from 'react';
-import { Toast, ToastRef } from '@/components/Toast/Toast';
 import { Button } from '@/components/Button/Button';
 import { InputText } from '@/components/InputText/InputText';
+import { Toast, ToastRef } from '@/components/Toast/Toast';
+import { Suspense, useRef, useState } from 'react';
 
 import { Message } from '@/components/Message/Message';
 import { Messages, MessagesRef } from '@/components/Messages/Messages';
@@ -38,7 +38,7 @@ const MessagesContent = () => {
             severity: 'success',
             summary: 'Success Message',
             detail: 'Message Detail',
-            life: 3000
+            life: 3000,
         });
     };
 
@@ -47,7 +47,7 @@ const MessagesContent = () => {
             severity: 'info',
             summary: 'Info Message',
             detail: 'Message Detail',
-            life: 3000
+            life: 3000,
         });
     };
 
@@ -56,7 +56,7 @@ const MessagesContent = () => {
             severity: 'warn',
             summary: 'Warn Message',
             detail: 'Message Detail',
-            life: 3000
+            life: 3000,
         });
     };
 
@@ -65,7 +65,7 @@ const MessagesContent = () => {
             severity: 'error',
             summary: 'Error Message',
             detail: 'Message Detail',
-            life: 3000
+            life: 3000,
         });
     };
 

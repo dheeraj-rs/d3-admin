@@ -1,4 +1,3 @@
-import React from 'react';
 import { Suspense } from 'react';
 export default function EmptyPage() {
     return (
@@ -9,9 +8,5 @@ export default function EmptyPage() {
 }
 
 function EmptyPageContent() {
-    return (
-        <div>
-            Empty Page Content
-        </div>
-    );
+    return <div>Empty Page Content</div>;
 }

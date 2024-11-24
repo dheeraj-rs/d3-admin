@@ -1,29 +1,29 @@
-.panel {
-    background: #ffffff;
-    border: 1px solid #dee2e6;
+.fieldset {
+    border: 1px solid var(--surface-border);
     border-radius: 6px;
+    padding: 1rem;
     margin-bottom: 1rem;
 
-    &-header {
-        padding: 1rem;
-        background: #f8f9fa;
-        border-bottom: 1px solid #dee2e6;
-        font-weight: 600;
+    &-legend {
+        padding: 0.5rem 1rem;
+        background: var(--surface-card);
+        border: 1px solid var(--surface-border);
+        border-radius: 4px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        gap: 0.5rem;
 
         &.toggleable {
             cursor: pointer;
 
             &:hover {
-                background: #e9ecef;
+                background: var(--surface-ground);
             }
         }
     }
 
     &-content {
-        padding: 1rem;
+        padding-top: 1rem;
     }
 
     &-toggle-icon {

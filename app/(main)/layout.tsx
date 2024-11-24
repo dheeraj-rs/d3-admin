@@ -1,7 +1,7 @@
+import '@/styles/elements/elements.scss';
 import { Metadata } from 'next';
+import 'nextflex/nextflex.scss';
 import Layout from '../../layout/layout';
-// import '@/styles/globals.css';
-import 'drjflex/primeflex.css';
 
 interface AppLayoutProps {
     children: React.ReactNode;
@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     openGraph: {
         type: 'website',
         title: 'd-admin',
-        url: 'https://sakai.d-admin.org/',
+        url: 'https://www.dheerajrs.com/',
         description: 'The ultimate collection of design-agnostic, flexible and accessible React UI Components.',
-        images: ['https://www.primefaces.org/static/social/sakai-react.png'],
-        ttl: 604800
+        images: ['https://www.dheerajrs.com/'],
+        ttl: 604800,
     },
     icons: {
-        icon: '/favicon.ico'
-    }
+        icon: '/favicon.ico',
+    },
 };
 
 export default function AppLayout({ children }: AppLayoutProps) {

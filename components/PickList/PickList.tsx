@@ -1,6 +1,4 @@
 import React from 'react';
-import './PickList.scss';
-
 interface PickListProps<T> {
     source: T[];
     target: T[];

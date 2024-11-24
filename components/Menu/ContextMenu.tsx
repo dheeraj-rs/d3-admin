@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './ContextMenu.scss';
 
 interface MenuItem {
     label?: string;
@@ -25,7 +24,7 @@ export const ContextMenu = React.forwardRef<ContextMenuRef, ContextMenuProps>(({
     const menuRef = useRef<HTMLDivElement>(null);
 
     React.useImperativeHandle(ref, () => ({
-        setVisible
+        setVisible,
     }));
 
     useEffect(() => {

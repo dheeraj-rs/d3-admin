@@ -1,18 +1,16 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import { Button } from '@/components/Button/Button';
 import { DataView } from '@/components/DataView/DataView';
 import { DataViewLayoutOptions } from '@/components/DataView/DataViewLayoutOptions';
-import type { Demo } from '@/types';
-import { Button } from '@/components/Button/Button';
 import { Dropdown, DropdownChangeEvent } from '@/components/Dropdown/Dropdown';
-import Rating from '@/components/Rating/Rating';
-import { ProductService } from '../../../../demo/service/ProductService';
 import { InputText } from '@/components/InputText/InputText';
-import { PickList } from '@/components/PickList/PickList';
 import { OrderList } from '@/components/OrderList/OrderList';
-import { Suspense } from 'react';
-import { StyleClass } from '@/components/StyleClass/StyleClass';
+import { PickList } from '@/components/PickList/PickList';
+import Rating from '@/components/Rating/Rating';
+import type { Demo } from '@/types';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
+import { ProductService } from '../../../../demo/service/ProductService';
 
 const ListDemo = () => {
     const listValue = [
@@ -22,7 +20,7 @@ const ListDemo = () => {
         { name: 'Istanbul', code: 'IST' },
         { name: 'Berlin', code: 'BRL' },
         { name: 'Barcelona', code: 'BRC' },
-        { name: 'Rome', code: 'RM' }
+        { name: 'Rome', code: 'RM' },
     ];
 
     const [picklistSourceValue, setPicklistSourceValue] = useState<typeof listValue>(listValue);
@@ -39,7 +37,7 @@ const ListDemo = () => {
 
     const sortOptions = [
         { label: 'Price High to Low', value: '!price' },
-        { label: 'Price Low to High', value: 'price' }
+        { label: 'Price Low to High', value: 'price' },
     ];
 
     useEffect(() => {
@@ -109,7 +107,13 @@ const ListDemo = () => {
                     </div>
                     <div className="flex flex-row md:flex-column justify-content-between w-full md:w-auto align-items-center md:align-items-end mt-5 md:mt-0">
                         <span className="text-2xl font-semibold mb-2 align-self-center md:align-self-end">${data.price}</span>
-                        <Button icon="pi pi-shopping-cart" label="Add to Cart" disabled={data.inventoryStatus === 'OUTOFSTOCK'} size="small" className="mb-2"></Button>
+                        <Button
+                            icon="pi pi-shopping-cart"
+                            label="Add to Cart"
+                            disabled={data.inventoryStatus === 'OUTOFSTOCK'}
+                            size="small"
+                            className="mb-2"
+                        ></Button>
                         <span className={`product-badge status-${data.inventoryStatus?.toLowerCase()}`}>{data.inventoryStatus}</span>
                     </div>
                 </div>
@@ -119,7 +123,7 @@ const ListDemo = () => {
 
     const dataviewGridItem = (data: Demo.Product) => {
         return (
-            <div className="col-12 lg:col-4">
+            <div className="col-12 lg:col-12">
                 <div className="card m-3 border-1 surface-border">
                     <div className="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
                         <div className="flex align-items-center">
@@ -161,7 +165,16 @@ const ListDemo = () => {
                 <div className="col-12">
                     <div className="card">
                         <h5>DataView</h5>
-                        <DataView value={filteredValue || dataViewValue} layout={layout} paginator rows={9} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
+                        <DataView
+                            value={filteredValue || dataViewValue}
+                            layout={layout}
+                            paginator
+                            rows={9}
+                            sortOrder={sortOrder}
+                            sortField={sortField}
+                            itemTemplate={itemTemplate}
+                            header={dataViewHeader}
+                        ></DataView>
                     </div>
                 </div>
 
@@ -187,7 +200,14 @@ const ListDemo = () => {
                 <div className="col-12 xl:col-4">
                     <div className="card">
                         <h5>OrderList</h5>
-                        <OrderList value={orderlistValue} listStyle={{ height: '200px' }} className="p-orderlist-responsive" header="Cities" itemTemplate={(item) => <div>{item.name}</div>} onChange={(e) => setOrderlistValue(e.value)}></OrderList>
+                        <OrderList
+                            value={orderlistValue}
+                            listStyle={{ height: '200px' }}
+                            className="p-orderlist-responsive"
+                            header="Cities"
+                            itemTemplate={(item) => <div>{item.name}</div>}
+                            onChange={(e) => setOrderlistValue(e.value)}
+                        ></OrderList>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,6 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
 import { Chart as ChartJS, ChartTypeRegistry } from 'chart.js/auto';
-import './Chart.scss';
-
+import React, { useEffect, useRef } from 'react';
 interface ChartProps {
     type: keyof ChartTypeRegistry;
     data: any;
@@ -28,8 +26,8 @@ const Chart: React.FC<ChartProps> = ({ type, data, options }) => {
             options: {
                 responsive: true,
                 maintainAspectRatio: true,
-                ...options
-            }
+                ...options,
+            },
         });
         return () => {
             if (chartInstance.current) {

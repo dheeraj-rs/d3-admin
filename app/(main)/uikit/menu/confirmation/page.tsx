@@ -1,13 +1,11 @@
 'use client';
 
-import React, { useRef } from 'react';
-import {Menu, MenuRef} from '@/components/Menu/Menu';
+import { Menu, MenuRef } from '@/components/Menu/Menu';
+import { useRef } from 'react';
 
 function ConfirmationDemo() {
     const menu = useRef<MenuRef>(null);
-    const items = [
-        { label: 'Your Menu Item' }
-    ];
+    const items = [{ label: 'Your Menu Item' }];
 
     const template = (
         <div className="flex align-items-center py-5 px-3">
@@ -16,9 +14,7 @@ function ConfirmationDemo() {
         </div>
     );
 
-    return (
-         <Menu ref={menu} model={items} popup />
-    );
+    return <Menu ref={menu} model={items} popup />;
 }
 
 export default ConfirmationDemo;

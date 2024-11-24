@@ -1,6 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './Splitter.scss';
-
+import React, { useEffect, useRef, useState } from 'react';
 interface SplitterProps {
     children: React.ReactNode;
     layout?: 'horizontal' | 'vertical';
@@ -58,7 +56,7 @@ export const Splitter: React.FC<SplitterProps> = ({ children, layout = 'horizont
                     <div
                         className="splitter-panel"
                         style={{
-                            [layout === 'horizontal' ? 'width' : 'height']: `${positions[index]}%`
+                            [layout === 'horizontal' ? 'width' : 'height']: `${positions[index]}%`,
                         }}
                     >
                         {child}

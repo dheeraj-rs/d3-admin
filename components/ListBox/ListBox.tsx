@@ -1,6 +1,4 @@
 import { FC } from 'react';
-import styles from './ListBox.module.scss';
-
 interface ListBoxOption {
     name: string;
     code: string;
@@ -27,9 +25,13 @@ const ListBox: FC<ListBoxProps> = ({ value, options, onChange, multiple = false,
     };
 
     return (
-        <div className={styles.listBox}>
+        <div className="listBox">
             {options.map((option) => (
-                <div key={option.code} className={`${styles.option} ${multiple ? ((value as ListBoxOption[])?.includes(option) ? styles.selected : '') : value === option ? styles.selected : ''}`} onClick={() => handleSelect(option)}>
+                <div
+                    key={option.code}
+                    className={`option ${multiple ? ((value as ListBoxOption[])?.includes(option) ? 'selected' : '') : value === option ? 'selected' : ''}`}
+                    onClick={() => handleSelect(option)}
+                >
                     {option[optionLabel as keyof ListBoxOption]}
                 </div>
             ))}

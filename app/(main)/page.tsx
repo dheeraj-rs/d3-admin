@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/Button/Button';
-import { ProductService } from '../../demo/service/ProductService';
-import { LayoutContext } from '../../layout/context/layoutcontext';
-import Link from 'next/link';
+import Chart from '@/components/Chart/Chart';
+import { Column } from '@/components/DataTable/Column';
+import { DataTable } from '@/components/DataTable/DataTable';
+import { Menu, MenuRef } from '@/components/Menu/Menu';
 import { Demo } from '@/types';
 import { ChartData, ChartOptions } from 'chart.js';
-import Chart from '@/components/Chart/Chart';
-import { DataTable } from '@/components/DataTable/DataTable';
-import { Column } from '@/components/DataTable/Column';
-import { Menu, MenuRef } from '@/components/Menu/Menu';
+import Link from 'next/link';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { ProductService } from '../../demo/service/ProductService';
+import { LayoutContext } from '../../layout/context/layoutcontext';
 
 const lineData: ChartData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -21,7 +21,7 @@ const lineData: ChartData = {
             fill: false,
             backgroundColor: '#2f4860',
             borderColor: '#2f4860',
-            tension: 0.4
+            tension: 0.4,
         },
         {
             label: 'Second Dataset',
@@ -29,9 +29,9 @@ const lineData: ChartData = {
             fill: false,
             backgroundColor: '#00bb7e',
             borderColor: '#00bb7e',
-            tension: 0.4
-        }
-    ]
+            tension: 0.4,
+        },
+    ],
 };
 
 const Dashboard = () => {
@@ -46,28 +46,28 @@ const Dashboard = () => {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#495057'
-                    }
-                }
+                        color: '#495057',
+                    },
+                },
             },
             scales: {
                 x: {
                     ticks: {
-                        color: '#495057'
+                        color: '#495057',
                     },
                     grid: {
-                        color: '#ebedef'
-                    }
+                        color: '#ebedef',
+                    },
                 },
                 y: {
                     ticks: {
-                        color: '#495057'
+                        color: '#495057',
                     },
                     grid: {
-                        color: '#ebedef'
-                    }
-                }
-            }
+                        color: '#ebedef',
+                    },
+                },
+            },
         };
 
         setLineOptions(lineOptions);
@@ -78,28 +78,28 @@ const Dashboard = () => {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#ebedef'
-                    }
-                }
+                        color: '#ebedef',
+                    },
+                },
             },
             scales: {
                 x: {
                     ticks: {
-                        color: '#ebedef'
+                        color: '#ebedef',
                     },
                     grid: {
-                        color: 'rgba(160, 167, 181, .3)'
-                    }
+                        color: 'rgba(160, 167, 181, .3)',
+                    },
                 },
                 y: {
                     ticks: {
-                        color: '#ebedef'
+                        color: '#ebedef',
                     },
                     grid: {
-                        color: 'rgba(160, 167, 181, .3)'
-                    }
-                }
-            }
+                        color: 'rgba(160, 167, 181, .3)',
+                    },
+                },
+            },
         };
 
         setLineOptions(lineOptions);
@@ -120,7 +120,7 @@ const Dashboard = () => {
     const formatCurrency = (value: number) => {
         return value?.toLocaleString('en-US', {
             style: 'currency',
-            currency: 'USD'
+            currency: 'USD',
         });
     };
 
@@ -148,7 +148,10 @@ const Dashboard = () => {
                             <span className="block text-500 font-medium mb-3">Revenue</span>
                             <div className="text-900 font-medium text-xl">$2.100</div>
                         </div>
-                        <div className="flex align-items-center justify-content-center bg-orange-100 border-round" style={{ width: '2.5rem', height: '2.5rem' }}>
+                        <div
+                            className="flex align-items-center justify-content-center bg-orange-100 border-round"
+                            style={{ width: '2.5rem', height: '2.5rem' }}
+                        >
                             <i className="pi pi-map-marker text-orange-500 text-xl" />
                         </div>
                     </div>
@@ -178,7 +181,10 @@ const Dashboard = () => {
                             <span className="block text-500 font-medium mb-3">Comments</span>
                             <div className="text-900 font-medium text-xl">152 Unread</div>
                         </div>
-                        <div className="flex align-items-center justify-content-center bg-purple-100 border-round" style={{ width: '2.5rem', height: '2.5rem' }}>
+                        <div
+                            className="flex align-items-center justify-content-center bg-purple-100 border-round"
+                            style={{ width: '2.5rem', height: '2.5rem' }}
+                        >
                             <i className="pi pi-comment text-purple-500 text-xl" />
                         </div>
                     </div>
@@ -191,7 +197,10 @@ const Dashboard = () => {
                 <div className="card">
                     <h5>Recent Sales</h5>
                     <DataTable value={products} rows={5} paginator responsiveLayout="scroll">
-                        <Column header="Image" body={(data) => <img className="shadow-2" src={`/demo/images/product/${data.image}`} alt={data.image} width="50" />} />
+                        <Column
+                            header="Image"
+                            body={(data) => <img className="shadow-2" src={`/demo/images/product/${data.image}`} alt={data.image} width="50" />}
+                        />
                         <Column field="name" header="Name" sortable style={{ width: '35%' }} />
                         <Column field="price" header="Price" sortable style={{ width: '35%' }} body={(data) => formatCurrency(data.price)} />
                         <Column
@@ -209,13 +218,20 @@ const Dashboard = () => {
                     <div className="flex justify-content-between align-items-center mb-5">
                         <h5>Best Selling Products</h5>
                         <div>
-                            <Button type="button" icon="pi pi-ellipsis-v" rounded text className="p-button-plain" onClick={(event) => menu1.current?.toggle(event)} />
+                            <Button
+                                type="button"
+                                icon="pi pi-ellipsis-v"
+                                rounded
+                                text
+                                className="p-button-plain"
+                                onClick={(event) => menu1.current?.toggle(event)}
+                            />
                             <Menu
                                 ref={menu1}
                                 popup
                                 model={[
                                     { label: 'Add New', icon: 'pi pi-fw pi-plus' },
-                                    { label: 'Remove', icon: 'pi pi-fw pi-minus' }
+                                    { label: 'Remove', icon: 'pi pi-fw pi-minus' },
                                 ]}
                             />
                         </div>
@@ -307,13 +323,20 @@ const Dashboard = () => {
                     <div className="flex align-items-center justify-content-between mb-4">
                         <h5>Notifications</h5>
                         <div>
-                            <Button type="button" icon="pi pi-ellipsis-v" rounded text className="p-button-plain" onClick={(event) => menu2.current?.toggle(event)} />
+                            <Button
+                                type="button"
+                                icon="pi pi-ellipsis-v"
+                                rounded
+                                text
+                                className="p-button-plain"
+                                onClick={(event) => menu2.current?.toggle(event)}
+                            />
                             <Menu
                                 ref={menu2}
                                 popup
                                 model={[
                                     { label: 'Add New', icon: 'pi pi-fw pi-plus' },
-                                    { label: 'Remove', icon: 'pi pi-fw pi-minus' }
+                                    { label: 'Remove', icon: 'pi pi-fw pi-minus' },
                                 ]}
                             />
                         </div>
@@ -372,7 +395,8 @@ const Dashboard = () => {
                     className="px-4 py-5 shadow-2 flex flex-column md:flex-row md:align-items-center justify-content-between mb-3"
                     style={{
                         borderRadius: '1rem',
-                        background: 'linear-gradient(0deg, rgba(0, 123, 255, 0.5), rgba(0, 123, 255, 0.5)), linear-gradient(92.54deg, #1C80CF 47.88%, #FFFFFF 100.01%)'
+                        background:
+                            'linear-gradient(0deg, rgba(0, 123, 255, 0.5), rgba(0, 123, 255, 0.5)), linear-gradient(92.54deg, #1C80CF 47.88%, #FFFFFF 100.01%)',
                     }}
                 >
                     <div>
@@ -380,7 +404,7 @@ const Dashboard = () => {
                         <div className="text-white font-medium text-5xl">Try d-admin</div>
                     </div>
                     <div className="mt-4 mr-auto md:mt-0 md:mr-0">
-                        <Link href="https://blocks.d-admin.org" className="p-button font-bold px-5 py-3 p-button-warning p-button-rounded p-button-raised">
+                        <Link href="https://www.dheerajrs.com/" className="p-button font-bold px-5 py-3 p-button-warning p-button-rounded p-button-raised">
                             Get Started
                         </Link>
                     </div>

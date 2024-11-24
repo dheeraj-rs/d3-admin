@@ -57,8 +57,8 @@
         min-width: 100%;
         padding: 0.5rem 0;
         margin: 0;
-        background: var(--surface-overlay, white);
-        border: 1px solid var(--surface-border, #ddd);
+        background: var(--surface-overlay, var(--surface-card));
+        border: 1px solid var(--surface-border, var(--surface-border));
         border-radius: var(--border-radius, 6px);
         box-shadow: var(--overlay-shadow, 0 2px 4px rgba(0, 0, 0, 0.1));
         z-index: var(--overlay-z-index, 1000);
@@ -73,7 +73,7 @@
             align-items: center;
             gap: 0.5rem;
             transition: all 0.2s ease;
-            color: var(--text-color, #374151);
+            color: var(--text-color, var(--text-color-secondary));
             user-select: none;
 
             &:hover,
@@ -81,14 +81,14 @@
             &:focus-visible {
                 @at-root {
                     .dark-theme & {
-                        background: var(--surface-hover-dark, #374151);
+                        background: var(--surface-hover-dark, var(--surface-card));
                     }
                 }
             }
 
             i {
                 font-size: 1rem;
-                color: var(--text-secondary-color, #6b7280);
+                color: var(--text-secondary-color, var(--text-color-secondary));
                 margin-right: 0.5rem;
             }
 
@@ -128,7 +128,7 @@
             border-color: var(--surface-border-dark, #374151);
 
             li {
-                color: var(--text-color-dark, #e5e7eb);
+                color: var(--text-color-dark, var(--text-color-secondary));
 
                 &:hover {
                     background: var(--surface-hover-dark, #374151);

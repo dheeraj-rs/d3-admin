@@ -1,6 +1,4 @@
 import React from 'react';
-import './Dialog.scss';
-
 interface DialogProps {
     visible: boolean;
     onHide: () => void;

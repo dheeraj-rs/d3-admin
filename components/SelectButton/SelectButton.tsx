@@ -1,6 +1,4 @@
 import { FC } from 'react';
-import styles from './SelectButton.module.scss';
-
 interface SelectButtonOption {
     name: string;
     code: string;
@@ -26,9 +24,15 @@ const SelectButton: FC<SelectButtonProps> = ({ value, onChange, options, optionL
     };
 
     return (
-        <div className={styles.selectButton}>
+        <div className="selectButton">
             {options.map((option) => (
-                <button key={option.code} className={`${styles.option} ${multiple ? ((value as SelectButtonOption[])?.includes(option) ? styles.selected : '') : value === option ? styles.selected : ''}`} onClick={() => handleClick(option)}>
+                <button
+                    key={option.code}
+                    className={`option ${
+                        multiple ? ((value as SelectButtonOption[])?.includes(option) ? 'selected' : '') : value === option ? 'selected' : ''
+                    }`}
+                    onClick={() => handleClick(option)}
+                >
                     {option[optionLabel as keyof SelectButtonOption]}
                 </button>
             ))}

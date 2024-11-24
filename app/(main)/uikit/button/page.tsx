@@ -1,10 +1,8 @@
 'use client';
-import React, { useState } from 'react';
-import { SplitButton } from '@/components/SplitButton/SplitButton';
 import { Button } from '@/components/Button/Button';
-import styles from './index.module.scss';
+import { SplitButton } from '@/components/SplitButton/SplitButton';
 import { classNames } from '@/lib/utils';
-
+import { useState } from 'react';
 const ButtonDemo = () => {
     const [loading1, setLoading1] = useState(false);
     const [loading2, setLoading2] = useState(false);
@@ -46,16 +44,16 @@ const ButtonDemo = () => {
     const items = [
         {
             label: 'Update',
-            icon: 'pi pi-refresh'
+            icon: 'pi pi-refresh',
         },
         {
             label: 'Delete',
-            icon: 'pi pi-times'
+            icon: 'pi pi-times',
         },
         {
             label: 'Home',
-            icon: 'pi pi-home'
-        }
+            icon: 'pi pi-home',
+        },
     ];
 
     return (
@@ -133,19 +131,19 @@ const ButtonDemo = () => {
                 <div className="card">
                     <h5>Template</h5>
                     <div className="flex flex-wrap gap-2">
-                        <Button className={classNames(styles['p-button'], styles['google'])} aria-label="Google">
+                        <Button className={classNames('p-button', 'google')} aria-label="Google">
                             <span className="flex align-items-center px-2 bg-purple-700 text-white">
                                 <i className="pi pi-google"></i>
                             </span>
                             <span className="px-3 py-2 flex align-items-center text-white">Google</span>
                         </Button>
-                        <Button className={classNames(styles['p-button'], styles['twitter'])} aria-label="Twitter">
+                        <Button className={classNames('p-button', 'twitter')} aria-label="Twitter">
                             <span className="flex align-items-center px-2 bg-blue-500 text-white">
                                 <i className="pi pi-twitter"></i>
                             </span>
                             <span className="px-3 py-2 flex align-items-center text-white">Twitter</span>
                         </Button>
-                        <Button className={classNames(styles['p-button'], styles['discord'])} aria-label="Discord">
+                        <Button className={classNames('p-button', 'discord')} aria-label="Discord">
                             <span className="flex align-items-center px-2 bg-bluegray-800 text-white">
                                 <i className="pi pi-discord"></i>
                             </span>

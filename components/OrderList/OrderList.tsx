@@ -1,5 +1,4 @@
 import React from 'react';
-import './OrderList.scss';
 
 interface OrderListProps {
     value: any[];
@@ -29,7 +28,11 @@ export const OrderList: React.FC<OrderListProps> = ({ value, listStyle, classNam
                             <button className="orderlist-button" onClick={() => index > 0 && moveItem(index, index - 1)} disabled={index === 0}>
                                 ↑
                             </button>
-                            <button className="orderlist-button" onClick={() => index < value.length - 1 && moveItem(index, index + 1)} disabled={index === value.length - 1}>
+                            <button
+                                className="orderlist-button"
+                                onClick={() => index < value.length - 1 && moveItem(index, index + 1)}
+                                disabled={index === value.length - 1}
+                            >
                                 ↓
                             </button>
                         </div>

@@ -1,6 +1,4 @@
 import { FC } from 'react';
-import './Chips.scss';
-
 interface ChipsProps {
     inputId?: string;
     value: string[];

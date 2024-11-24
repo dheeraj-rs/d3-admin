@@ -31,7 +31,7 @@
             "status": "away",
             "messages": [
                 {
-                    "text":  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+                    "text": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
                     "ownerId": 1,
                     "createdAt": 1652646338240
                 },
@@ -55,7 +55,7 @@
             "status": "busy",
             "messages": [
                 {
-                    "text":  "Duis aute irure dolor in reprehenderit",
+                    "text": "Duis aute irure dolor in reprehenderit",
                     "ownerId": 1,
                     "createdAt": 1652646338240
                 },
@@ -79,7 +79,7 @@
             "status": "active",
             "messages": [
                 {
-                    "text":  "Ut enim ad minim veniam",
+                    "text": "Ut enim ad minim veniam",
                     "ownerId": 1,
                     "createdAt": 1652646338240
                 },
@@ -103,7 +103,7 @@
             "status": "busy",
             "messages": [
                 {
-                    "text":  "Culpa qui officia deserunt mollit anim id est laborum",
+                    "text": "Culpa qui officia deserunt mollit anim id est laborum",
                     "ownerId": 1,
                     "createdAt": 1652646338240
                 },

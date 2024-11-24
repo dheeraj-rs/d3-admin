@@ -1,6 +1,4 @@
 import React from 'react';
-import './MegaMenu.scss';
-
 // Export the interface
 export interface MegaMenuItem {
     label: string;

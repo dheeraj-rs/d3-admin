@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import './TieredMenu.scss';
-
+import React from 'react';
 interface MenuItem {
     label?: string;
     icon?: string;
@@ -23,9 +21,7 @@ export const TieredMenu: React.FC<TieredMenuProps> = ({ model, popup }) => {
                     <span className="tieredmenu__label">{item.label}</span>
                     {item.items && <i className="tieredmenu__submenu-icon pi pi-angle-right" />}
                 </div>
-                {item.items && <ul className="tieredmenu__submenu">
-                    {item.items.map(subItem => renderMenuItem(subItem, level + 1))}
-                </ul>}
+                {item.items && <ul className="tieredmenu__submenu">{item.items.map((subItem) => renderMenuItem(subItem, level + 1))}</ul>}
             </li>
         );
     };

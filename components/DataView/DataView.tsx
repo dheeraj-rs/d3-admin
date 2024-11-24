@@ -1,6 +1,4 @@
 import React from 'react';
-import './DataView.scss';
-
 interface DataViewProps<T> {
     value: T[];
     layout: 'grid' | 'list';

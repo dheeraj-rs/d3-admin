@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import './Tree.scss';
 import { TreeNode, TreeSelectionKeysType } from '@/app/(main)/uikit/tree/types';
+import React, { useState } from 'react';
 interface TreeProps {
     value: TreeNode[];
     selectionMode?: 'checkbox' | 'single' | 'multiple';
@@ -8,7 +7,19 @@ interface TreeProps {
     onSelectionChange?: (e: { value: TreeSelectionKeysType }) => void;
 }
 
-const TreeNodeComponent = ({ node, level = 0, selectionMode, selected, onSelect }: { node: TreeNode; level?: number; selectionMode?: string; selected?: boolean; onSelect?: (key: string) => void }) => {
+const TreeNodeComponent = ({
+    node,
+    level = 0,
+    selectionMode,
+    selected,
+    onSelect,
+}: {
+    node: TreeNode;
+    level?: number;
+    selectionMode?: string;
+    selected?: boolean;
+    onSelect?: (key: string) => void;
+}) => {
     const [expanded, setExpanded] = useState(node.expanded || false);
 
     return (
@@ -25,7 +36,14 @@ const TreeNodeComponent = ({ node, level = 0, selectionMode, selected, onSelect 
             {expanded && node.children && (
                 <div className="tree-children">
                     {node.children.map((child) => (
-                        <TreeNodeComponent key={child.key} node={child} level={level + 1} selectionMode={selectionMode} selected={selected} onSelect={onSelect} />
+                        <TreeNodeComponent
+                            key={child.key}
+                            node={child}
+                            level={level + 1}
+                            selectionMode={selectionMode}
+                            selected={selected}
+                            onSelect={onSelect}
+                        />
                     ))}
                 </div>
             )}

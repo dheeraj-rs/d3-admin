@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { TreeNode, TreeTableSelectionKeysType } from '../../app/(main)/uikit/tree/types';
-import './TreeTable.scss';
-
 interface TreeTableProps {
     value: TreeNode[];
     selectionMode?: 'checkbox' | 'single' | 'multiple';
@@ -16,7 +14,7 @@ export const TreeTable: React.FC<TreeTableProps> = ({ value, selectionMode, sele
     const toggleNode = (key: string) => {
         setExpandedKeys((prev) => ({
             ...prev,
-            [key]: !prev[key]
+            [key]: !prev[key],
         }));
     };
 
@@ -36,7 +34,9 @@ export const TreeTable: React.FC<TreeTableProps> = ({ value, selectionMode, sele
                                 ▶
                             </span>
                         )}
-                        {selectionMode === 'checkbox' && <input type="checkbox" checked={selectionKeys?.[node.key]} onChange={() => handleSelect(node.key)} className="tree-checkbox" />}
+                        {selectionMode === 'checkbox' && (
+                            <input type="checkbox" checked={selectionKeys?.[node.key]} onChange={() => handleSelect(node.key)} className="tree-checkbox" />
+                        )}
                         {node.name}
                     </td>
                     <td>{node.size}</td>

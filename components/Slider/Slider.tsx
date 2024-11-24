@@ -1,6 +1,4 @@
 import { FC, useState } from 'react';
-import styles from './Slider.module.scss';
-
 interface SliderProps {
     value?: number;
     onChange?: (e: { value: number }) => void;
@@ -25,7 +23,7 @@ const Slider: FC<SliderProps> = ({ value = 0, onChange, min = 0, max = 100, step
     };
 
     return (
-        <div className={`${styles.slider} ${disabled ? styles.disabled : ''} ${className}`}>
+        <div className={`slider ${disabled ? 'disabled' : ''} ${className}`}>
             <input
                 type="range"
                 min={min}
@@ -36,9 +34,9 @@ const Slider: FC<SliderProps> = ({ value = 0, onChange, min = 0, max = 100, step
                 disabled={disabled}
                 onMouseDown={() => setIsDragging(true)}
                 onMouseUp={() => setIsDragging(false)}
-                className={`${styles.range} ${isDragging ? styles.dragging : ''}`}
+                className={`range ${isDragging ? 'dragging' : ''}`}
                 style={{
-                    background: `linear-gradient(to right, #3b82f6 ${calculatePercentage(value)}%, #e9ecef ${calculatePercentage(value)}%)`
+                    background: `linear-gradient(to right, #3b82f6 ${calculatePercentage(value)}%, #e9ecef ${calculatePercentage(value)}%)`,
                 }}
             />
         </div>

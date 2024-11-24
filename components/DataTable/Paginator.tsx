@@ -1,6 +1,4 @@
 import React from 'react';
-import './Paginator.scss';
-
 interface PaginatorProps {
     first: number;
     rows: number;

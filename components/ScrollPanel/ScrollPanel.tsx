@@ -1,5 +1,4 @@
 import { ReactNode, useRef } from 'react';
-
 interface ScrollPanelProps {
     children: ReactNode;
     style?: React.CSSProperties;

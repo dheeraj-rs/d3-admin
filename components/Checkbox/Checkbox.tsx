@@ -1,6 +1,4 @@
-import React, { ChangeEvent, FC } from 'react';
-import './Checkbox.scss';
-
+import { ChangeEvent, FC } from 'react';
 // Update the type to use the imported ChangeEvent
 export type CheckboxChangeEvent = ChangeEvent<HTMLInputElement>;
 

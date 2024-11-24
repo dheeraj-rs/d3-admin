@@ -1,6 +1,4 @@
 import { FC, useState } from 'react';
-import './Calendar.scss';
-
 interface CalendarProps {
     inputId?: string;
     value: Date | null;

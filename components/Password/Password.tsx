@@ -1,5 +1,4 @@
-import { FC, useState, ChangeEvent } from 'react';
-import './Password.scss';
+import { ChangeEvent, FC, useState } from 'react';
 
 interface PasswordProps {
     value: string;
@@ -14,7 +13,14 @@ const Password: FC<PasswordProps> = ({ value, onChange, className = '', inputId,
 
     return (
         <div className={`password-wrapper ${className}`}>
-            <input id={inputId} type={showPassword ? 'text' : 'password'} value={value} onChange={onChange} className="password-input" placeholder={placeholder} />
+            <input
+                id={inputId}
+                type={showPassword ? 'text' : 'password'}
+                value={value}
+                onChange={onChange}
+                className="password-input"
+                placeholder={placeholder}
+            />
             <button type="button" className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
                 {showPassword ? '👁️' : '👁️‍🗨️'}
             </button>

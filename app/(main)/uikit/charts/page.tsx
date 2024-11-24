@@ -1,9 +1,9 @@
 'use client';
-import { ChartData, ChartOptions } from 'chart.js';
 import Chart from '@/components/Chart/Chart';
-import React, { useContext, useEffect, useState, Suspense } from 'react';
-import { LayoutContext } from '../../../../layout/context/layoutcontext';
 import type { ChartDataState, ChartOptionsState } from '@/types';
+import { ChartData, ChartOptions } from 'chart.js';
+import { Suspense, useContext, useEffect, useState } from 'react';
+import { LayoutContext } from '../../../../layout/context/layoutcontext';
 
 // Wrap the main component content in Suspense
 const ChartDemo = () => {
@@ -32,52 +32,52 @@ const ChartContent = () => {
                     label: 'My First dataset',
                     backgroundColor: documentStyle.getPropertyValue('--primary-500') || '#6366f1',
                     borderColor: documentStyle.getPropertyValue('--primary-500') || '#6366f1',
-                    data: [65, 59, 80, 81, 56, 55, 40]
+                    data: [65, 59, 80, 81, 56, 55, 40],
                 },
                 {
                     label: 'My Second dataset',
                     backgroundColor: documentStyle.getPropertyValue('--primary-200') || '#bcbdf9',
                     borderColor: documentStyle.getPropertyValue('--primary-200') || '#bcbdf9',
-                    data: [28, 48, 40, 19, 86, 27, 90]
-                }
-            ]
+                    data: [28, 48, 40, 19, 86, 27, 90],
+                },
+            ],
         };
 
         const barOptions: ChartOptions = {
             plugins: {
                 legend: {
                     labels: {
-                        color: textColor
-                    }
-                }
+                        color: textColor,
+                    },
+                },
             },
             scales: {
                 x: {
                     ticks: {
                         color: textColorSecondary,
                         font: {
-                            weight: '500'
-                        }
+                            weight: '500',
+                        },
                     },
                     grid: {
-                        display: false
+                        display: false,
                     },
                     border: {
-                        display: false
-                    }
+                        display: false,
+                    },
                 },
                 y: {
                     ticks: {
-                        color: textColorSecondary
+                        color: textColorSecondary,
                     },
                     grid: {
-                        color: surfaceBorder
+                        color: surfaceBorder,
                     },
                     border: {
-                        display: false
-                    }
-                }
-            }
+                        display: false,
+                    },
+                },
+            },
         };
 
         const pieData: ChartData = {
@@ -85,10 +85,18 @@ const ChartContent = () => {
             datasets: [
                 {
                     data: [540, 325, 702],
-                    backgroundColor: [documentStyle.getPropertyValue('--indigo-500') || '#6366f1', documentStyle.getPropertyValue('--purple-500') || '#a855f7', documentStyle.getPropertyValue('--teal-500') || '#14b8a6'],
-                    hoverBackgroundColor: [documentStyle.getPropertyValue('--indigo-400') || '#8183f4', documentStyle.getPropertyValue('--purple-400') || '#b975f9', documentStyle.getPropertyValue('--teal-400') || '#41c5b7']
-                }
-            ]
+                    backgroundColor: [
+                        documentStyle.getPropertyValue('--indigo-500') || '#6366f1',
+                        documentStyle.getPropertyValue('--purple-500') || '#a855f7',
+                        documentStyle.getPropertyValue('--teal-500') || '#14b8a6',
+                    ],
+                    hoverBackgroundColor: [
+                        documentStyle.getPropertyValue('--indigo-400') || '#8183f4',
+                        documentStyle.getPropertyValue('--purple-400') || '#b975f9',
+                        documentStyle.getPropertyValue('--teal-400') || '#41c5b7',
+                    ],
+                },
+            ],
         };
 
         const pieOptions: ChartOptions = {
@@ -96,10 +104,10 @@ const ChartContent = () => {
                 legend: {
                     labels: {
                         usePointStyle: true,
-                        color: textColor
-                    }
-                }
-            }
+                        color: textColor,
+                    },
+                },
+            },
         };
 
         const lineData: ChartData = {
@@ -111,7 +119,7 @@ const ChartContent = () => {
                     fill: false,
                     backgroundColor: documentStyle.getPropertyValue('--primary-500') || '#6366f1',
                     borderColor: documentStyle.getPropertyValue('--primary-500') || '#6366f1',
-                    tension: 0.4
+                    tension: 0.4,
                 },
                 {
                     label: 'Second Dataset',
@@ -119,43 +127,43 @@ const ChartContent = () => {
                     fill: false,
                     backgroundColor: documentStyle.getPropertyValue('--primary-200') || '#bcbdf9',
                     borderColor: documentStyle.getPropertyValue('--primary-200') || '#bcbdf9',
-                    tension: 0.4
-                }
-            ]
+                    tension: 0.4,
+                },
+            ],
         };
 
         const lineOptions: ChartOptions = {
             plugins: {
                 legend: {
                     labels: {
-                        color: textColor
-                    }
-                }
+                        color: textColor,
+                    },
+                },
             },
             scales: {
                 x: {
                     ticks: {
-                        color: textColorSecondary
+                        color: textColorSecondary,
                     },
                     grid: {
-                        color: surfaceBorder
+                        color: surfaceBorder,
                     },
                     border: {
-                        display: false
-                    }
+                        display: false,
+                    },
                 },
                 y: {
                     ticks: {
-                        color: textColorSecondary
+                        color: textColorSecondary,
                     },
                     grid: {
-                        color: surfaceBorder
+                        color: surfaceBorder,
                     },
                     border: {
-                        display: false
-                    }
-                }
-            }
+                        display: false,
+                    },
+                },
+            },
         };
 
         const polarData: ChartData = {
@@ -166,29 +174,29 @@ const ChartContent = () => {
                         documentStyle.getPropertyValue('--indigo-500') || '#6366f1',
                         documentStyle.getPropertyValue('--purple-500') || '#a855f7',
                         documentStyle.getPropertyValue('--teal-500') || '#14b8a6',
-                        documentStyle.getPropertyValue('--orange-500') || '#f97316'
+                        documentStyle.getPropertyValue('--orange-500') || '#f97316',
                     ],
-                    label: 'My dataset'
-                }
+                    label: 'My dataset',
+                },
             ],
-            labels: ['Indigo', 'Purple', 'Teal', 'Orange']
+            labels: ['Indigo', 'Purple', 'Teal', 'Orange'],
         };
 
         const polarOptions: ChartOptions = {
             plugins: {
                 legend: {
                     labels: {
-                        color: textColor
-                    }
-                }
+                        color: textColor,
+                    },
+                },
             },
             scales: {
                 r: {
                     grid: {
-                        color: surfaceBorder
-                    }
-                }
-            }
+                        color: surfaceBorder,
+                    },
+                },
+            },
         };
 
         const radarData: ChartData = {
@@ -201,7 +209,7 @@ const ChartContent = () => {
                     pointBorderColor: documentStyle.getPropertyValue('--indigo-400') || '#8183f4',
                     pointHoverBackgroundColor: textColor,
                     pointHoverBorderColor: documentStyle.getPropertyValue('--indigo-400') || '#8183f4',
-                    data: [65, 59, 90, 81, 56, 55, 40]
+                    data: [65, 59, 90, 81, 56, 55, 40],
                 },
                 {
                     label: 'My Second dataset',
@@ -210,26 +218,26 @@ const ChartContent = () => {
                     pointBorderColor: documentStyle.getPropertyValue('--purple-400') || '#b975f9',
                     pointHoverBackgroundColor: textColor,
                     pointHoverBorderColor: documentStyle.getPropertyValue('--purple-400') || '#b975f9',
-                    data: [28, 48, 40, 19, 96, 27, 100]
-                }
-            ]
+                    data: [28, 48, 40, 19, 96, 27, 100],
+                },
+            ],
         };
 
         const radarOptions: ChartOptions = {
             plugins: {
                 legend: {
                     labels: {
-                        color: textColor
-                    }
-                }
+                        color: textColor,
+                    },
+                },
             },
             scales: {
                 r: {
                     grid: {
-                        color: textColorSecondary
-                    }
-                }
-            }
+                        color: textColorSecondary,
+                    },
+                },
+            },
         };
 
         setOptions({
@@ -237,14 +245,14 @@ const ChartContent = () => {
             pieOptions,
             lineOptions,
             polarOptions,
-            radarOptions
+            radarOptions,
         });
         setChartData({
             barData,
             pieData,
             lineData,
             polarData,
-            radarData
+            radarData,
         });
     }, [layoutConfig]);
 

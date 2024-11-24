@@ -1,6 +1,4 @@
 import React from 'react';
-import './InputText.scss';
-
 interface InputTextProps extends React.InputHTMLAttributes<HTMLInputElement> {
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;

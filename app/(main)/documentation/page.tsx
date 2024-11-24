@@ -11,7 +11,7 @@ const Documentation = () => {
 
                         <h5>Getting Started</h5>
                         <p>
-                            Sakai is an application template for React based on the popular{' '}
+                            D-Admin is an application template for React based on the popular{' '}
                             <a href="https://nextjs.org/" className="font-medium hover:underline text-primary">
                                 Next.js
                             </a>{' '}
@@ -20,7 +20,7 @@ const Documentation = () => {
                                 App Router
                             </a>
                             . To get started, clone the{' '}
-                            <a href="https://github.com/primefaces/sakai-react" className="font-medium hover:underline text-primary">
+                            <a href="https://github.com/dheeraj-rs" className="font-medium hover:underline text-primary">
                                 repository
                             </a>{' '}
                             from GitHub and install the dependencies with npm or yarn.
@@ -31,7 +31,7 @@ const Documentation = () => {
 
                         <p>
                             Next step is running the application using the start script and navigate to <b>http://localhost:3000/</b> to view the application.
-                            That is it, you may now start with the development of your application using the Sakai template.
+                            That is it, you may now start with the development of your application using the D-Admin template.
                         </p>
 
                         <pre className="app-code">
@@ -39,7 +39,7 @@ const Documentation = () => {
                         </pre>
 
                         <h5>Dependencies</h5>
-                        <p>Dependencies of Sakai are listed below and needs to be defined at package.json.</p>
+                        <p>Dependencies of D-Admin are listed below and needs to be defined at package.json.</p>
 
                         <pre className="app-code">
                             <code>{`"d-admin": "^9.6.2",                    //required: d-admin components
@@ -49,7 +49,7 @@ const Documentation = () => {
                         </pre>
 
                         <h5>Structure</h5>
-                        <p>Sakai consist of a couple of folders where demos and core layout have been separated.</p>
+                        <p>D-Admin consist of a couple of folders where demos and core layout have been separated.</p>
                         <p>
                             There are two{' '}
                             <a
@@ -141,7 +141,7 @@ interface MainLayoutProps {
 }
 
 export const metadata: Metadata = {
-    title: "Sakai by d-admin | Free Admin Template for Next.js",
+    title: "D-Admin by dheeraj-rs | Free Admin Template for Next.js",
     ...
   };
 
@@ -167,7 +167,7 @@ interface FullPageLayoutProps {
 }
 
 export const metadata: Metadata = {
-    title: "Sakai by d-admin | Free Admin Template for Next.js",
+    title: "D-Admin by dheeraj-rs | Free Admin Template for Next.js",
     ...
   };
 
@@ -211,14 +211,14 @@ export const LayoutProvider = (props) => {
                         <h5>Menu</h5>
                         <p>
                             Main menu is defined at <span className="text-primary font-medium">AppMenu.js</span> file based on{' '}
-                            <a href="https://www.primefaces.org/d-admin/menumodel/" className="font-medium hover:underline text-primary">
+                            <a href="https://www.dheerajrs.com/" className="font-medium hover:underline text-primary">
                                 MenuModel API
                             </a>
                             .
                         </p>
 
                         <h5>d-admin Theme</h5>
-                        <p>Sakai theming is based on the d-admin theme being used.</p>
+                        <p>D-Admin theming is based on the d-admin theme being used.</p>
 
                         <h5>SASS Variables</h5>
                         <p>

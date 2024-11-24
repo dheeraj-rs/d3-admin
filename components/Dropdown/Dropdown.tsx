@@ -1,6 +1,4 @@
 import { FC, useState } from 'react';
-import './Dropdown.scss';
-
 export interface DropdownChangeEvent {
     originalEvent: React.SyntheticEvent;
     value: any;
@@ -18,7 +16,17 @@ interface DropdownProps {
     showClear?: boolean;
 }
 
-export const Dropdown: FC<DropdownProps> = ({ id, value, options, onChange, optionLabel = 'label', placeholder, className, itemTemplate, showClear = false }) => {
+export const Dropdown: FC<DropdownProps> = ({
+    id,
+    value,
+    options,
+    onChange,
+    optionLabel = 'label',
+    placeholder,
+    className,
+    itemTemplate,
+    showClear = false,
+}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -46,7 +54,7 @@ export const Dropdown: FC<DropdownProps> = ({ id, value, options, onChange, opti
                             onClick={(event) => {
                                 onChange({
                                     originalEvent: event,
-                                    value: option
+                                    value: option,
                                 });
                                 setIsOpen(false);
                             }}

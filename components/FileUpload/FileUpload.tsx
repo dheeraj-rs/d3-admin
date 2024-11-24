@@ -1,9 +1,7 @@
 // FileUpload.tsx
 import React, { ChangeEvent, useRef, useState } from 'react';
-import { Toast, ToastRef } from '../Toast/Toast';
 import { Button } from '../Button/Button';
-import './FileUpload.scss';
-
+import { Toast, ToastRef } from '../Toast/Toast';
 interface FileUploadProps {
     mode?: 'basic' | 'advanced';
     name?: string;
@@ -18,7 +16,17 @@ interface FileUploadProps {
 
 // Icon Components
 const PlusIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
         <path d="M12 5v14m-7-7h14" />
     </svg>
 );
@@ -28,13 +36,35 @@ interface IconProps {
 }
 
 const UploadIcon = ({ className }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+    >
         <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
     </svg>
 );
 
 const XIcon = ({ className }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+    >
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
     </svg>
@@ -56,7 +86,17 @@ const isImageFile = (file: File) => {
     return file.type.startsWith('image/');
 };
 
-const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, accept, maxFileSize, chooseLabel = 'Choose File', className = '' }: FileUploadProps) => {
+const FileUpload = ({
+    mode = 'advanced',
+    name,
+    url,
+    onUpload,
+    multiple = false,
+    accept,
+    maxFileSize,
+    chooseLabel = 'Choose File',
+    className = '',
+}: FileUploadProps) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const toastRef = useRef<ToastRef>(null);
     const [dragActive, setDragActive] = useState(false);
@@ -99,7 +139,7 @@ const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, 
                         severity: 'error',
                         summary: 'Error',
                         detail: 'File size exceeds maximum limit',
-                        life: 3000
+                        life: 3000,
                     });
                     return;
                 }
@@ -112,7 +152,7 @@ const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, 
                 severity: 'error',
                 summary: 'Error',
                 detail: 'Failed to process files',
-                life: 3000
+                life: 3000,
             });
         }
     };
@@ -133,7 +173,7 @@ const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, 
 
             const response = await fetch(url, {
                 method: 'POST',
-                body: formData
+                body: formData,
             });
 
             if (response.ok) {
@@ -141,7 +181,7 @@ const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, 
                     severity: 'success',
                     summary: 'Success',
                     detail: 'Files uploaded successfully',
-                    life: 3000
+                    life: 3000,
                 });
                 onUpload?.({ files: selectedFiles });
                 setSelectedFiles([]);
@@ -154,7 +194,7 @@ const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, 
                 severity: 'error',
                 summary: 'Error',
                 detail: 'File upload failed',
-                life: 3000
+                life: 3000,
             });
         } finally {
             setUploading(false);
@@ -223,7 +263,7 @@ const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, 
 
             const response = await fetch(url, {
                 method: 'POST',
-                body: formData
+                body: formData,
             });
 
             if (response.ok) {
@@ -232,7 +272,7 @@ const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, 
                     severity: 'success',
                     summary: 'Success',
                     detail: 'File uploaded successfully',
-                    life: 3000
+                    life: 3000,
                 });
                 onUpload?.({ files: selectedFiles });
 
@@ -252,7 +292,7 @@ const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, 
                 severity: 'error',
                 summary: 'Error',
                 detail: 'File upload failed',
-                life: 3000
+                life: 3000,
             });
         } finally {
             setUploading(false);
@@ -270,7 +310,12 @@ const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, 
                 <div className="file-upload__file-info">
                     {isImageFile(file) ? (
                         <div className="file-upload__file-preview">
-                            <img src={URL.createObjectURL(file)} alt={file.name} className="file-upload__file-image" onLoad={(e) => URL.revokeObjectURL((e.target as HTMLImageElement).src)} />
+                            <img
+                                src={URL.createObjectURL(file)}
+                                alt={file.name}
+                                className="file-upload__file-image"
+                                onLoad={(e) => URL.revokeObjectURL((e.target as HTMLImageElement).src)}
+                            />
                         </div>
                     ) : (
                         <div className="file-upload__file-info-icon">
@@ -315,7 +360,9 @@ const FileUpload = ({ mode = 'advanced', name, url, onUpload, multiple = false, 
             )}
 
             <div
-                className={`file-upload__dropzone ${dragActive ? 'file-upload__dropzone--active' : ''} ${mode === 'basic' ? 'file-upload__dropzone--basic' : ''}`}
+                className={`file-upload__dropzone ${dragActive ? 'file-upload__dropzone--active' : ''} ${
+                    mode === 'basic' ? 'file-upload__dropzone--basic' : ''
+                }`}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
                 onDragOver={handleDrag}

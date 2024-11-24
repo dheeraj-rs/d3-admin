@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef, useImperativeHandle } from 'react';
+import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { FilterMatchModeType, FilterOperatorType } from '../api/FilterTypes';
-import './DataTable.scss';
-
 export interface DataTableRef {
     // Add any methods/properties you want to expose via the ref
     getElement: () => HTMLDivElement | null;
@@ -77,33 +75,34 @@ const generateCSVContent = (data: any[]): string => {
 };
 
 export const DataTable = React.forwardRef<DataTableRef, DataTableProps>(
-    ({
-        value = [],
-        dataKey = 'id',
-        rows = 10,
-        first = 0,
-        filters,
-        loading = false,
-        header,
-        footer,
-        children,
-        className = '',
-        onSort,
-        onFilter,
-        onPage,
-        selection,
-        selectionMode,
-        onSelectionChange,
-        onRowSelect,
-        responsiveLayout,
-        expandedRows = {} as DataTableExpandedRows,
-        onRowToggle,
-        showGridlines = false,
-        emptyMessage = 'No records found',
-        rowsPerPageOptions = [10, 25, 50]
-    },
-    ref
-) => {
+    (
+        {
+            value = [],
+            dataKey = 'id',
+            rows = 10,
+            first = 0,
+            filters,
+            loading = false,
+            header,
+            footer,
+            children,
+            className = '',
+            onSort,
+            onFilter,
+            onPage,
+            selection,
+            selectionMode,
+            onSelectionChange,
+            onRowSelect,
+            responsiveLayout,
+            expandedRows = {} as DataTableExpandedRows,
+            onRowToggle,
+            showGridlines = false,
+            emptyMessage = 'No records found',
+            rowsPerPageOptions = [10, 25, 50],
+        },
+        ref
+    ) => {
         const [sortField, setSortField] = useState<string | null>(null);
         const [sortOrder, setSortOrder] = useState<1 | -1>(1);
         const [currentFilters, setCurrentFilters] = useState<{ [key: string]: DataTableFilterMeta }>(filters || {});
@@ -128,7 +127,7 @@ export const DataTable = React.forwardRef<DataTableRef, DataTableProps>(
 
         useImperativeHandle(ref, () => ({
             getElement: () => tableRef.current,
-            exportCSV
+            exportCSV,
         }));
 
         useEffect(() => {
@@ -145,7 +144,7 @@ export const DataTable = React.forwardRef<DataTableRef, DataTableProps>(
         const handleFilter = (field: string, value: any, matchMode: FilterMatchModeType) => {
             const newFilters = {
                 ...currentFilters,
-                [field]: { value, matchMode }
+                [field]: { value, matchMode },
             };
             setCurrentFilters(newFilters);
             onFilter?.(newFilters);
@@ -158,7 +157,7 @@ export const DataTable = React.forwardRef<DataTableRef, DataTableProps>(
                 onSelectionChange?.(rowData);
                 onRowSelect?.({
                     originalEvent: event.nativeEvent,
-                    data: rowData
+                    data: rowData,
                 });
             }
             // Add multiple selection logic here if needed
@@ -169,7 +168,10 @@ export const DataTable = React.forwardRef<DataTableRef, DataTableProps>(
                 if (!column) return null;
 
                 return (
-                    <th className={`datatable-column-header ${column.props.sortable ? 'sortable' : ''}`} onClick={() => column.props.sortable && handleSort(column.props.field)}>
+                    <th
+                        className={`datatable-column-header ${column.props.sortable ? 'sortable' : ''}`}
+                        onClick={() => column.props.sortable && handleSort(column.props.field)}
+                    >
                         {column.props.header}
                         {sortField === column.props.field && <span className={`sort-icon ${sortOrder === 1 ? 'asc' : 'desc'}`} />}
                     </th>

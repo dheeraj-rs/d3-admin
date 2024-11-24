@@ -1,6 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import './StyleClass.scss';
-
 interface StyleClassProps {
     nodeRef: React.RefObject<HTMLElement>;
     selector?: string;
@@ -21,7 +19,6 @@ export const StyleClass: React.FC<StyleClassProps> = ({ nodeRef, selector, enter
             }
         }
     }, [selector]);
-    
 
     useEffect(() => {
         if (hideOnOutsideClick) {

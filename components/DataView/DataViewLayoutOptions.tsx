@@ -1,6 +1,4 @@
 import React from 'react';
-import './DataViewLayoutOptions.scss';
-
 interface DataViewLayoutOptionsProps {
     layout: string | 'grid' | 'list';
     onChange: (e: { value: 'grid' | 'list' }) => void;

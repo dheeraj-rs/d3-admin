@@ -1,6 +1,4 @@
 import React from 'react';
-import './Divider.scss';
-
 interface DividerProps {
     className?: string;
     children?: React.ReactNode;

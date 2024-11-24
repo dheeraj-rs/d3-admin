@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import './Fieldset.scss';
-
 interface FieldsetProps {
     legend?: React.ReactNode;
     toggleable?: boolean;

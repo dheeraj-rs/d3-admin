@@ -1,6 +1,4 @@
 import React from 'react';
-import './TriStateCheckbox.scss';
-
 export interface TriStateCheckboxProps {
     value?: boolean | null;
     onChange?: (e: { originalEvent: React.ChangeEvent<HTMLInputElement>; value: boolean | null }) => void;

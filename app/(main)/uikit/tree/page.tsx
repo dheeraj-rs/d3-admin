@@ -1,8 +1,8 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import { Column } from '@/components/DataTable/Column';
 import { Tree } from '@/components/Tree/Tree';
 import { TreeTable } from '@/components/TreeTable/TreeTable';
-import { Column } from '@/components/DataTable/Column';
+import { useEffect, useState } from 'react';
 import { NodeService } from '../../../../demo/service/NodeService';
 import { TreeNode, TreeSelectionKeysType, TreeTableSelectionKeysType } from './types';
 
@@ -28,7 +28,12 @@ const TreeDemo = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>TreeTable</h5>
-                    <TreeTable value={files2} selectionMode="checkbox" selectionKeys={selectedFileKeys2} onSelectionChange={(e) => setSelectedFileKeys2(e.value)}>
+                    <TreeTable
+                        value={files2}
+                        selectionMode="checkbox"
+                        selectionKeys={selectedFileKeys2}
+                        onSelectionChange={(e) => setSelectedFileKeys2(e.value)}
+                    >
                         <Column field="name" header="Name" expander />
                         <Column field="size" header="Size" />
                         <Column field="type" header="Type" />

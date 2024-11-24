@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import './PanelMenu.scss';
-
 interface PanelMenuItem {
     label: string;
     icon?: string;

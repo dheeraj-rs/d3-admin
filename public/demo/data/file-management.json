@@ -91,7 +91,6 @@
             "fileSize": "1.6 MB"
         }
     ],
-
     "metrics": [
         {
             "title": "Cloud Storage",
@@ -126,13 +125,12 @@
             "fileSize": "5.3GB"
         }
     ],
-
     "folders_small": [
         {
             "name": "Document Files",
             "icon": "pi pi-folder",
             "size": "1.8 GB"
-        }, 
+        },
         {
             "name": "Document Files",
             "icon": "pi pi-images",
@@ -149,13 +147,12 @@
             "size": "16 GB"
         }
     ],
-
     "folders_large": [
         {
             "name": "Miami 2022",
             "icon": "pi pi-folder",
             "size": "12"
-        }, 
+        },
         {
             "name": "Protoype",
             "icon": "pi pi-folder",

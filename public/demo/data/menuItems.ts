@@ -3,10 +3,10 @@ import { AppMenuItem } from '@/types';
 export const menuItems: AppMenuItem[] = [
     {
         label: 'Home',
-        items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }]
+        items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }],
     },
     {
-        label: 'UI Components',
+        label: 'Element',
         items: [
             { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/uikit/formlayout' },
             { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/uikit/input' },
@@ -23,22 +23,22 @@ export const menuItems: AppMenuItem[] = [
             { label: 'Message', icon: 'pi pi-fw pi-comment', to: '/uikit/message' },
             { label: 'File', icon: 'pi pi-fw pi-file', to: '/uikit/file' },
             { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', to: '/uikit/charts' },
-            { label: 'Misc', icon: 'pi pi-fw pi-circle', to: '/uikit/misc' }
-        ]
+            { label: 'Misc', icon: 'pi pi-fw pi-circle', to: '/uikit/misc' },
+        ],
     },
     {
-        label: 'Prime Blocks',
+        label: 'Blocks',
         items: [
             { label: 'Free Blocks', icon: 'pi pi-fw pi-eye', to: '/blocks', badge: 'NEW' },
-            { label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: 'https://blocks.primereact.org', target: '_blank' }
-        ]
+            { label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: 'https://blocks.d-admin.org', target: '_blank' },
+        ],
     },
     {
-        label: 'Utilities',
+        label: 'Utils',
         items: [
             { label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', to: '/utilities/icons' },
-            { label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: 'https://primeflex.org/', target: '_blank' }
-        ]
+            { label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: 'https://d-admin.org/', target: '_blank' },
+        ],
     },
     {
         label: 'Pages',
@@ -48,7 +48,7 @@ export const menuItems: AppMenuItem[] = [
             {
                 label: 'Landing',
                 icon: 'pi pi-fw pi-globe',
-                to: '/landing'
+                to: '/landing',
             },
             {
                 label: 'Auth',
@@ -57,44 +57,44 @@ export const menuItems: AppMenuItem[] = [
                     {
                         label: 'Login',
                         icon: 'pi pi-fw pi-sign-in',
-                        to: '/auth/login'
+                        to: '/auth/login',
                     },
                     {
                         label: 'Error',
                         icon: 'pi pi-fw pi-times-circle',
-                        to: '/auth/error'
+                        to: '/auth/error',
                     },
                     {
                         label: 'Access Denied',
                         icon: 'pi pi-fw pi-lock',
-                        to: '/auth/access'
-                    }
-                ]
+                        to: '/auth/access',
+                    },
+                ],
             },
             {
                 label: 'Crud',
                 icon: 'pi pi-fw pi-pencil',
-                to: '/pages/crud'
+                to: '/pages/crud',
             },
             {
                 label: 'Timeline',
                 icon: 'pi pi-fw pi-calendar',
-                to: '/pages/timeline'
+                to: '/pages/timeline',
             },
             {
                 label: 'Not Found',
                 icon: 'pi pi-fw pi-exclamation-circle',
-                to: '/pages/notfound'
+                to: '/pages/notfound',
             },
             {
                 label: 'Empty',
                 icon: 'pi pi-fw pi-circle-off',
-                to: '/pages/empty'
-            }
-        ]
+                to: '/pages/empty',
+            },
+        ],
     },
     {
-        label: 'Hierarchy',
+        label: 'Tree',
         items: [
             {
                 label: 'Submenu 1',
@@ -106,15 +106,15 @@ export const menuItems: AppMenuItem[] = [
                         items: [
                             { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' },
                             { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark' },
-                            { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' }
-                        ]
+                            { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' },
+                        ],
                     },
                     {
                         label: 'Submenu 1.2',
                         icon: 'pi pi-fw pi-bookmark',
-                        items: [{ label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark' }]
-                    }
-                ]
+                        items: [{ label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark' }],
+                    },
+                ],
             },
             {
                 label: 'Submenu 2',
@@ -125,38 +125,38 @@ export const menuItems: AppMenuItem[] = [
                         icon: 'pi pi-fw pi-bookmark',
                         items: [
                             { label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-bookmark' },
-                            { label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark' }
-                        ]
+                            { label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark' },
+                        ],
                     },
                     {
                         label: 'Submenu 2.2',
                         icon: 'pi pi-fw pi-bookmark',
-                        items: [{ label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark' }]
-                    }
-                ]
-            }
-        ]
+                        items: [{ label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark' }],
+                    },
+                ],
+            },
+        ],
     },
     {
-        label: 'Get Started',
+        label: 'Started',
         items: [
             {
                 label: 'Documentation',
                 icon: 'pi pi-fw pi-question',
-                to: '/documentation'
+                to: '/documentation',
             },
             {
                 label: 'Figma',
-                url: 'https://www.dropbox.com/scl/fi/bhfwymnk8wu0g5530ceas/sakai-2023.fig?rlkey=u0c8n6xgn44db9t4zkd1brr3l&dl=0',
+                url: 'https://www.dheerajrs.com/',
                 icon: 'pi pi-fw pi-pencil',
-                target: '_blank'
+                target: '_blank',
             },
             {
                 label: 'View Source',
                 icon: 'pi pi-fw pi-search',
-                url: 'https://github.com/primefaces/sakai-react',
-                target: '_blank'
-            }
-        ]
-    }
+                url: 'https://github.com/dheeraj-rs',
+                target: '_blank',
+            },
+        ],
+    },
 ];

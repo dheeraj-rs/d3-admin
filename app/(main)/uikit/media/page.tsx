@@ -1,13 +1,13 @@
 'use client';
 
-import React, { Suspense, useEffect, useState } from 'react';
-import { PhotoService } from '../../../../demo/service/PhotoService';
-import { ProductService } from '../../../../demo/service/ProductService';
 import { Button } from '@/components/Button/Button';
-import type { Demo } from '@/types';
 import { Carousel } from '@/components/Carousel/Carousel';
 import { Galleria } from '@/components/Galleria/Galleria';
 import { Image } from '@/components/Image/Image';
+import type { Demo } from '@/types';
+import { Suspense, useEffect, useState } from 'react';
+import { PhotoService } from '../../../../demo/service/PhotoService';
+import { ProductService } from '../../../../demo/service/ProductService';
 
 // Create a wrapper component for the main content
 const MediaDemoContent = () => {
@@ -17,37 +17,37 @@ const MediaDemoContent = () => {
     const galleriaResponsiveOptions = [
         {
             breakpoint: '1024px',
-            numVisible: 5
+            numVisible: 5,
         },
         {
             breakpoint: '960px',
-            numVisible: 4
+            numVisible: 4,
         },
         {
             breakpoint: '768px',
-            numVisible: 3
+            numVisible: 3,
         },
         {
             breakpoint: '560px',
-            numVisible: 1
-        }
+            numVisible: 1,
+        },
     ];
     const carouselResponsiveOptions = [
         {
             breakpoint: '1024px',
             numVisible: 3,
-            numScroll: 3
+            numScroll: 3,
         },
         {
             breakpoint: '768px',
             numVisible: 2,
-            numScroll: 2
+            numScroll: 2,
         },
         {
             breakpoint: '560px',
             numVisible: 1,
-            numScroll: 1
-        }
+            numScroll: 1,
+        },
     ];
 
     useEffect(() => {
@@ -84,7 +84,13 @@ const MediaDemoContent = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>Carousel</h5>
-                    <Carousel value={products} numVisible={3} numScroll={3} responsiveOptions={carouselResponsiveOptions} itemTemplate={carouselItemTemplate}></Carousel>
+                    <Carousel
+                        value={products}
+                        numVisible={3}
+                        numScroll={3}
+                        responsiveOptions={carouselResponsiveOptions}
+                        itemTemplate={carouselItemTemplate}
+                    ></Carousel>
                 </div>
             </div>
 
@@ -100,7 +106,15 @@ const MediaDemoContent = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>Galleria</h5>
-                    <Galleria value={images} responsiveOptions={galleriaResponsiveOptions} numVisible={7} circular style={{ maxWidth: '800px', margin: 'auto' }} item={galleriaItemTemplate} thumbnail={galleriaThumbnailTemplate}></Galleria>
+                    <Galleria
+                        value={images}
+                        responsiveOptions={galleriaResponsiveOptions}
+                        numVisible={7}
+                        circular
+                        style={{ maxWidth: '800px', margin: 'auto' }}
+                        item={galleriaItemTemplate}
+                        thumbnail={galleriaThumbnailTemplate}
+                    ></Galleria>
                 </div>
             </div>
         </div>

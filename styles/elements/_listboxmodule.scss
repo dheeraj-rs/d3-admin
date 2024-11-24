@@ -1,7 +1,7 @@
 .listBox {
     border: 1px solid #ced4da;
     border-radius: 4px;
-    background: #ffffff;
+    background: var(--surface-card);
     max-height: 200px;
     overflow-y: auto;
 
@@ -11,12 +11,12 @@
         transition: background-color 0.2s ease;
 
         &:hover {
-            background-color: #e9ecef;
+            background-color: var(--surface-ground);
         }
 
         &.selected {
-            background-color: #3b82f6;
-            color: #ffffff;
+            background-color: var(--primary-500);
+            color: var(--primary-contrast);
         }
     }
 }

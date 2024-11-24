@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import styles from './Rating.module.scss';
-
 interface RatingProps {
     value?: number;
     onChange?: (value: number) => void;
@@ -15,13 +13,13 @@ const Rating = ({ value = 0, onChange = () => {}, stars = 5, disabled, readOnly,
     const [hoverValue, setHoverValue] = useState<number | null>(null);
 
     return (
-        <div className={`${styles.rating} ${className}`}>
+        <div className={`rating ${className}`}>
             {[...Array(stars)].map((_, index) => {
                 const starValue = index + 1;
                 return (
                     <span
                         key={index}
-                        className={`${styles.rating__star} ${(hoverValue || value) >= starValue ? styles['rating__star--filled'] : ''}`}
+                        className={`rating__star ${hoverValue || value >= starValue ? 'rating__star--filled' : ''}`}
                         onClick={() => !disabled && !readOnly && onChange(starValue)}
                         onMouseEnter={() => !disabled && !readOnly && setHoverValue(starValue)}
                         onMouseLeave={() => !disabled && !readOnly && setHoverValue(null)}

@@ -1,6 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
-import './OverlayPanel.scss';
-
+import React, { useRef, useState } from 'react';
 interface OverlayPanelProps {
     children?: React.ReactNode;
     className?: string;
@@ -20,7 +18,7 @@ export const OverlayPanel = React.forwardRef<any, OverlayPanelProps>((props, ref
         const rect = target.getBoundingClientRect();
         setPosition({
             top: rect.bottom + window.scrollY,
-            left: rect.left + window.scrollX
+            left: rect.left + window.scrollX,
         });
         setVisible(true);
     };
@@ -31,7 +29,7 @@ export const OverlayPanel = React.forwardRef<any, OverlayPanelProps>((props, ref
 
     React.useImperativeHandle(ref, () => ({
         show,
-        hide
+        hide,
     }));
 
     return visible ? (
