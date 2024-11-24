@@ -1,9 +1,4 @@
-type ClassArray = Array<ClassValue>;
-type ClassValue = string | number | ClassDictionary | ClassArray | undefined | null;
-
-interface ClassDictionary {
-    [id: string]: boolean | undefined | null;
-}
+import { ClassValue } from '@/types';
 
 export const classNames = (...classes: ClassValue[]): string => {
     const result = new Set<string>();

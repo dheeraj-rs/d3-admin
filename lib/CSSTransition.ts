@@ -1,12 +1,11 @@
 import { CSSTransitionProps } from '@/types';
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 const CSSTransition: React.FC<CSSTransitionProps> = ({ in: inProp, timeout, classNames, children, onEnter, onExit }) => {
     const nodeRef = useRef<HTMLElement | null>(null);
     const [mounted, setMounted] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout>();
 
-    // Helper function to manage CSS classes
     const updateClasses = useCallback(
         (node: HTMLElement, addClasses: string[], removeClasses: string[]) => {
             removeClasses.forEach((cls) => node.classList.remove(`${classNames}-${cls}`));
@@ -15,7 +14,6 @@ const CSSTransition: React.FC<CSSTransitionProps> = ({ in: inProp, timeout, clas
         [classNames]
     );
 
-    // Cleanup function
     const cleanup = () => timeoutRef.current && clearTimeout(timeoutRef.current);
 
     useEffect(() => {
@@ -73,8 +71,8 @@ const CSSTransition: React.FC<CSSTransitionProps> = ({ in: inProp, timeout, clas
         className: `${children.props.className || ''} ${classNames}`.trim(),
         style: {
             ...children.props.style,
-            display: mounted ? undefined : 'none'
-        }
+            display: mounted ? undefined : 'none',
+        },
     });
 };
 

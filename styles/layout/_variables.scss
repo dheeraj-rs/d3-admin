@@ -1,10 +1,13 @@
 // Base Layout Settings
 $spacing-layout-base: 0.5rem;
 $spacing-layout-content: 0.5rem;
+
 $z-index-layout-base: 999;
+$z-index-layout-max: 9999;
+$z-index-layout-mask: 9998;
 
 // Component Base Styles
-$radius-component-base: 12px;
+$radius-layout-base: 12px;
 $radius-component-mobile: 8px;
 $shadow-component-base: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08); // Default box shadow
 
@@ -30,11 +33,11 @@ $width-panel-bottom-expanded: 300px;
 $height-panel-bottom-collapsed: 5rem;
 $height-panel-bottom-expanded: 300px;
 $width-panel-bottom-hover: calc(100% - $spacing-layout-base * 2);
-$height-panel-bottom-hover: $height-panel-bottom-expanded;
+$height-panel-bottom-hover: 300px;
 $height-panel-bottom-mobile: 5rem;
 $width-panel-bottom-mobile: calc(100% - $spacing-layout-base * 2);
 
-// Sidebar Navigation Settings
+// Nav Sidebar
 $width-nav-sidebar-expanded: 300px;
 $width-nav-sidebar-collapsed: 5rem;
 $height-nav-sidebar-collapsed: 5rem;
@@ -54,12 +57,10 @@ $spacing-config-panel-inner: 0.5rem 1.5rem;
 $offset-main-content-top: calc($height-header-base + $spacing-layout-base);
 $spacing-main-content: $offset-main-content-top $spacing-layout-base $spacing-layout-base $spacing-layout-base;
 
-
 $layout-bottombar-width: 5rem;
 $layout-bottombar-height: 5rem;
 
 // ============
-
 
 // ** Padding Variables **
 $layout-padding-default: 0.5rem;
@@ -70,8 +71,7 @@ $border-radius-default: 12px;
 $border-radius-mobile-settings: 8px;
 
 // ** Box Shadow Variables **
-$box-shadow-default: 0px 3px 5px rgba(0, 0, 0, 0.02),
-  0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08); // Default box shadow
+$box-shadow-default: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08); // Default box shadow
 
 // ** Transition Variables **
 $transition-duration-fast: 0.1s;
@@ -87,6 +87,9 @@ $notification-topbar-radius: 5px;
 $layout-topbar-gap: 0.5rem;
 $layout-topbar-hight: 5rem;
 $layout-topbar-padding-default: 1rem;
+// $z-index-topbar-base: 9998;
+$z-index-topbar-base: 998;
+$z-index-topbar-mask: 997;
 
 // ** Bottombar Variables **
 $layout-bottombar-width: 5rem;
@@ -98,3 +101,43 @@ $sidebar-width-default: 300px;
 $sidebar-width-mini: 5rem;
 $sidebar-height-mini: 5rem;
 $sidebar-padding-default: 1rem;
+
+// menu
+$height-sidebar-base: calc(100% - #{$height-header-base + $spacing-layout-base * 3});
+$width-sidebar-base: 300px;
+$width-sidebar-mini: 6rem;
+$top-sidebar-base: calc($height-topbar-base + $spacing-layout-base * 2);
+$height-sidebar-overlay: calc(100% - #{$spacing-layout-base * 2});
+
+$z-index-sidebar-base: 998;
+
+// config
+$height-config-base: calc(100% - (#{4 * $spacing-layout-base} + #{$height-header-base} + #{$layout-bottombar-height}));
+$width-config-base: 300px;
+$top-config-base: calc($height-topbar-base + $spacing-layout-base * 2);
+$height-config-overlay: calc(100% - #{$spacing-layout-base * 2});
+$height-config-inactive-topbar: calc(100% - (#{3 * $spacing-layout-base} + #{$layout-bottombar-height}));
+$height-config-inactive-bottombar: calc(100% - (#{3 * $spacing-layout-base} + #{$layout-bottombar-height}));
+
+$z-index-config-base: 998;
+
+// bottombar
+$height-bottombar-base: 5rem;
+$width-bottombar-base: 5rem;
+$width-bottombar-expanded: 300px;
+$height-bottombar-hover: 300px;
+$width-bottombar-hover: calc(100% - #{$spacing-layout-base * 2});
+$top-bottombar-base: calc($height-topbar-base + $spacing-layout-base * 2);
+$height-bottombar-overlay: calc(100% - #{$spacing-layout-base * 2});
+$z-index-bottombar-base: 998;
+$z-index-bottombar-mask: 997;
+
+// main
+$margin-left-main-container-base: calc($width-sidebar-base + $spacing-layout-base);
+$margin-left-main-container-mini: calc($width-sidebar-mini + $spacing-layout-base);
+$margin-right-main-container-base: calc($width-config-base + $spacing-layout-base);
+
+$z-index-main-base: 998;
+$z-index-main-mask: 997;
+
+$padding-top-main-container-base: calc($height-topbar-base + $spacing-layout-base * 2);

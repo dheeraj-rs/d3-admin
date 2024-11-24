@@ -1,7 +1,4 @@
-import React, { ReactElement, Dispatch, SetStateAction, HTMLAttributeAnchorTarget, ReactNode, MutableRefObject } from 'react';
-import { NextPage } from 'next';
-import { Demo } from './demo';
-import Toast from '@/components/Toast/Toast';
+import React, { Dispatch, HTMLAttributeAnchorTarget, MutableRefObject, ReactNode, SetStateAction } from 'react';
 
 /* CSSTransition Types */
 export interface CSSTransitionProps {
@@ -34,6 +31,7 @@ export interface BreadcrumbItem {
 
 /* Context Types */
 export type LayoutState = {
+    topbarAutoHide: boolean;
     staticMenuDesktopInactive: boolean;
     staticConfigDesktopInactive: boolean;
     staticBottombarDesktopInactive: boolean;
@@ -46,6 +44,7 @@ export type LayoutState = {
     staticConfigMobileActive: boolean;
     staticBottombarMobileActive: boolean;
     menuHoverActive: boolean;
+    sidebarAutoOverlayActive: boolean;
     searchSidebarItems: [];
 };
 
@@ -68,6 +67,8 @@ export interface LayoutContextProps {
     onConfigToggle: () => void;
     showProfileSidebar: () => void;
     onBottombarToggle: () => void;
+    onTopbarToggle: () => void;
+    onSidebarAutoOverlayToggle: () => void;
 }
 
 export interface MenuContextProps {
@@ -127,4 +128,29 @@ export interface AppMenuItemProps {
     index?: number;
     root?: boolean;
     className?: string;
+}
+
+/* Search Types */
+export interface SearchableItem {
+    label: string;
+    items?: SearchableItem[];
+    [key: string]: any;
+}
+
+export interface SearchConfig {
+    searchKeys?: string[];
+    maxResults: number;
+    minSearchLength: number;
+    fuzzySearch?: boolean;
+    searchMode?: 'simple' | 'advanced';
+}
+
+export interface AppSearchProps<T extends SearchableItem> {
+    searchbarRef: React.RefObject<HTMLDivElement>;
+    sidebarRef: React.RefObject<HTMLDivElement>;
+    type?: 'menu' | 'pageContent';
+    items?: T[];
+    onSearchResults?: (results: T[]) => void;
+    searchConfig?: Partial<SearchConfig>;
+    placeholder?: string;
 }

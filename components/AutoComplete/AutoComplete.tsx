@@ -1,5 +1,4 @@
-import { FC, useState, useEffect } from 'react';
-import './AutoComplete.scss';
+import { FC, useState } from 'react';
 
 interface AutoCompleteProps {
     id?: string;
@@ -32,7 +31,14 @@ export const AutoComplete: FC<AutoCompleteProps> = ({ id, value, onChange, sugge
 
     return (
         <div className="custom-autocomplete">
-            <input id={id} type="text" placeholder={placeholder} value={field ? value?.[field] : value || query} onChange={handleInputChange} onFocus={() => setShowSuggestions(true)} />
+            <input
+                id={id}
+                type="text"
+                placeholder={placeholder}
+                value={field ? value?.[field] : value || query}
+                onChange={handleInputChange}
+                onFocus={() => setShowSuggestions(true)}
+            />
             {showSuggestions && suggestions.length > 0 && (
                 <ul className="suggestions-list">
                     {suggestions.map((item, index) => (

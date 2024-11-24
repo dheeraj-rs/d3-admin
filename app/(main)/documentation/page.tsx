@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-sync-scripts */
-import React from 'react';
 
 const Documentation = () => {
     return (
@@ -31,8 +30,8 @@ const Documentation = () => {
                         </pre>
 
                         <p>
-                            Next step is running the application using the start script and navigate to <b>http://localhost:3000/</b> to view the application. That is it, you may now start with the development of your application using the Sakai
-                            template.
+                            Next step is running the application using the start script and navigate to <b>http://localhost:3000/</b> to view the application.
+                            That is it, you may now start with the development of your application using the Sakai template.
                         </p>
 
                         <pre className="app-code">
@@ -53,11 +52,15 @@ const Documentation = () => {
                         <p>Sakai consist of a couple of folders where demos and core layout have been separated.</p>
                         <p>
                             There are two{' '}
-                            <a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups" className="font-medium hover:underline text-primary">
+                            <a
+                                href="https://nextjs.org/docs/app/building-your-application/routing/route-groups"
+                                className="font-medium hover:underline text-primary"
+                            >
                                 route groups
                             </a>{' '}
-                            under the app folder; <span className="text-primary font-medium">{`(main)`}</span> represents the pages that reside in the main dashboard layout whereas <span className="text-primary font-medium">{`(full-page)`}</span>{' '}
-                            groups the pages with full page content such as landing page or a login page.
+                            under the app folder; <span className="text-primary font-medium">{`(main)`}</span> represents the pages that reside in the main
+                            dashboard layout whereas <span className="text-primary font-medium">{`(full-page)`}</span> groups the pages with full page content
+                            such as landing page or a login page.
                         </p>
                         <ul className="line-height-3">
                             <li>
@@ -84,7 +87,8 @@ const Documentation = () => {
                         </ul>
                         <h5>Route Groups</h5>
                         <p>
-                            Root Layout is the main of the application and it is defined at <span className="text-primary font-medium">app/layout.tsx</span> file. It contains the style imports and layout context provider.
+                            Root Layout is the main of the application and it is defined at <span className="text-primary font-medium">app/layout.tsx</span>{' '}
+                            file. It contains the style imports and layout context provider.
                         </p>
                         <pre className="app-code">
                             <code>
@@ -123,7 +127,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
                             </code>
                         </pre>
                         <p>
-                            The pages that are using the layout elements need to be defined under the <span className="text-primary font-medium">app/{'(main)'}/</span> folder. Those pages use the{' '}
+                            The pages that are using the layout elements need to be defined under the{' '}
+                            <span className="text-primary font-medium">app/{'(main)'}/</span> folder. Those pages use the{' '}
                             <span className="text-primary font-medium">app/{'(main)'}/layout.tsx</span> as the root layout.
                         </p>
                         <pre className="app-code">
@@ -147,7 +152,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
                             </code>
                         </pre>
                         <p>
-                            Only the pages that are using config sidebar wihout layout elements need to be defined under the <span className="text-primary font-medium">app/{'(full-page)'}/</span> folder. Those pages use the{' '}
+                            Only the pages that are using config sidebar wihout layout elements need to be defined under the{' '}
+                            <span className="text-primary font-medium">app/{'(full-page)'}/</span> folder. Those pages use the{' '}
                             <span className="text-primary font-medium">app/{'(full-page)'}/layout.tsx</span> as the root layout.
                         </p>
                         <pre className="app-code">
@@ -178,7 +184,8 @@ export default function FullPageLayout({ children }: FullPageLayoutProps) {
                         </pre>
                         <h5>Default Configuration</h5>
                         <p>
-                            Initial layout configuration can be defined at the <span className="text-primary font-medium">layout/context/layoutcontext.js</span> file, this step is optional and only necessary when customizing the defaults.
+                            Initial layout configuration can be defined at the <span className="text-primary font-medium">layout/context/layoutcontext.js</span>{' '}
+                            file, this step is optional and only necessary when customizing the defaults.
                         </p>
 
                         <pre className="app-code">
@@ -215,7 +222,8 @@ export const LayoutProvider = (props) => {
 
                         <h5>SASS Variables</h5>
                         <p>
-                            In case you&apos;d like to customize the main layout variables, open <b>_variables.scss</b> file under layout folder. Saving the changes will be reflected instantly at your browser.
+                            In case you&apos;d like to customize the main layout variables, open <b>_variables.scss</b> file under layout folder. Saving the
+                            changes will be reflected instantly at your browser.
                         </p>
 
                         <h6>layout/_variables.scss</h6>
@@ -223,9 +231,9 @@ export const LayoutProvider = (props) => {
                             <code>
                                 {`
 /* General */
-$scale:14px;                    /* initial font size */ 
-$radius-component-base:12px;             /* border radius of layout element e.g. card, sidebar */ 
-$duration-animation-base:.2s;        /* transition duration of layout elements e.g. sidebar */ 
+$scale:14px;                    /* initial font size */
+$radius-layout-base:12px;             /* border radius of layout element e.g. card, sidebar */
+$duration-animation-base:.2s;        /* transition duration of layout elements e.g. sidebar */
 `}
                             </code>
                         </pre>

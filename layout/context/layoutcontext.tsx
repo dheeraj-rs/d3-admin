@@ -1,6 +1,6 @@
 'use client';
-import React, { useState, createContext } from 'react';
-import { LayoutState, ChildContainerProps, LayoutConfig, LayoutContextProps } from '@/types';
+import { ChildContainerProps, LayoutConfig, LayoutContextProps, LayoutState } from '@/types';
+import { createContext, useState } from 'react';
 export const LayoutContext = createContext({} as LayoutContextProps);
 
 export const LayoutProvider = ({ children }: ChildContainerProps) => {
@@ -11,7 +11,7 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
         colorScheme: 'light',
         theme: 'lara-light-indigo',
         scale: 14,
-        secretKey: ''
+        secretKey: '',
     });
 
     const [layoutState, setLayoutState] = useState<LayoutState>({
@@ -23,16 +23,14 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
         overlayBottombarActive: false,
         profileSidebarVisible: false,
         configSidebarVisible: false,
+        topbarAutoHide: false,
         staticMenuMobileActive: false,
         staticConfigMobileActive: false,
         staticBottombarMobileActive: false,
         menuHoverActive: false,
-        searchSidebarItems: []
+        sidebarAutoOverlayActive: false,
+        searchSidebarItems: [],
     });
-
-    console.log('searchSidebarItems :', layoutState.searchSidebarItems);
-
-    console.log('overlayConfigActive :', layoutState.overlayConfigActive);
 
     const onMenuToggle = () => {
         if (isOverlay()) {
@@ -70,6 +68,14 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
         }
     };
 
+    const onTopbarToggle = () => {
+        setLayoutState((prevLayoutState) => ({ ...prevLayoutState, topbarAutoHide: !prevLayoutState.topbarAutoHide }));
+    };
+
+    const onSidebarAutoOverlayToggle = () => {
+        setLayoutState((prevLayoutState) => ({ ...prevLayoutState, sidebarAutoOverlayActive: !prevLayoutState.sidebarAutoOverlayActive }));
+    };
+
     const showProfileSidebar = () => {
         setLayoutState((prevLayoutState) => ({ ...prevLayoutState, profileSidebarVisible: !prevLayoutState.profileSidebarVisible }));
     };
@@ -90,7 +96,9 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
         onMenuToggle,
         showProfileSidebar,
         onConfigToggle,
-        onBottombarToggle
+        onBottombarToggle,
+        onTopbarToggle,
+        onSidebarAutoOverlayToggle,
     };
 
     return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>;

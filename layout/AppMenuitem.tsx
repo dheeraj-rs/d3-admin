@@ -1,11 +1,11 @@
 'use client';
-import Link from 'next/link';
-import React, { useEffect, useContext, useCallback } from 'react';
-import { MenuContext } from './context/menucontext';
-import { AppMenuItemProps } from '@/types';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { classNames } from '@/lib/utils';
 import { CSSTransition } from '@/lib/CSSTransition';
+import { classNames } from '@/lib/utils';
+import { AppMenuItemProps } from '@/types';
+import Link from 'next/link';
+import { usePathname, useSearchParams } from 'next/navigation';
+import React, { useCallback, useContext, useEffect } from 'react';
+import { MenuContext } from './context/menucontext';
 
 const AppMenuitem = (props: AppMenuItemProps) => {
     const pathname = usePathname();
@@ -30,18 +30,13 @@ const AppMenuitem = (props: AppMenuItemProps) => {
     }, [pathname, searchParams, onRouteChange]);
 
     const itemClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        //avoid processing disabled items
         if (item!.disabled) {
             event.preventDefault();
             return;
         }
-
-        //execute command
         if (item!.command) {
             item!.command({ originalEvent: event, item: item });
         }
-
-        // toggle active state
         if (item!.items) setActiveMenu(active ? (props.parentKey as string) : key);
         else setActiveMenu(key);
     };
@@ -68,7 +63,14 @@ const AppMenuitem = (props: AppMenuItemProps) => {
             ) : null}
 
             {item!.to && !item!.items && item!.visible !== false ? (
-                <Link href={item!.to} replace={item!.replaceUrl} target={item!.target} onClick={(e) => itemClick(e)} className={classNames(item!.class, 'p-ripple', { 'active-route': !!isActiveRoute })} tabIndex={0}>
+                <Link
+                    href={item!.to}
+                    replace={item!.replaceUrl}
+                    target={item!.target}
+                    onClick={(e) => itemClick(e)}
+                    className={classNames(item!.class, 'p-ripple', { 'active-route': !!isActiveRoute })}
+                    tabIndex={0}
+                >
                     <i className={classNames('layout-menuitem-icon', item!.icon)}></i>
                     <span className="layout-menuitem-text">{item!.label}</span>
                     {item!.items && <i className="pi pi-fw pi-angle-down layout-submenu-toggler"></i>}

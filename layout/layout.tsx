@@ -1,18 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
-
-import React, { useContext, useEffect, useRef } from 'react';
-import AppFooter from './AppFooter';
-import AppSidebar from './AppSidebar';
-import AppTopbar from './AppTopbar';
-import { LayoutContext } from './context/layoutcontext';
-import { ChildContainerProps, LayoutState, AppTopbarRef } from '@/types';
-import { usePathname, useSearchParams } from 'next/navigation';
-import AppConfigbar from './AppConfigbar';
 import { useEventListener, useUnmountEffect } from '@/hooks';
 import { classNames } from '@/lib/utils';
+import { AppTopbarRef, ChildContainerProps, LayoutState } from '@/types';
+import { usePathname, useSearchParams } from 'next/navigation';
+import React, { useContext, useEffect, useRef } from 'react';
+import AppConfigbar from './AppConfigbar';
+import AppFooter from './AppFooter';
 import AppMenu from './AppMenu';
-import Searchbar from './Searchbar';
+import AppTopbar from './AppTopbar';
+import { LayoutContext } from './context/layoutcontext';
 
 const Layout = ({ children }: ChildContainerProps) => {
     const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
@@ -20,7 +17,6 @@ const Layout = ({ children }: ChildContainerProps) => {
     const sidebarRef = useRef<HTMLDivElement>(null);
     const configbarRef = useRef<HTMLDivElement>(null);
     const bottombarRef = useRef<HTMLDivElement>(null);
-    const searchbarRef = useRef<HTMLDivElement>(null);
     const [bindMenuOutsideClickListener, unbindMenuOutsideClickListener] = useEventListener({
         type: 'click',
         listener: (event) => {
@@ -38,11 +34,12 @@ const Layout = ({ children }: ChildContainerProps) => {
             if (isOutsideClicked) {
                 hideMenu();
             }
-        }
+        },
     });
 
     const pathname = usePathname();
     const searchParams = useSearchParams();
+
     useEffect(() => {
         hideMenu();
         hideProfileMenu();
@@ -63,7 +60,7 @@ const Layout = ({ children }: ChildContainerProps) => {
             if (isOutsideClicked) {
                 hideProfileMenu();
             }
-        }
+        },
     });
 
     const hideMenu = () => {
@@ -73,7 +70,7 @@ const Layout = ({ children }: ChildContainerProps) => {
             overlayConfigActive: false,
             staticMenuMobileActive: false,
             staticConfigMobileActive: false,
-            menuHoverActive: false
+            menuHoverActive: false,
         }));
         unbindMenuOutsideClickListener();
         unblockBodyScroll();
@@ -82,7 +79,7 @@ const Layout = ({ children }: ChildContainerProps) => {
     const hideProfileMenu = () => {
         setLayoutState((prevLayoutState: LayoutState) => ({
             ...prevLayoutState,
-            profileSidebarVisible: false
+            profileSidebarVisible: false,
         }));
         unbindProfileMenuOutsideClickListener();
     };
@@ -110,46 +107,49 @@ const Layout = ({ children }: ChildContainerProps) => {
 
         layoutState.staticMenuMobileActive && blockBodyScroll();
         layoutState.staticConfigMobileActive && blockBodyScroll();
-    }, [layoutState.overlayMenuActive, layoutState.overlayConfigActive, layoutState.staticMenuMobileActive, layoutState.staticConfigMobileActive]);
+    }, [
+        layoutState.overlayMenuActive,
+        layoutState.overlayConfigActive,
+        layoutState.staticMenuMobileActive,
+        layoutState.staticConfigMobileActive,
+        bindMenuOutsideClickListener,
+    ]);
 
     useEffect(() => {
         if (layoutState.profileSidebarVisible) {
             bindProfileMenuOutsideClickListener();
         }
-    }, [layoutState.profileSidebarVisible]);
+    }, [layoutState.profileSidebarVisible, bindProfileMenuOutsideClickListener]);
 
     useUnmountEffect(() => {
         unbindMenuOutsideClickListener();
         unbindProfileMenuOutsideClickListener();
     });
 
-    const sampleClass = 'layout-topbar-inactive toggle__sidebar-left layout__sidebar-static layout__sidebar-default-active layout-topbar-inactive3 bento-topbar-active bento-bottombar-active'
-
-
-    const containerClass = classNames('layout-wrapper bento-topbar-active layout-topbar-inactive3', {
+    const containerClass = classNames('layout-wrapper', {
         'layout-overlay ': layoutConfig.menuMode === 'overlay',
         'layout-static': layoutConfig.menuMode === 'static',
         'layout-static-sidebar-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
         'layout-static-config-inactive': layoutState.staticConfigDesktopInactive && layoutConfig.menuMode === 'static',
-        'layout-static-bottombar-inactive': layoutState.staticBottombarDesktopInactive,
-        'layout-static-bottombar-mobile-active ': layoutState.staticBottombarMobileActive,
+        'layout-bottombar-desktop-inactive': layoutState.staticBottombarDesktopInactive,
+        'layout-bottombar-mobile-active': layoutState.staticBottombarMobileActive,
         'layout-overlay-sidebar-active': layoutState.overlayMenuActive,
         'layout-overlay-config-active': layoutState.overlayConfigActive,
         'layout-mobile-sidebar-active': layoutState.staticMenuMobileActive,
-        'layout-mobile-active-right': layoutState.staticConfigMobileActive,
+        'layout-mobile-config-active': layoutState.staticConfigMobileActive,
         'p-input-filled': layoutConfig.inputStyle === 'filled',
-        'p-ripple-disabled': !layoutConfig.ripple
+        'p-ripple-disabled': !layoutConfig.ripple,
+        'layout-topbar-auto-hide': layoutState.topbarAutoHide,
+        'layout-sidebar-auto-overlay-active': layoutState.sidebarAutoOverlayActive,
     });
-    
 
     return (
         <React.Fragment>
             <div className={containerClass}>
                 <AppTopbar ref={topbarRef} />
                 <div ref={sidebarRef} className="layout-sidebar">
-                    <AppMenu />
+                    <AppMenu sidebarRef={sidebarRef} />
                 </div>
-                {/* <Searchbar searchbarRef={searchbarRef}  /> */}
                 <div ref={configbarRef} className="layout-config">
                     <AppConfigbar />
                 </div>
@@ -161,6 +161,7 @@ const Layout = ({ children }: ChildContainerProps) => {
                 <div ref={bottombarRef} className="layout-bottombar">
                     <div className="layout-bottombar-desktop" />
                     <div className="layout-bottombar-mobile" />
+                    <div className="layout-bottombar-mask" />
                 </div>
 
                 <div className="layout-mask"></div>

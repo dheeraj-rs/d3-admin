@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import './Accordion.scss';
-
 interface AccordionProps {
     activeIndex?: number | number[];
     multiple?: boolean;
@@ -14,7 +12,9 @@ interface AccordionItemProps {
 }
 
 export const Accordion: React.FC<AccordionProps> = ({ activeIndex: controlledIndex, multiple = false, children, onTabChange }) => {
-    const [activeIndexes, setActiveIndexes] = useState<number[]>(Array.isArray(controlledIndex) ? controlledIndex : controlledIndex !== undefined ? [controlledIndex] : []);
+    const [activeIndexes, setActiveIndexes] = useState<number[]>(
+        Array.isArray(controlledIndex) ? controlledIndex : controlledIndex !== undefined ? [controlledIndex] : []
+    );
 
     const isControlled = controlledIndex !== undefined;
 
@@ -48,7 +48,7 @@ export const Accordion: React.FC<AccordionProps> = ({ activeIndex: controlledInd
                 if (React.isValidElement<AccordionItemProps>(child)) {
                     return React.cloneElement(child, {
                         isActive: isTabActive(index),
-                        onToggle: () => handleTabToggle(index)
+                        onToggle: () => handleTabToggle(index),
                     });
                 }
                 return child;

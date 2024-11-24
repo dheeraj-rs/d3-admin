@@ -15,12 +15,12 @@ export const FilterMatchMode = {
     DATE_IS_NOT: 'dateIsNot',
     DATE_BEFORE: 'dateBefore',
     DATE_AFTER: 'dateAfter',
-    CUSTOM: 'custom'
+    CUSTOM: 'custom',
 } as const;
 
 export const FilterOperator = {
     AND: 'and',
-    OR: 'or'
+    OR: 'or',
 } as const;
 
 export type FilterMatchModeType = (typeof FilterMatchMode)[keyof typeof FilterMatchMode];

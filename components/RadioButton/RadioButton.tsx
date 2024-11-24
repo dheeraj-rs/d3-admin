@@ -3,7 +3,7 @@ import './RadioButton.scss';
 
 interface RadioButtonProps {
     name: string;
-    value: string;
+    value: string | boolean;
     checked: boolean;
     onChange: (e: { value: string }) => void;
     inputId: string;
@@ -16,7 +16,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({ name, value, checked, onChang
 
     return (
         <div className="radio-button">
-            <input type="radio" id={inputId} name={name} value={value} checked={checked} onChange={handleChange} />
+            <input type="radio" id={inputId} name={name} value={String(value)} checked={checked} onChange={handleChange} />
             <span className="radio-button__custom"></span>
         </div>
     );

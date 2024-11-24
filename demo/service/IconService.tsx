@@ -14,5 +14,5 @@ export const IconService = {
             selectedIcon = icons.find((x: Demo.Icon) => x.properties?.id === id);
             return selectedIcon;
         }
-    }
+    },
 };

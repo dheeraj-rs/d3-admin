@@ -1,12 +1,11 @@
+import { ThemeManager } from '@/lib/ThemeManager';
 import { useEffect, useRef } from 'react';
-import CustomPrime from '@/lib/CustomPrimeAPI';
-
 export const useRippleEffect = () => {
     const elementRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
         const element = elementRef.current;
-        if (element && CustomPrime.ripple) {
+        if (element && ThemeManager.ripple) {
             element.classList.add('p-ripple');
         }
 

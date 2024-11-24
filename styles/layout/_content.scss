@@ -4,7 +4,8 @@
     min-height: 100vh;
     justify-content: space-between;
     padding: $spacing-main-content;
-    transition: margin-left $duration-animation-base, margin-right $duration-animation-base;
+    transition: margin-left $duration-animation-base, margin-right $duration-animation-base, padding-top $duration-animation-base;
+    padding-top: $padding-top-main-container-base;
 }
 
 .layout-main {

@@ -1,4 +1,4 @@
-import { useEffect, useState, RefObject, useRef } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 
 export const useIsMobileWithSSR = (breakpoint: number = 991): boolean => {
     const isClient = typeof window !== 'undefined';

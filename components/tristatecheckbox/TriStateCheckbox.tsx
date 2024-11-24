@@ -28,7 +28,7 @@ export const TriStateCheckbox: React.FC<TriStateCheckboxProps> = ({ value, onCha
         if (onChange) {
             onChange({
                 originalEvent: event as any,
-                value: newValue
+                value: newValue,
             });
         }
     };
